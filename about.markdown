@@ -4,9 +4,7 @@ title: 本站介绍
 permalink: /about/
 ---
 
-# 欢迎来到 [agppd 的博客]
-
-这里是一个记录技术思考、生活随想和个人成长的小角落。
+# 欢迎来到 [agppd团队 的博客]
 
 ## 简介
 
@@ -24,7 +22,9 @@ permalink: /about/
 - **响应式设计**：在手机、平板和电脑上都能获得良好的阅读体验。
 - **简洁高效**：专注于文字，无多余干扰元素。
 
-## 联系
+## 联系站长
+
+如果你想联系对应作者，可先联系站长后询问联系方式
 
 - [邮箱](mailto:qp9517533@qq.com)  
 - [GitHub](https://github.com/agppd)  
@@ -32,7 +32,8 @@ permalink: /about/
 
 ## 版权与致谢
 
-本站原创文章采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 许可协议，转载请注明出处。  
+本站原创文章采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 许可协议，转载请联系原作者并注明出处。
+本站所有文章相关的版权问题请联系原作者，本站与团队不做任何承担
 主题基于 `minima` 修改，感谢 Jekyll 和 GitHub Pages 提供的便捷平台。
 感谢 Jekyll、GitHub Pages 及所有开源项目的贡献者，让这个博客得以诞生。
 
