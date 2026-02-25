@@ -12,7 +12,7 @@
 
 ## 在线访问
 
-访问 [agppd 的博客](https://agppd.github.io/) 
+访问 [agppd团队 的博客](https://agppd.github.io/) 
 
 ## 许可证
 
