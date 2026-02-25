@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "快读模板（火车头）"
+title: "C++模板分享——快读（火车头）"
 date: 2026-02-25
 categories: 模板
 author: bcdmwSjy
