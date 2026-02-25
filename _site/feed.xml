@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4001/" rel="alternate" type="text/html" /><updated>2026-02-25T14:02:15+08:00</updated><id>http://localhost:4001/feed.xml</id><title type="html">agppd 的博客</title><subtitle>个人技术博客</subtitle><entry><title type="html">Hello World</title><link href="http://localhost:4001/%E6%9D%82%E8%B0%88/2026/02/25/Hello.html" rel="alternate" type="text/html" title="Hello World" /><published>2026-02-25T00:00:00+08:00</published><updated>2026-02-25T00:00:00+08:00</updated><id>http://localhost:4001/%E6%9D%82%E8%B0%88/2026/02/25/Hello</id><content type="html" xml:base="http://localhost:4001/%E6%9D%82%E8%B0%88/2026/02/25/Hello.html"><![CDATA[<p>这是本站的第一篇文章，留以纪念。</p>]]></content><author><name>agppd</name></author><category term="杂谈" /><summary type="html"><![CDATA[这是本站的第一篇文章，留以纪念。]]></summary></entry><entry><title type="html">C++模板分享——矩阵</title><link href="http://localhost:4001/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/02/25/Matirx.html" rel="alternate" type="text/html" title="C++模板分享——矩阵" /><published>2026-02-25T00:00:00+08:00</published><updated>2026-02-25T00:00:00+08:00</updated><id>http://localhost:4001/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/02/25/Matirx</id><content type="html" xml:base="http://localhost:4001/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/02/25/Matirx.html"><![CDATA[<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Node</span>
+<span class="p">{</span>
+    <span class="nl">private:</span>
+    <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">mp</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+    <span class="nl">public:</span>
+    <span class="n">Node</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">x</span><span class="p">,</span><span class="kt">size_t</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+        <span class="n">m</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">Node</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">memset</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">Node</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">m</span><span class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">memset</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">Node</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&gt;&amp;</span> <span class="n">v</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">memset</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span> <span class="n">and</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">m</span> <span class="n">and</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">Node</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">n</span><span class="p">;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">mp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">size_t</span> <span class="nf">query</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">x</span><span class="p">,</span><span class="kt">size_t</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">mp</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">unit</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">!=</span><span class="n">m</span><span class="p">)</span> 
+        <span class="p">{</span>
+            <span class="n">cerr</span><span class="o">&lt;&lt;</span><span class="s">"This is not a square. Check your init function. "</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">Node</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span> <span class="o">!=</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">n</span><span class="p">;</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+            <span class="n">memcpy</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">mp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">mp</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">Node</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrix dimensions do not match for multiplication!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">();</span>
+        <span class="p">}</span>
+        
+        <span class="kt">size_t</span> <span class="n">p</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">p</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+                <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1LL</span> <span class="o">*</span> <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">sum</span> <span class="o">&gt;=</span> <span class="n">mod</span><span class="p">)</span> <span class="n">sum</span> <span class="o">-=</span> <span class="n">mod</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="nf">pow</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">k</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">!=</span> <span class="n">m</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Cannot exponentiate non-square matrix!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Node</span> <span class="nf">result</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">result</span><span class="p">.</span><span class="n">unit</span><span class="p">();</span>
+        <span class="n">Node</span> <span class="n">base</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">exp</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">exp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">exp</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="n">base</span><span class="p">;</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="n">base</span><span class="p">;</span>
+            <span class="n">exp</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">Node</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">||</span> <span class="n">m</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrix dimensions do not match for addition!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">();</span>
+        <span class="p">}</span>
+        
+        <span class="n">Node</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">Node</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">||</span> <span class="n">m</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrix dimensions do not match for subtraction!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">();</span>
+        <span class="p">}</span>
+        
+        <span class="n">Node</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">res</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">mod</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">!=</span><span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">||</span> <span class="n">m</span><span class="o">!=</span><span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">!=</span><span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                <span class="p">{</span>
+                    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="k">operator</span> <span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="k">operator</span> <span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span> <span class="o">-</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="k">operator</span> <span class="o">*=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrix dimensions do not match for bitwise XOR!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">();</span>
+        <span class="p">}</span>
+        
+        <span class="kt">size_t</span> <span class="n">p</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">p</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">res</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">^</span> <span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="k">operator</span><span class="o">&amp;</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrix dimensions do not match for bitwise AND!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">();</span>
+        <span class="p">}</span>
+        
+        <span class="kt">size_t</span> <span class="n">p</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">p</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">res</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="k">operator</span><span class="o">|</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="n">x</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrix dimensions do not match for bitwise OR!"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">();</span>
+        <span class="p">}</span>
+        
+        <span class="kt">size_t</span> <span class="n">p</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">p</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">res</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="n">mp</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="k">operator</span> <span class="o">^=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span> <span class="o">^</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="k">operator</span> <span class="o">&amp;=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span> <span class="o">&amp;</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="k">operator</span> <span class="o">|=</span><span class="p">(</span><span class="k">const</span> <span class="n">Node</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span> <span class="o">|</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="nf">input</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="n">prsize_t</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">size_t</span> <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">%</span> <span class="n">mod</span> <span class="o">+</span> <span class="n">mod</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>]]></content><author><name>agppd</name></author><category term="数据结构" /><summary type="html"><![CDATA[```cpp class Node { private: size_t n,m; size_t mp[N][N]; public: Node(size_t x,size_t y) { n=x; m=y; memset(mp,0,sizeof(mp)); } Node() { n=0,m=0,memset(mp,0,sizeof(mp)); } Node(size_t x) { n=m=x;memset(mp,0,sizeof(mp)); } Node(const vector&lt;vector&gt;&amp; v) { if(v.empty()) { n = m = 0; memset(mp, 0, sizeof(mp)); return; } n = v.size(); m = v[0].size(); memset(mp, 0, sizeof(mp)); for(size_t i=0; i&lt;n and i+1&lt;N; i++) { for(size_t j=0; j&lt;m and j+1&lt;N; j++) { mp[i+1][j+1] = v[i][j]; } } } Node(const Node&amp; other) { n = other.n; m = other.m; memcpy(mp, other.mp, sizeof(mp)); } size_t query(size_t x,size_t y) { return mp[x][y]; } void unit() { if(n!=m) { cerr&lt;&lt;"This is not a square. Check your init function. "&lt;&lt;'\n'; return; } memset(mp,0,sizeof(mp)); for(size_t i=1;i&lt;=n;i++) mp[i][i]=1; return ; } Node&amp; operator=(const Node&amp; other) { if(this != &amp;other) { n = other.n; m = other.m; memcpy(mp, other.mp, sizeof(mp)); } return *this; } Node operator*(const Node &amp;x) const { if(m != x.n) { cerr &lt;&lt; "Matrix dimensions do not match for multiplication!" &lt;&lt; '\n'; return Node(); } size_t p=x.m; Node res(n,p); for(size_t i=1;i&lt;=n;i++) { for(size_t j=1;j&lt;=p;j++) { long long sum = 0; for(size_t k=1;k&lt;=m;k++) { sum += (1LL * mp[i][k] * x.mp[k][j]) % mod; if(sum &gt;= mod) sum -= mod; } res.mp[i][j] = sum % mod; } } return res; } void pow(long long k) { if(n != m) { cerr &lt;&lt; "Cannot exponentiate non-square matrix!" &lt;&lt; '\n'; return; } Node result(n); result.unit(); Node base = *this; long long exp = k; while(exp &gt; 0) { if(exp &amp; 1) result = result * base; base = base * base; exp &gt;&gt;= 1; } *this = result; } Node operator+(const Node &amp;x) const { if(n != x.n || m != x.m) { cerr &lt;&lt; "Matrix dimensions do not match for addition!" &lt;&lt; '\n'; return Node(); } Node res(n,m); for(size_t i=1;i&lt;=n;i++) { for(size_t j=1;j&lt;=m;j++) { res.mp[i][j] = (mp[i][j] + x.mp[i][j]) % mod; } } return res; } Node operator-(const Node &amp;x) const { if(n != x.n || m != x.m) { cerr &lt;&lt; "Matrix dimensions do not match for subtraction!" &lt;&lt; '\n'; return Node(); } Node res(n,m); for(size_t i=1;i&lt;=n;i++) { for(size_t j=1;j&lt;=m;j++) { res.mp[i][j] = (mp[i][j] - x.mp[i][j] + mod) % mod; } } return res; } bool operator==(const Node &amp;x) const { if(n!=x.n || m!=x.m) return false; for(size_t i=1;i&lt;=n;i++) { for(size_t j=1;j&lt;=m;j++) { if(mp[i][j]!=x.mp[i][j]) { return false; } } } return true; } void operator +=(const Node &amp;x) { *this = *this + x; } void operator -=(const Node &amp;x) { *this = *this - x; } void operator *=(const Node &amp;x) { *this = *this * x; }]]></summary></entry><entry><title type="html">虚拟机使用方法</title><link href="http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html" rel="alternate" type="text/html" title="虚拟机使用方法" /><published>2026-02-25T00:00:00+08:00</published><updated>2026-02-25T00:00:00+08:00</updated><id>http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware</id><content type="html" xml:base="http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html"><![CDATA[<blockquote>
+  <p>本文档处理虚拟机相关内容</p>
+</blockquote>
+
+<h2 id="1-常见的软件与下载">1. 常见的软件与下载</h2>
+
+<p>点击链接了解详情（包括下载）</p>
+
+<ol>
+  <li>
+    <p>Microsoft 的 <a href="https://learn.microsoft.com/zh-cn/windows-server/virtualization/hyper-v/get-started/Install-Hyper-V?tabs=powershell&amp;pivots=windows">Hyper-V</a>，本文档不做过多讲解</p>
+  </li>
+  <li>
+    <p><a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">VMware WorkStation</a>，注意：不是 <code class="language-plaintext highlighter-rouge">VMware Player</code></p>
+  </li>
+  <li>
+    <p><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></p>
+  </li>
+</ol>
+
+<p>下载完成后直接进行安装</p>
+
+<h2 id="2-vmware-workstation-相关">2. VMware WorkStation 相关</h2>
+
+<p>前情提要：你需要自己准备相关的系统映像，没有的话，可以考虑一下<a href="https://msdn.itellyou.cn/">这个</a></p>
+
+<p><strong>请确保你拥有所下载系统的合法授权。</strong></p>
+
+<hr />
+
+<h3 id="iso-安装">ISO 安装</h3>
+
+<p>本质上，ISO安装其实就是引导ISO后，利用ISO自带的安装进行安装，所以安装的流程不进行讲解，只讲解如何配置</p>
+
+<hr />
+
+<h4 id="基础知识快捷键">基础知识：快捷键</h4>
+
+<p>进入虚拟机：<code class="language-plaintext highlighter-rouge">Ctrl + G</code></p>
+
+<p>退出虚拟机：<code class="language-plaintext highlighter-rouge">Ctrl + Alt</code></p>
+
+<p>开关机可以使用上方工具栏的按钮，但是建议关机在系统内关机（卡死的情况下使用下面那一组的按钮，<strong>千万千万不要使用上面的</strong>）</p>
+
+<hr />
+
+<h4 id="快捷版无需处理iso内系统的安装">快捷版（无需处理ISO内系统的安装）</h4>
+
+<ol>
+  <li>文件(F) → 新建虚拟机(N)……    后打开界面</li>
+  <li>选择 <code class="language-plaintext highlighter-rouge">典型（推荐）T</code></li>
+  <li>选择第二个，并给出你ISO的绝对路径（如果你是实体光驱并用实体光盘的话，选第一个）</li>
+  <li>选择你ISO里的系统（其实大部分随便选就行，很少会限制后面的硬件配置，限制了也能以后该）</li>
+  <li>命名与虚拟机所有配置存放路径，自己选，不做说明</li>
+  <li>然后进行设置硬盘大小，大小自己给，下面的取决于你是否需要映射硬盘（VMware WorkStation高于16的随便，因为映射不了），需要的话，建议选 <code class="language-plaintext highlighter-rouge">将虚拟硬盘存储为单个文件（O）</code></li>
+  <li>需要修改硬件的话，点击 <code class="language-plaintext highlighter-rouge">自定义硬件</code> ，否则直接完成</li>
+  <li>然后虚拟机就会自己开始安装东西，完成后即可使用</li>
+</ol>
+
+<p><strong>优点</strong>：快捷，方便</p>
+
+<p><strong>缺点</strong>：可自定义化太弱</p>
+
+<hr />
+
+<h4 id="常规自己按照iso内的指导去安装">常规（自己按照ISO内的指导去安装）</h4>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">文件(F)</code> → <code class="language-plaintext highlighter-rouge">新建虚拟机(N)……</code>    后打开界面</li>
+  <li>选择 <code class="language-plaintext highlighter-rouge">自定义（高级）C</code>，并配置兼容性（不要太低，最好 $\geq$ VM12）</li>
+  <li>选择第二个，并给出你ISO的绝对路径（如果你是实体光驱并用实体光盘的话，选第一个）</li>
+  <li>选择你ISO里的系统（其实大部分随便选就行，很少会限制后面的硬件配置，限制了也能以后该）</li>
+  <li>命名与虚拟机所有配置存放路径，自己选，不做说明</li>
+  <li>然后进行设置硬盘大小，大小自己给，下面的取决于你是否需要映射硬盘（VMware WorkStation高于16的随便，因为映射不了），需要的话，建议选 <code class="language-plaintext highlighter-rouge">将虚拟硬盘存储为单个文件（O）</code></li>
+  <li>需要修改硬件的话，点击 <code class="language-plaintext highlighter-rouge">自定义硬件</code> ，否则直接完成</li>
+  <li>然后按照ISO内安装完成顺利进入系统后，点击 <code class="language-plaintext highlighter-rouge">虚拟机（M）</code> → <code class="language-plaintext highlighter-rouge">安装VMware Tools（T）……</code> 后，看虚拟机最下方的提示，进行安装，最后记得弹出Tools的虚拟光盘</li>
+</ol>
+
+<p><strong>优点</strong>：完全</p>
+
+<p><strong>缺点</strong>：没法自己安装</p>
+
+<p>到此为止，最基础的系统安装已经完成</p>
+
+<hr />
+
+<h3 id="img-安装">IMG 安装</h3>
+
+<blockquote>
+  <p>注：IMG是很古早的软盘安装方式，一般情况下见不到，所以，你没办法一键安装，只能自己干</p>
+</blockquote>
+
+<hr />
+
+<h4 id="常规自己按照iso内的指导去安装-1">常规（自己按照ISO内的指导去安装）</h4>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">文件(F)</code> → <code class="language-plaintext highlighter-rouge">新建虚拟机(N)……</code>    后打开界面</li>
+  <li>选择 <code class="language-plaintext highlighter-rouge">自定义（高级）C</code>，并配置兼容性（不要太低，最好 $\geq$ VM12）</li>
+  <li>选择第三个，后期要删除</li>
+  <li>命名与虚拟机所有配置存放路径，自己选，不做说明</li>
+  <li>然后进行设置硬盘大小，大小自己给，下面的取决于你是否需要映射硬盘（VMware WorkStation高于16的随便，因为映射不了），需要的话，建议选 <code class="language-plaintext highlighter-rouge">将虚拟硬盘存储为单个文件（O）</code></li>
+  <li>需要修改硬件的话，点击 <code class="language-plaintext highlighter-rouge">自定义硬件</code> ，否则直接完成</li>
+  <li>别着急开机，点击 <code class="language-plaintext highlighter-rouge">编辑虚拟机设置</code> ，点击 <code class="language-plaintext highlighter-rouge">CD/DVD（SATA）</code>，点击最下方的 <code class="language-plaintext highlighter-rouge">移除（R）</code>，然后点击旁边的 <code class="language-plaintext highlighter-rouge">添加（A）……</code> ，选择 <code class="language-plaintext highlighter-rouge">软盘驱动器</code> ，然后勾选 <code class="language-plaintext highlighter-rouge">启动时链接</code> ，并在下面选择软盘的绝对路径，然后点<strong>最右下角</strong>的 <code class="language-plaintext highlighter-rouge">确定</code> ，最后开机</li>
+  <li>进入系统进行安装，安装完成后记得移除软盘驱动器。</li>
+</ol>
+
+<p>Q：为什么这个不安装 <code class="language-plaintext highlighter-rouge">VMware Tools</code> 了？</p>
+
+<p>A：<code class="language-plaintext highlighter-rouge">VMware Tools</code> 大部分没有支持</p>
+
+<p>是的，<code class="language-plaintext highlighter-rouge">Vmware Tools</code> 的支持是有限的，但是常见的Windows（Vista除外）与Linux发行版几乎都支持</p>
+
+<hr />
+
+<h3 id="从u盘安装">从U盘安装</h3>
+
+<p>是的我们还可以通过U盘安装，其实，用这种方法都是嫌弃ISO自带的安装太慢，自己安装</p>
+
+<p>虚拟机初始创建同 <code class="language-plaintext highlighter-rouge">从IMG安装</code> 但是，我们仅移除，不添加</p>
+
+<ol>
+  <li>点击 <code class="language-plaintext highlighter-rouge">虚拟机（M）</code> →  <code class="language-plaintext highlighter-rouge">电源（P）</code> → <code class="language-plaintext highlighter-rouge">打开电源时进入固件（F）</code></li>
+  <li>插入U盘，选择连接到虚拟机上，然后重启固件后并进入固件</li>
+  <li>引导U盘，进入U盘</li>
+  <li>然后怎么重装系统怎么来</li>
+</ol>
+
+<p>至此，<code class="language-plaintext highlighter-rouge">Vmware WorkStation</code> 的流程完成了</p>
+
+<hr />
+
+<h2 id="3-virtualbox-相关">3. VirtualBox 相关</h2>
+
+<p><del>话说回来，安装好像需要　Microsoft Visual C++ 2019</del></p>
+
+<hr />
+
+<h3 id="安装">安装</h3>
+
+<ol>
+  <li>点击 <code class="language-plaintext highlighter-rouge">新建(N)</code></li>
+  <li>按照指示填写内容（ISO就选ISO，IMG就选IMG）</li>
+  <li>新建虚拟机完成后点击 <code class="language-plaintext highlighter-rouge">设置(S)</code> ，按照自己的需求修改引导顺序（UEFI就当这步不存在）</li>
+  <li>开机，自己进行安装</li>
+  <li>点击 <code class="language-plaintext highlighter-rouge">设置(S)</code> → <code class="language-plaintext highlighter-rouge">系统</code> → <code class="language-plaintext highlighter-rouge">处理器（P）</code> → 勾选 <code class="language-plaintext highlighter-rouge">启用PAE/NX</code></li>
+  <li>开机后，点击 <code class="language-plaintext highlighter-rouge">设置</code> → <code class="language-plaintext highlighter-rouge">安装增强功能</code> ，然后按照提示安装</li>
+</ol>
+
+<p>Q：U盘呢，没啦？
+A：作者正在寻找其进入固件的方法，等着吧。</p>
+
+<p>至此，<code class="language-plaintext highlighter-rouge">Vmware WorkStation</code> 的流程完成了</p>
+
+<hr />
+
+<h2 id="4-sandbox相关">4. SandBox相关</h2>
+
+<p>是的，如果实在不想下载并安装这些东西，我们还有补救办法——Windows 的 SandBox</p>
+
+<p><del>家庭版的可以走了</del></p>
+
+<hr />
+
+<p>很简单，在Windows控制面板里，勾选 <code class="language-plaintext highlighter-rouge">启用SandBox</code>，重启后，便可以在开始菜单看到这个一次性的虚拟机</p>]]></content><author><name>agppd</name></author><category term="技术" /><summary type="html"><![CDATA[本文档处理虚拟机相关内容]]></summary></entry></feed>
