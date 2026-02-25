@@ -6,6 +6,8 @@ categories: 模板
 author: bcdmwSjy
 ---
 
+> 本文发布已取得代码原作者同意
+
 ```cpp
 #include<stdio.h>
 #include<stdint.h>
