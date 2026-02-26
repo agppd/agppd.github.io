@@ -4,70 +4,85 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>虚拟机使用方法 | agppd 的博客</title>
+<title>虚拟机使用方法 | agppd团队 的博客</title>
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="虚拟机使用方法" />
 <meta name="author" content="agppd" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="本文档处理虚拟机相关内容" />
 <meta property="og:description" content="本文档处理虚拟机相关内容" />
-<link rel="canonical" href="http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html" />
-<meta property="og:url" content="http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html" />
-<meta property="og:site_name" content="agppd 的博客" />
+<link rel="canonical" href="http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-02-25T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="虚拟机使用方法" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-02-25T00:00:00+08:00","datePublished":"2026-02-25T00:00:00+08:00","description":"本文档处理虚拟机相关内容","headline":"虚拟机使用方法","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html"},"url":"http://localhost:4001/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-02-25T00:00:00+08:00","datePublished":"2026-02-25T00:00:00+08:00","description":"本文档处理虚拟机相关内容","headline":"虚拟机使用方法","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html"},"url":"http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/style.css">
-  <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="agppd 的博客" />
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
   
-</head>
-<script>
-  (function() {
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (!toggleBtn) return;
 
-    // 读取 localStorage 中的主题设置
-    let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
+  <!-- KaTeX 数学公式支持 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
 
-    // 应用保存的主题
-    function applyTheme(theme) {
-      html.classList.remove('theme-dark', 'theme-light');
-      if (theme === 'dark') {
-        html.classList.add('theme-dark');
-        toggleBtn.textContent = '🌙 深色';
-      } else if (theme === 'light') {
-        html.classList.add('theme-light');
-        toggleBtn.textContent = '☀️ 浅色';
-      } else {
-        // auto: 跟随系统，不添加任何强制类
-        toggleBtn.textContent = '🌓 自动';
+  <!-- 主题切换脚本（已移入 head 内） -->
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (!toggleBtn) return;
+
+      // 读取 localStorage 中的主题设置
+      let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
+
+      // 应用保存的主题
+      function applyTheme(theme) {
+        html.classList.remove('theme-dark', 'theme-light');
+        if (theme === 'dark') {
+          html.classList.add('theme-dark');
+          toggleBtn.textContent = '🌙 深色';
+        } else if (theme === 'light') {
+          html.classList.add('theme-light');
+          toggleBtn.textContent = '☀️ 浅色';
+        } else {
+          // auto: 跟随系统，不添加任何强制类
+          toggleBtn.textContent = '🌓 自动';
+        }
+        localStorage.setItem('theme', theme);
       }
-      localStorage.setItem('theme', theme);
-    }
 
-    applyTheme(savedTheme);
+      applyTheme(savedTheme);
 
-    // 点击按钮循环切换：auto -> dark -> light -> auto
-    toggleBtn.addEventListener('click', () => {
-      let current = localStorage.getItem('theme') || 'auto';
-      if (current === 'auto') {
-        applyTheme('dark');
-      } else if (current === 'dark') {
-        applyTheme('light');
-      } else {
-        applyTheme('auto');
-      }
-    });
-  })();
-</script><body><header class="site-header" role="banner">
+      // 点击按钮循环切换：auto -> dark -> light -> auto
+      toggleBtn.addEventListener('click', () => {
+        let current = localStorage.getItem('theme') || 'auto';
+        if (current === 'auto') {
+          applyTheme('dark');
+        } else if (current === 'dark') {
+          applyTheme('light');
+        } else {
+          applyTheme('auto');
+        }
+      });
+    })();
+  </script>
+</head><body><header class="site-header" role="banner">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd 的博客</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -170,7 +185,7 @@
 <h4 id="快捷版无需处理iso内系统的安装">快捷版（无需处理ISO内系统的安装）</h4>
 
 <ol>
-  <li>文件(F) → 新建虚拟机(N)……    后打开界面</li>
+  <li>文件(F) $\rightarrow$ 新建虚拟机(N)……    后打开界面</li>
   <li>选择 <code class="language-plaintext highlighter-rouge">典型（推荐）T</code></li>
   <li>选择第二个，并给出你ISO的绝对路径（如果你是实体光驱并用实体光盘的话，选第一个）</li>
   <li>选择你ISO里的系统（其实大部分随便选就行，很少会限制后面的硬件配置，限制了也能以后该）</li>
@@ -189,14 +204,14 @@
 <h4 id="常规自己按照iso内的指导去安装">常规（自己按照ISO内的指导去安装）</h4>
 
 <ol>
-  <li><code class="language-plaintext highlighter-rouge">文件(F)</code> → <code class="language-plaintext highlighter-rouge">新建虚拟机(N)……</code>    后打开界面</li>
+  <li><code class="language-plaintext highlighter-rouge">文件(F)</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">新建虚拟机(N)……</code>    后打开界面</li>
   <li>选择 <code class="language-plaintext highlighter-rouge">自定义（高级）C</code>，并配置兼容性（不要太低，最好 $\geq$ VM12）</li>
   <li>选择第二个，并给出你ISO的绝对路径（如果你是实体光驱并用实体光盘的话，选第一个）</li>
   <li>选择你ISO里的系统（其实大部分随便选就行，很少会限制后面的硬件配置，限制了也能以后该）</li>
   <li>命名与虚拟机所有配置存放路径，自己选，不做说明</li>
   <li>然后进行设置硬盘大小，大小自己给，下面的取决于你是否需要映射硬盘（VMware WorkStation高于16的随便，因为映射不了），需要的话，建议选 <code class="language-plaintext highlighter-rouge">将虚拟硬盘存储为单个文件（O）</code></li>
   <li>需要修改硬件的话，点击 <code class="language-plaintext highlighter-rouge">自定义硬件</code> ，否则直接完成</li>
-  <li>然后按照ISO内安装完成顺利进入系统后，点击 <code class="language-plaintext highlighter-rouge">虚拟机（M）</code> → <code class="language-plaintext highlighter-rouge">安装VMware Tools（T）……</code> 后，看虚拟机最下方的提示，进行安装，最后记得弹出Tools的虚拟光盘</li>
+  <li>然后按照ISO内安装完成顺利进入系统后，点击 <code class="language-plaintext highlighter-rouge">虚拟机（M）</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">安装VMware Tools（T）……</code> 后，看虚拟机最下方的提示，进行安装，最后记得弹出Tools的虚拟光盘</li>
 </ol>
 
 <p><strong>优点</strong>：完全</p>
@@ -218,7 +233,7 @@
 <h4 id="常规自己按照iso内的指导去安装-1">常规（自己按照ISO内的指导去安装）</h4>
 
 <ol>
-  <li><code class="language-plaintext highlighter-rouge">文件(F)</code> → <code class="language-plaintext highlighter-rouge">新建虚拟机(N)……</code>    后打开界面</li>
+  <li><code class="language-plaintext highlighter-rouge">文件(F)</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">新建虚拟机(N)……</code>    后打开界面</li>
   <li>选择 <code class="language-plaintext highlighter-rouge">自定义（高级）C</code>，并配置兼容性（不要太低，最好 $\geq$ VM12）</li>
   <li>选择第三个，后期要删除</li>
   <li>命名与虚拟机所有配置存放路径，自己选，不做说明</li>
@@ -243,7 +258,7 @@
 <p>虚拟机初始创建同 <code class="language-plaintext highlighter-rouge">从IMG安装</code> 但是，我们仅移除，不添加</p>
 
 <ol>
-  <li>点击 <code class="language-plaintext highlighter-rouge">虚拟机（M）</code> →  <code class="language-plaintext highlighter-rouge">电源（P）</code> → <code class="language-plaintext highlighter-rouge">打开电源时进入固件（F）</code></li>
+  <li>点击 <code class="language-plaintext highlighter-rouge">虚拟机（M）</code> $\rightarrow$  <code class="language-plaintext highlighter-rouge">电源（P）</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">打开电源时进入固件（F）</code></li>
   <li>插入U盘，选择连接到虚拟机上，然后重启固件后并进入固件</li>
   <li>引导U盘，进入U盘</li>
   <li>然后怎么重装系统怎么来</li>
@@ -266,8 +281,8 @@
   <li>按照指示填写内容（ISO就选ISO，IMG就选IMG）</li>
   <li>新建虚拟机完成后点击 <code class="language-plaintext highlighter-rouge">设置(S)</code> ，按照自己的需求修改引导顺序（UEFI就当这步不存在）</li>
   <li>开机，自己进行安装</li>
-  <li>点击 <code class="language-plaintext highlighter-rouge">设置(S)</code> → <code class="language-plaintext highlighter-rouge">系统</code> → <code class="language-plaintext highlighter-rouge">处理器（P）</code> → 勾选 <code class="language-plaintext highlighter-rouge">启用PAE/NX</code></li>
-  <li>开机后，点击 <code class="language-plaintext highlighter-rouge">设置</code> → <code class="language-plaintext highlighter-rouge">安装增强功能</code> ，然后按照提示安装</li>
+  <li>点击 <code class="language-plaintext highlighter-rouge">设置(S)</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">系统</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">处理器（P）</code> $\rightarrow$ 勾选 <code class="language-plaintext highlighter-rouge">启用PAE/NX</code></li>
+  <li>开机后，点击 <code class="language-plaintext highlighter-rouge">设置</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">安装增强功能</code> ，然后按照提示安装</li>
 </ol>
 
 <p>Q：U盘呢，没啦？
@@ -295,19 +310,19 @@ A：作者正在寻找其进入固件的方法，等着吧。</p>
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">agppd 的博客</h2>
+    <h2 class="footer-heading">agppd团队 的博客</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">agppd 的博客</li><li><a class="u-email" href="mailto:qp9517533@qq.com">qp9517533@qq.com</a></li></ul>
+          <li class="p-name">agppd团队 的博客</li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>个人技术博客</p>
+        <p>个人运营的团队技术博客</p>
       </div>
     </div>
 

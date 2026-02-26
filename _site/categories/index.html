@@ -4,68 +4,83 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>分类 | agppd 的博客</title>
+<title>分类 | agppd团队 的博客</title>
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="分类" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="个人技术博客" />
-<meta property="og:description" content="个人技术博客" />
-<link rel="canonical" href="http://localhost:4001/categories/" />
-<meta property="og:url" content="http://localhost:4001/categories/" />
-<meta property="og:site_name" content="agppd 的博客" />
+<meta name="description" content="个人运营的团队技术博客" />
+<meta property="og:description" content="个人运营的团队技术博客" />
+<link rel="canonical" href="http://localhost:4000/categories/" />
+<meta property="og:url" content="http://localhost:4000/categories/" />
+<meta property="og:site_name" content="agppd团队 的博客" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="分类" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"个人技术博客","headline":"分类","url":"http://localhost:4001/categories/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"个人运营的团队技术博客","headline":"分类","url":"http://localhost:4000/categories/"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/css/style.css">
-  <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="agppd 的博客" />
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
   
-</head>
-<script>
-  (function() {
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (!toggleBtn) return;
 
-    // 读取 localStorage 中的主题设置
-    let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
+  <!-- KaTeX 数学公式支持 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
 
-    // 应用保存的主题
-    function applyTheme(theme) {
-      html.classList.remove('theme-dark', 'theme-light');
-      if (theme === 'dark') {
-        html.classList.add('theme-dark');
-        toggleBtn.textContent = '🌙 深色';
-      } else if (theme === 'light') {
-        html.classList.add('theme-light');
-        toggleBtn.textContent = '☀️ 浅色';
-      } else {
-        // auto: 跟随系统，不添加任何强制类
-        toggleBtn.textContent = '🌓 自动';
+  <!-- 主题切换脚本（已移入 head 内） -->
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (!toggleBtn) return;
+
+      // 读取 localStorage 中的主题设置
+      let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
+
+      // 应用保存的主题
+      function applyTheme(theme) {
+        html.classList.remove('theme-dark', 'theme-light');
+        if (theme === 'dark') {
+          html.classList.add('theme-dark');
+          toggleBtn.textContent = '🌙 深色';
+        } else if (theme === 'light') {
+          html.classList.add('theme-light');
+          toggleBtn.textContent = '☀️ 浅色';
+        } else {
+          // auto: 跟随系统，不添加任何强制类
+          toggleBtn.textContent = '🌓 自动';
+        }
+        localStorage.setItem('theme', theme);
       }
-      localStorage.setItem('theme', theme);
-    }
 
-    applyTheme(savedTheme);
+      applyTheme(savedTheme);
 
-    // 点击按钮循环切换：auto -> dark -> light -> auto
-    toggleBtn.addEventListener('click', () => {
-      let current = localStorage.getItem('theme') || 'auto';
-      if (current === 'auto') {
-        applyTheme('dark');
-      } else if (current === 'dark') {
-        applyTheme('light');
-      } else {
-        applyTheme('auto');
-      }
-    });
-  })();
-</script><body><header class="site-header" role="banner">
+      // 点击按钮循环切换：auto -> dark -> light -> auto
+      toggleBtn.addEventListener('click', () => {
+        let current = localStorage.getItem('theme') || 'auto';
+        if (current === 'auto') {
+          applyTheme('dark');
+        } else if (current === 'dark') {
+          applyTheme('light');
+        } else {
+          applyTheme('auto');
+        }
+      });
+    })();
+  </script>
+</head><body><header class="site-header" role="banner">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd 的博客</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -106,11 +121,66 @@
 
   <div class="post-content">
     
+<h2 id="OpenGL系列">OpenGL系列</h2>
+<ul>
+    
+      <li>
+        <a href="/opengl%E7%B3%BB%E5%88%97/2026/02/26/OPenGL.html">OpenGL系列转载教程一</a>
+        (2026-02-26)
+      </li>
+    
+  </ul>
+
+<h2 id="工程">工程</h2>
+<ul>
+    
+      <li>
+        <a href="/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/02/25/diskpart.html">Diskpart 使用基本教程</a>
+        (2026-02-25)
+      </li>
+    
+  </ul>
+
 <h2 id="技术">技术</h2>
 <ul>
     
       <li>
+        <a href="/%E6%9D%82%E8%B0%88/%E6%8A%80%E6%9C%AF/2026/02/26/cold.html">冷知识合集</a>
+        (2026-02-26)
+      </li>
+    
+      <li>
+        <a href="/%E6%8A%80%E6%9C%AF/2026/02/26/360.html">360卸载教程</a>
+        (2026-02-26)
+      </li>
+    
+      <li>
+        <a href="/%E6%8A%80%E6%9C%AF/2026/02/25/shujv.html">套取数据教程</a>
+        (2026-02-25)
+      </li>
+    
+      <li>
         <a href="/%E6%8A%80%E6%9C%AF/2026/02/25/VMware.html">虚拟机使用方法</a>
+        (2026-02-25)
+      </li>
+    
+      <li>
+        <a href="/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/02/25/diskpart.html">Diskpart 使用基本教程</a>
+        (2026-02-25)
+      </li>
+    
+      <li>
+        <a href="/%E6%8A%80%E6%9C%AF/2026/02/25/VScodesetting.html">VScode配置教程</a>
+        (2026-02-25)
+      </li>
+    
+  </ul>
+
+<h2 id="数学">数学</h2>
+<ul>
+    
+      <li>
+        <a href="/%E7%AE%97%E6%B3%95/%E9%80%BB%E8%BE%91/%E6%95%B0%E5%AD%A6/%E7%90%86%E8%AE%BA/2026/02/25/mogen.html">德·摩根定律</a>
         (2026-02-25)
       </li>
     
@@ -120,7 +190,12 @@
 <ul>
     
       <li>
-        <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/02/25/Matirx.html">C++模板分享——矩阵</a>
+        <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A8%A1%E6%9D%BF/2026/02/26/xxb.html">C++模板分享——单向ADT链表</a>
+        (2026-02-26)
+      </li>
+    
+      <li>
+        <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A8%A1%E6%9D%BF/2026/02/25/Matirx.html">C++模板分享——矩阵</a>
         (2026-02-25)
       </li>
     
@@ -130,7 +205,62 @@
 <ul>
     
       <li>
-        <a href="/%E6%9D%82%E8%B0%88/2026/02/25/Hello.html">Hello World</a>
+        <a href="/%E6%9D%82%E8%B0%88/%E6%8A%80%E6%9C%AF/2026/02/26/cold.html">冷知识合集</a>
+        (2026-02-26)
+      </li>
+    
+      <li>
+        <a href="/%E6%9D%82%E8%B0%88/2026/02/24/Hello.html">Hello World</a>
+        (2026-02-24)
+      </li>
+    
+  </ul>
+
+<h2 id="模板">模板</h2>
+<ul>
+    
+      <li>
+        <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A8%A1%E6%9D%BF/2026/02/26/xxb.html">C++模板分享——单向ADT链表</a>
+        (2026-02-26)
+      </li>
+    
+      <li>
+        <a href="/%E6%A8%A1%E6%9D%BF/2026/02/25/readandout.html">C++模板分享——快读（火车头）</a>
+        (2026-02-25)
+      </li>
+    
+      <li>
+        <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A8%A1%E6%9D%BF/2026/02/25/Matirx.html">C++模板分享——矩阵</a>
+        (2026-02-25)
+      </li>
+    
+  </ul>
+
+<h2 id="理论">理论</h2>
+<ul>
+    
+      <li>
+        <a href="/%E7%AE%97%E6%B3%95/%E9%80%BB%E8%BE%91/%E6%95%B0%E5%AD%A6/%E7%90%86%E8%AE%BA/2026/02/25/mogen.html">德·摩根定律</a>
+        (2026-02-25)
+      </li>
+    
+  </ul>
+
+<h2 id="算法">算法</h2>
+<ul>
+    
+      <li>
+        <a href="/%E7%AE%97%E6%B3%95/%E9%80%BB%E8%BE%91/%E6%95%B0%E5%AD%A6/%E7%90%86%E8%AE%BA/2026/02/25/mogen.html">德·摩根定律</a>
+        (2026-02-25)
+      </li>
+    
+  </ul>
+
+<h2 id="逻辑">逻辑</h2>
+<ul>
+    
+      <li>
+        <a href="/%E7%AE%97%E6%B3%95/%E9%80%BB%E8%BE%91/%E6%95%B0%E5%AD%A6/%E7%90%86%E8%AE%BA/2026/02/25/mogen.html">德·摩根定律</a>
         (2026-02-25)
       </li>
     
@@ -146,19 +276,19 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">agppd 的博客</h2>
+    <h2 class="footer-heading">agppd团队 的博客</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">agppd 的博客</li><li><a class="u-email" href="mailto:qp9517533@qq.com">qp9517533@qq.com</a></li></ul>
+          <li class="p-name">agppd团队 的博客</li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>个人技术博客</p>
+        <p>个人运营的团队技术博客</p>
       </div>
     </div>
 
