@@ -9,44 +9,59 @@
     {% include google-analytics.html %}
   {% endif %}
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- 主题切换脚本（已移入 head 内） -->
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (!toggleBtn) return;
+
+      // 读取 localStorage 中的主题设置
+      let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
+
+      // 应用保存的主题
+      function applyTheme(theme) {
+        html.classList.remove('theme-dark', 'theme-light');
+        if (theme === 'dark') {
+          html.classList.add('theme-dark');
+          toggleBtn.textContent = '🌙 深色';
+        } else if (theme === 'light') {
+          html.classList.add('theme-light');
+          toggleBtn.textContent = '☀️ 浅色';
+        } else {
+          // auto: 跟随系统，不添加任何强制类
+          toggleBtn.textContent = '🌓 自动';
+        }
+        localStorage.setItem('theme', theme);
+      }
+
+      applyTheme(savedTheme);
+
+      // 点击按钮循环切换：auto -> dark -> light -> auto
+      toggleBtn.addEventListener('click', () => {
+        let current = localStorage.getItem('theme') || 'auto';
+        if (current === 'auto') {
+          applyTheme('dark');
+        } else if (current === 'dark') {
+          applyTheme('light');
+        } else {
+          applyTheme('auto');
+        }
+      });
+    })();
+  </script>
 </head>
-<script>
-  (function() {
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById('theme-toggle');
-    if (!toggleBtn) return;
-
-    // 读取 localStorage 中的主题设置
-    let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
-
-    // 应用保存的主题
-    function applyTheme(theme) {
-      html.classList.remove('theme-dark', 'theme-light');
-      if (theme === 'dark') {
-        html.classList.add('theme-dark');
-        toggleBtn.textContent = '🌙 深色';
-      } else if (theme === 'light') {
-        html.classList.add('theme-light');
-        toggleBtn.textContent = '☀️ 浅色';
-      } else {
-        // auto: 跟随系统，不添加任何强制类
-        toggleBtn.textContent = '🌓 自动';
-      }
-      localStorage.setItem('theme', theme);
-    }
-
-    applyTheme(savedTheme);
-
-    // 点击按钮循环切换：auto -> dark -> light -> auto
-    toggleBtn.addEventListener('click', () => {
-      let current = localStorage.getItem('theme') || 'auto';
-      if (current === 'auto') {
-        applyTheme('dark');
-      } else if (current === 'dark') {
-        applyTheme('light');
-      } else {
-        applyTheme('auto');
-      }
-    });
-  })();
-</script>
