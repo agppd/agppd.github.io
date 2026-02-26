@@ -32,9 +32,12 @@ permalink: /about/
 
 ## 版权与致谢
 
-本站原创文章采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 许可协议，转载请联系原作者并注明出处。
-本站所有文章相关的版权问题请联系原作者，本站与团队不做任何承担
+本站原创文章采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 许可协议，转载请联系原作者并注明出处，图片版权归本团队所有，未经许可，禁止盗用。
+
+本站所有文章相关的版权问题请联系原作者，本站与团队不做任何承担。
+
 主题基于 `minima` 修改，感谢 Jekyll 和 GitHub Pages 提供的便捷平台。
+
 感谢 Jekyll、GitHub Pages 及所有开源项目的贡献者，让这个博客得以诞生。
 
 ## About the issue of multiple languages
