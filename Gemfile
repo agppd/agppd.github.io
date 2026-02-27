@@ -32,6 +32,7 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
-# Get csv because the project is based on it .
-# install if not have csv
+# Get csv and base64 because the project is based on it .
+# install if not have csv & base64
 gem 'csv'
+gem 'base64'
