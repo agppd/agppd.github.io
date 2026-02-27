@@ -22,7 +22,37 @@
               {left: '\\[', right: '\\]', display: true}
           ]
       });"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+  <script>
+  (function() {
+    // 当 widget 加载完成后执行
+    if (window.netlifyIdentity) {
+      // 监听登录成功事件
+      window.netlifyIdentity.on('login', function(user) {
+        // 检查 sessionStorage 中是否保存了原始请求路径
+        var redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+        if (redirectUrl) {
+          sessionStorage.removeItem('redirectAfterLogin');
+          window.location.href = redirectUrl;
+        }
+      });
 
+      // 如果当前页面是受保护页面（例如 /feedback/）且用户未登录，保存当前路径
+      if (window.location.pathname.startsWith('/feedback/')) {
+        // 稍等片刻以确保 widget 初始化完成
+        setTimeout(function() {
+          var user = window.netlifyIdentity.currentUser();
+          if (!user) {
+            sessionStorage.setItem('redirectAfterLogin', window.location.href);
+            // 不需要手动打开登录框，Netlify 的 401 响应会自动触发
+          }
+        }, 500);
+      }
+    }
+  })();
+</script>
+  
   <!-- 主题切换脚本（已移入 head 内） -->
   <script>
     (function() {
