@@ -21,7 +21,9 @@
 - **本仓库代码**（包括配置、布局等）：采用 MIT 许可证，详见 [LICENSE](LICENSE) 文件。
 - **博客文章内容**：除非另有说明，版权归 agppd团队对应作者 所有，未经许可不得转载。
 
-如有任何问题，欢迎通过 [Issues](https://github.com/agppd/agppd.github.io/issues) 联系。
+如有任何关于此项目问题，欢迎通过 [Issues](https://github.com/agppd/agppd.github.io/issues) 联系。
+
+如果由任何关于网站上内容的问题，欢迎通过[反馈]()联系（进入网站后需要登录才可使用）
 
 ---
 
