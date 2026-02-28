@@ -4,6 +4,8 @@ title: 公告
 permalink: /announcements/
 ---
 
+<h3><a href="https://agppd.netlify.app/admin/">发布公告（仅限管理员）</a ></h3>
+
 <h1>最新公告</h1>
 
 {% assign announcements = site.announcements | sort: 'date' | reverse %}

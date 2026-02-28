@@ -81,9 +81,141 @@ shutdown -r -t 0
 
 ### 官网下载
 
-~~话说，我现在才说是不是有点坑人~~
+~~话说，我如果都没有编译器我怎么编译源代码，但是这已经是最好的保存方法了~~
 
+建议按照官网的方式去镜像站下载源代码压缩包
 
+因为 `git clone` 太慢了，当然，源码不大，只有 `100多MB`
+
+~~嗯………………？100多MB的纯代码？？？？？~~
+
+```txt
+Cloning into 'gcc'...
+remote: Enumerating objects: 289437, done.
+remote: Counting objects: 100% (289437/289437), done.
+remote: Compressing objects: 100% (17036/17036), done.
+Receiving objects:   0% (377/3333412), 220.01 KiB | 20.00 KiB/s
+```
+
+~~3333412，要命啊~~
+
+注：你必须要有最基本的 `C/C++` 编译工具和部分依赖项，从而使得你可以进行编译
+
+Q：我都有编译工具了，为什么还要这么整？
+A：我们常用的 `C/C++` 是 `GUN C` 的内容，而 `GCC` 则是 `GNU Compiler Collection` 远不止 `C/C++` 的编译。 ~~虽然OIer下载就是为了C++~~
+
+接下载，主要以 `Linux Debian/Ubuntu` 为例，进行处理，也会附带一些其他系统
+
+#### 前情提要
+
+先安装最基本的工具
+
+**Debian/Ubuntu**  
+```bash
+sudo apt update
+sudo apt install build-essential flex bison
+```
+
+**Red Hat/CentOS/Fedora**  
+```bash
+sudo yum groupinstall "Development Tools"
+sudo yum install flex bison
+# 或使用 dnf（Fedora）
+sudo dnf groupinstall "Development Tools"
+sudo dnf install flex bison
+```
+
+**macOS**（需安装 Xcode 命令行工具）  
+```bash
+xcode-select --install
+# 然后通过 Homebrew 安装 flex、bison（可选）
+brew install flex bison
+```
+
+然后访问 [GCC 官网](https://gcc.gnu.org/)，点击 **"Getting GCC"**，选择镜像站点下载最新稳定版源码包（如 `gcc-15.2.0.tar.gz`）。也可用 wget 直接下载：
+
+```bash
+wget https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/gcc-15.2.0.tar.gz
+# 或使用镜像，如国内镜像：
+# wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-15.2.0/gcc-15.2.0.tar.gz
+```
+
+解压：
+```bash
+tar -xzf gcc-15.2.0.tar.gz
+cd gcc-15.2.0
+```
+
+GCC 编译依赖 **GMP、MPFR、MPC** 三个数学库。源码目录下提供了便捷脚本 `./contrib/download_prerequisites` 自动下载并解压它们：
+
+```bash
+cd gcc-15.2.0
+./contrib/download_prerequisites
+```
+
+如果网络问题导致下载失败，可手动下载对应包并解压到当前目录。脚本会创建软链接，确保配置时能找到
+
+**重要**：不要在源码目录直接运行 `configure`，建议在源码目录外创建一个独立的构建目录，避免污染源码
+
+```bash
+cd gcc-15.2.0
+mkdir build && cd build
+```
+
+运行 `configure` 脚本，指定安装路径（例如 `/usr/local/gcc-15.2.0`）和需要编译的语言（这里只编译 C 和 C++）：
+
+```bash
+../configure --prefix=/usr/local/gcc-15.2.0 \
+             --enable-languages=c,c++ \
+             --disable-multilib   # 如果不需要32位库，加上此选项可减少编译时间
+```
+
+其他常用选项：
+- `--enable-checking=release`：禁用额外检查，优化性能。
+- `--with-system-zlib`：使用系统 zlib（如果有）
+- `--program-suffix=-15.2`：给生成的可执行文件添加后缀（如 `g++-15.2`），避免与系统自带的 g++ 冲突
+
+完整选项可参考 [官方安装指南](https://gcc.gnu.org/install/configure.html)。
+
+#### 编译
+
+在 `build` 目录下执行：
+```bash
+make -j$(nproc)   # 使用所有 CPU 核心加速编译
+```
+- `$(nproc)` 返回 CPU 核心数，可根据机器负载调整，例如 `-j4`。
+- 编译过程会输出大量信息，耐心等待。如果中途失败，可检查错误提示（通常是缺少依赖），然后重新运行 `make` 
+
+如果实在看不懂提示，找 `AI` 吧，记得找个有深度思考能力的 `AI`
+
+#### 安装
+
+没啥可说的，就是正常安装
+
+```bash
+sudo make install
+```
+
+#### 设置环境变量
+
+安装完成后，需要将新 GCC 的 `bin` 目录加入 `PATH`，并设置库路径以便系统找到动态库
+
+编辑 shell 配置文件（如 `~/.bashrc` 或 `~/.zshrc`），添加：
+```bash
+export PATH=/usr/local/gcc-15.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-15.2.0/lib64:$LD_LIBRARY_PATH   # 64位系统通常为 lib64
+export MANPATH=/usr/local/gcc-15.2.0/share/man:$MANPATH               # 可选，添加 man 手册
+```
+然后使配置生效：
+```bash
+source ~/.bashrc   # 或重新登录终端
+```
+
+然后，使用 `g++ --version` 验证安装
+
+终于说完了！！！
+
+---
 
 ## 配置VScode
 
