@@ -34,14 +34,14 @@
 
   <!-- 内容安全策略 (CSP) -->
   <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net;
-    style-src 'self' https://cdn.jsdelivr.net;
-    font-src 'self' https://cdn.jsdelivr.net;
-    img-src 'self' data:;
-    connect-src 'self';
-    frame-ancestors 'none';
-    base-uri 'self';
-    form-action 'self';
+  default-src 'self';
+  script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net 'unsafe-inline';
+  style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
+  font-src 'self' https://cdn.jsdelivr.net;
+  img-src 'self' data:;
+  connect-src 'self' https://*.netlify.com https://*.netlify.app;
+  frame-ancestors 'none';
+  base-uri 'self';
+  form-action 'self';
   ">
 </head>

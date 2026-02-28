@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>VScode配置教程 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="VScode配置教程" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="大部分人入门一门语言大部分是通过IDE类的编译器入门的吧，显然，显示开发中，IDE的弊端明显（如：大部分IDE老旧，编译器更新困难），所以我们常使用文本编译器进行代码的编写，本文档主要讨论VScode的配置" />
+<meta property="og:description" content="大部分人入门一门语言大部分是通过IDE类的编译器入门的吧，显然，显示开发中，IDE的弊端明显（如：大部分IDE老旧，编译器更新困难），所以我们常使用文本编译器进行代码的编写，本文档主要讨论VScode的配置" />
+<link rel="canonical" href="http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VScodesetting.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VScodesetting.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-25T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="VScode配置教程" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-02-25T00:00:00+08:00","datePublished":"2026-02-25T00:00:00+08:00","description":"大部分人入门一门语言大部分是通过IDE类的编译器入门的吧，显然，显示开发中，IDE的弊端明显（如：大部分IDE老旧，编译器更新困难），所以我们常使用文本编译器进行代码的编写，本文档主要讨论VScode的配置","headline":"VScode配置教程","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VScodesetting.html"},"url":"http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/02/25/VScodesetting.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- 外部脚本：登录重定向逻辑 -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+  <!-- 内容安全策略 (CSP) -->
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net 'unsafe-inline';
+  style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
+  font-src 'self' https://cdn.jsdelivr.net;
+  img-src 'self' data:;
+  connect-src 'self' https://*.netlify.com https://*.netlify.app;
+  frame-ancestors 'none';
+  base-uri 'self';
+  form-action 'self';
+  ">
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <!-- 新增：反馈页面链接（受保护） -->
+          <a class="page-link" href="/feedback/">反馈</a>
+          
+          <!-- 新增：登录/登出按钮（由 Netlify Identity 自动生成） -->
+          <span data-netlify-identity-button></span>
+          <!-- 添加主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">VScode配置教程</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-02-25T00:00:00+08:00" itemprop="datePublished">Feb 25, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#技术">技术</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>大部分人入门一门语言大部分是通过IDE类的编译器入门的吧，显然，显示开发中，IDE的弊端明显（如：大部分IDE老旧，编译器更新困难），所以我们常使用文本编译器进行代码的编写，本文档主要讨论VScode的配置</p>
+
+<h2 id="准备工作">准备工作</h2>
+
+<p>在<a href="https://code.visualstudio.com/Download">VScode官网</a>进行下载VScode，下载完成后进行解压安装</p>
+
+<h2 id="获取c编译器如果你已经拥有直接跳过记c编译器路径为-c_path-">获取C++编译器（如果你已经拥有，直接跳过，记C++编译器路径为 C_PATH ）</h2>
+
+<h3 id="windows">Windows</h3>
+
+<p>在<a href="https://www.msys2.org/">MSYS2官网</a>进行下载，有时，下载会很慢，所以我们常使用<a href="https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/msys2-x86_64-latest.exe">清华源</a>进行下载</p>
+
+<p>安装时，先断网，然后再开始下载</p>
+
+<p>为了方便，我们后记安装路径为 <code class="language-plaintext highlighter-rouge">MSYS2_PATH</code></p>
+
+<p>进入 <code class="language-plaintext highlighter-rouge">MAYS2_PATH</code> ，为了方便与统一，我们统一部署 <code class="language-plaintext highlighter-rouge">MINGW</code> ，双击 <code class="language-plaintext highlighter-rouge">MSYS MINGW64</code>，以后都在里面进行部署</p>
+
+<p>先更新 <code class="language-plaintext highlighter-rouge">pacman</code> （ARCH系的包管理器）</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman <span class="nt">-Syu</span>
+</code></pre></div></div>
+
+<p>大部分情况下需要关闭后重新更新，接着输入如下内容</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman <span class="nt">-Su</span>
+</code></pre></div></div>
+
+<p>现在，就更新好了（类似于常见的 <code class="language-plaintext highlighter-rouge">apt audate</code> ）</p>
+
+<p>为了后期部署项目方便，直接安装编译工具链</p>
+
+<p><strong>64 位</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman <span class="nt">-S</span> mingw-w64-x86_64-toolchain
+</code></pre></div></div>
+
+<p><strong>32 位</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pacman <span class="nt">-S</span> mingw-w64-i686-toolchain
+</code></pre></div></div>
+
+<p>进入 <code class="language-plaintext highlighter-rouge">MAYS2_PATH</code> ，记里面的 <code class="language-plaintext highlighter-rouge">mingw32</code> 为 <code class="language-plaintext highlighter-rouge">C_PATH</code></p>
+
+<p>将 <code class="language-plaintext highlighter-rouge">C_PATH\bin</code> 添加到环境变量</p>
+
+<p>在<strong>管理员：命令提示符</strong>中输入</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setx /M PATH <span class="s2">"%PATH%;C_PATH</span><span class="se">\b</span><span class="s2">in"</span>
+</code></pre></div></div>
+
+<p>然后输入如下命令进行重启电脑</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shutdown <span class="nt">-r</span> <span class="nt">-t</span> 0
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="linux">Linux</h3>
+
+<p>这个还真是不太好整</p>
+
+<p>就是各个系的Linux使用各自的包管理器安装编译工具链即可，然后什么都不用管了，记 <code class="language-plaintext highlighter-rouge">bin\gcc</code> 为 <code class="language-plaintext highlighter-rouge">C_PATH</code></p>
+
+<hr />
+
+<h3 id="官网下载">官网下载</h3>
+
+<p><del>话说，我现在才说是不是有点坑人</del></p>
+
+<h2 id="配置vscode">配置VScode</h2>
+
+<h3 id="配置cc">配置C/C++</h3>
+
+<p>按下 <code class="language-plaintext highlighter-rouge">Ctrl + Shift + X</code> ，打开拓展，搜索 <code class="language-plaintext highlighter-rouge">C/C++</code> ，然后下载官方的插件，然后写一个 <code class="language-plaintext highlighter-rouge">Hello World!</code> ，如下</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"Hello World!"</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">),</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span><span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>如果此时VScode右上角出现小箭头（运行），那么就让它自己配置，然后就可以使用了  <del>本文完</del></p>
+
+<p>如果失败了，在项目文件夹根目录下新建一个叫 <code class="language-plaintext highlighter-rouge">.vscode</code> 的文件夹，创建一个叫 <code class="language-plaintext highlighter-rouge">tasks.json</code> 的文件，按照如下格式编写（我们使用 <code class="language-plaintext highlighter-rouge">G++</code> ，愿意使用 <code class="language-plaintext highlighter-rouge">GCC + 参数</code> 的自行修改）</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"tasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cppbuild"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C/C++: g++.exe 生成活动文件"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C_PATH</span><span class="se">\\</span><span class="s2">g++.exe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"-fdiagnostics-color=always"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"-g"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"${file}"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"-o"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"${fileDirname}</span><span class="se">\\</span><span class="s2">${fileBasenameNoExtension}.exe"</span><span class="w">
+                </span><span class="err">//</span><span class="w"> </span><span class="err">其实就是编译参数，每个后面要有英文逗号</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${fileDirname}"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"problemMatcher"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"$gcc"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"build"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"isDefault"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"调试器生成的任务。"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Q：这样的可以编译中文文件吗？</p>
+
+<p>A：分情况，VScode不行，命令行行（使用MINGW）</p>
+
+<p>比如：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-o</span> run.exe 你好.cpp <span class="nt">-g</span> <span class="nt">-Wall</span> <span class="nt">-std</span><span class="o">=</span>c++17
+</code></pre></div></div>
+
+<p>就行，<del>就是不知道终端里怎么输入中文</del></p>
+
+<p><strong>如果，你使用的是你以前IDE的编译器，请自己在C/C++里添加头文件路径！！！否则VScode会无端报错</strong></p>
+
+<h3 id="推荐插件">推荐插件</h3>
+
+<p>其实，插件这个东西，应该自己玩，但是吧，我还是想说一下语言翻译插件</p>
+
+<p>以中文为例：同 <code class="language-plaintext highlighter-rouge">C/C++</code> 插件的安装方式，搜 <code class="language-plaintext highlighter-rouge">Chinese</code> 然后下载</p>
+
+<hr />
+
+<p>到此为止，VScode最基础的内容介绍完毕</p>
+
+  </div><a class="u-url" href="/%E6%8A%80%E6%9C%AF/2026/02/25/VScodesetting.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

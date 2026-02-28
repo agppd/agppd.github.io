@@ -26,4 +26,5 @@ permalink: /feedback/
 
   <p>提交后我们会尽快处理，感谢您的支持！</p>
   <form name="feedback" method="POST" data-netlify="true" action="/feedback/thanks/">
+  
 </div>
