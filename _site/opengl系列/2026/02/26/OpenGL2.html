@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>OpenGL系列转载教程二 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="OpenGL系列转载教程二" />
+<meta name="author" content="fbf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="声明" />
+<meta property="og:description" content="声明" />
+<link rel="canonical" href="http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OpenGL2.html" />
+<meta property="og:url" content="http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OpenGL2.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-26T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OpenGL系列转载教程二" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"fbf"},"dateModified":"2026-02-26T00:00:00+08:00","datePublished":"2026-02-26T00:00:00+08:00","description":"声明","headline":"OpenGL系列转载教程二","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OpenGL2.html"},"url":"http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OpenGL2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- 外部脚本：登录重定向逻辑 -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+  <!-- 内容安全策略 (CSP) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net;
+    style-src 'self' https://cdn.jsdelivr.net;
+    font-src 'self' https://cdn.jsdelivr.net;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self';
+  ">
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <!-- 新增：反馈页面链接（受保护） -->
+          <a class="page-link" href="/feedback/">反馈</a>
+          
+          <!-- 新增：登录/登出按钮（由 Netlify Identity 自动生成） -->
+          <span data-netlify-identity-button></span>
+          <!-- 添加主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OpenGL系列转载教程二</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-02-26T00:00:00+08:00" itemprop="datePublished">Feb 26, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">fbf</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#OpenGL系列">OpenGL系列</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="声明">声明</h3>
+
+<p>本系列教程均属于转载教程，经作者的整理与重新编写，如有侵权，请联系作者删除。
+本篇转载自https://learnopengl-cn.github.io/</p>
+
+<h2 id="一准备好">一、准备好</h2>
+<p>在这篇教程中，我们会教你如何成功创建一个窗口。</p>
+
+<p>在你的主函数中写上这段代码，用于实例化GLFW窗口。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">glfwInit</span><span class="p">();</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_OPENGL_PROFILE</span><span class="p">,</span> <span class="n">GLFW_OPENGL_CORE_PROFILE</span><span class="p">);</span>
+    <span class="c1">//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>首先<code class="language-plaintext highlighter-rouge">glfwInit()</code>用来初始化GLFW。
+然后我们可以通过<code class="language-plaintext highlighter-rouge">glfwWindowHint()</code>来配置GLFW。
+第一个参数来选择配置项，第二个是将配置项设置的值。配置项的所有选项都可以在 <a href="https://www.glfw.org/docs/latest/window.html#window_hints">GLFW’s window handling</a> 找到。</p>
+
+<p>由于本教程都是基于OpenGL 3.3版本展开讨论的，所以我们需要告诉GLFW我们要使用的OpenGL版本是3.3，这样GLFW会在创建OpenGL上下文时做出适当的调整。这也可以确保用户在没有适当的OpenGL版本支持的情况下无法运行。</p>
+
+<p>我们同样明确告诉GLFW我们使用的是核心模式(Core-profile)。明确告诉GLFW我们需要使用核心模式意味着我们只能使用OpenGL功能的一个子集（没有我们已不再需要的向后兼容特性）。如果使用的是Mac OS X系统，你还需要加下面这行代码到你的初始化代码中这些配置才能起作用（将上面的代码解除注释）</p>
+
+<p>接下来我们创建一个窗口对象：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="s">"LearnOpenGL"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to create GLFW window"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">glfwTerminate</span><span class="p">();</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">glfwCreateWindow()</code>函数需要窗口的宽和高作为它的前两个参数。第三个参数表示这个窗口的名称，最后两个参数我们暂时忽略。</p>
+
+<p>这个函数将会返回一个<code class="language-plaintext highlighter-rouge">GLFWwindow</code>对象，我们会在其它的GLFW操作中使用到。创建完窗口我们就可以通知GLFW将我们窗口的上下文设置为当前线程的主上下文了。</p>
+
+<p>在之前的教程中已经提到过，GLAD是用来管理OpenGL的函数指针的，所以在调用任何OpenGL的函数之前我们需要初始化GLAD。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">gladLoadGLLoader</span><span class="p">((</span><span class="n">GLADloadproc</span><span class="p">)</span><span class="n">glfwGetProcAddress</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to initialize GLAD"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>我们给GLAD传入了用来加载系统相关的OpenGL函数指针地址的函数。GLFW给我们的是glfwGetProcAddress，它根据我们编译的系统定义了正确的函数。</p>
+
+<h2 id="二视口">二、视口</h2>
+
+<p>在我们开始渲染之前还有一件重要的事情要做，我们必须告诉OpenGL渲染窗口的尺寸大小，即视口(Viewport)，这样OpenGL才只能知道怎样根据窗口大小显示数据和坐标。我们可以通过调用glViewport函数来设置视口的尺寸：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
+</code></pre></div></div>
+<p>我们实际上也可以将视口的维度设置为比GLFW的维度小，这样子之后所有的OpenGL渲染将会在一个更小的窗口中显示，这样子的话我们也可以将一些其它元素显示在OpenGL视口之外。</p>
+
+<p>然而，当用户改变窗口的大小的时候，视口也应该被调整。我们可以对窗口注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">framebuffer_size_callback</span><span class="p">(</span><span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">);</span>
+</code></pre></div></div>
+<p>这个帧缓冲大小函数需要一个GLFWwindow作为它的第一个参数，以及两个整数表示窗口的新维度。每当窗口改变大小，GLFW会调用这个函数并填充相应的参数供你处理。</p>
+
+<p>里面暂时只需要写上一行<code class="language-plaintext highlighter-rouge">glViewport</code>来根据传参改变视口尺寸就行。</p>
+
+<p>我们还需要注册这个函数，告诉GLFW我们希望每当窗口调整大小的时候调用这个函数：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glfwSetFramebufferSizeCallback</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">framebuffer_size_callback</span><span class="p">);</span>
+</code></pre></div></div>
+<p>我们还可以将我们的函数注册到其它很多的回调函数中。比如说，我们可以创建一个回调函数来处理手柄输入变化，处理错误消息等。我们会在创建窗口之后，渲染循环初始化之前注册这些回调函数。</p>
+
+<h2 id="三渲染循环">三、渲染循环</h2>
+
+<p>我们可不希望只绘制一个图像之后我们的应用程序就立即退出并关闭窗口。我们希望程序在我们主动关闭它之前不断绘制图像并能够接受用户输入。因此，我们需要在程序中添加一个while循环，我们可以把它称之为渲染循环(Render Loop)，它能在我们让GLFW退出前一直保持运行。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+    <span class="n">glfwPollEvents</span><span class="p">();</span>    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">glfwWindowShouldClose()</code>检测是否被要求退出，<code class="language-plaintext highlighter-rouge">glfwPollEvents()</code>用于检测用户输入调用对应的回调函数，<code class="language-plaintext highlighter-rouge">glfwSwapBuffers()</code>会交换颜色缓冲（它是一个储存着GLFW窗口每一个像素颜色值的大缓冲），它在这一迭代中被用来绘制，并且将会作为输出显示在屏幕上。</p>
+
+<h4 id="双缓冲">双缓冲</h4>
+<p>你可能已经在之前听说过它，可能是在使用其他图形库，或是制作CUI小游戏是，它可以消除屏幕闪烁。
+应用程序使用单缓冲绘图时可能会存在图像闪烁的问题。 这是因为生成的图像不是一下子被绘制出来的，而是按照从左到右，由上而下逐像素地绘制而成的。最终图像不是在瞬间显示给用户，而是通过一步一步生成的，这会导致渲染的结果很不真实。为了规避这些问题，我们应用双缓冲渲染窗口应用程序。前缓冲保存着最终输出的图像，它会在屏幕上显示；而所有的的渲染指令都会在后缓冲上绘制。当所有的渲染指令执行完毕后，我们交换(Swap)前缓冲和后缓冲，这样图像就立即呈显出来，之前提到的不真实感就消除了。</p>
+
+<h2 id="四结束">四、结束？</h2>
+
+<p>当渲染循环结束后我们需要正确释放/删除之前的分配的所有资源。我们可以在main函数的最后调用<code class="language-plaintext highlighter-rouge">glfwTerminate()</code>完成。
+在你可以尝试编译并运行你的应用程序了.如果你看见了一个非常无聊的黑色窗口，那么就对了！</p>
+
+<h2 id="五交互">五、交互</h2>
+
+<p>我们同样也希望能够在GLFW中实现一些输入控制，这可以通过使用GLFW的几个输入函数来完成。我们将会使用GLFW的<code class="language-plaintext highlighter-rouge">glfwGetKey()</code>，它需要一个窗口以及一个按键作为输入。这个函数将会返回这个按键是否正在被按下。我们将创建一个<code class="language-plaintext highlighter-rouge">processInput()</code>函数来让所有的输入代码保持整洁。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">processInput</span><span class="p">(</span><span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_ESCAPE</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span>
+        <span class="n">glfwSetWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>这会在按下ESC键时退出程序，是的，仅仅一个黑窗口，又能做什么交互呢？</p>
+
+<p>我们接下来在渲染循环的每一个迭代中调用<code class="language-plaintext highlighter-rouge">processInput()</code>,这就给我们一个非常简单的方式来检测特定的键是否被按下，并在每一帧做出处理。</p>
+
+<h2 id="六渲染">六、渲染</h2>
+
+<p>我们要把所有的渲染(Rendering)操作放到渲染循环中，因为我们想让这些渲染指令在每次渲染循环迭代的时候都能被执行。</p>
+
+<p>为了测试一切都正常工作，我们使用一个自定义的颜色清空屏幕。在每个新的渲染迭代开始的时候我们总是希望清屏，否则我们仍能看见上一次迭代的渲染结果（这可能是你想要的效果，但通常这不是）。我们可以通过调用<code class="language-plaintext highlighter-rouge">glClear()</code>函数来清空屏幕的颜色缓冲，它接受一个缓冲位(Buffer Bit)来指定要清空的缓冲，可能的缓冲位有<code class="language-plaintext highlighter-rouge">GL_COLOR_BUFFER_BIT</code>，<code class="language-plaintext highlighter-rouge">GL_DEPTH_BUFFER_BIT</code>和<code class="language-plaintext highlighter-rouge">GL_STENCIL_BUFFER_BIT</code>。由于现在我们只关心颜色值，所以我们只清空颜色缓冲。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+</code></pre></div></div>
+<p>在这里，我们将屏幕设置为了类似黑板的深蓝绿色。</p>
+
+<p>如果你没得到正确的结果，或者你不知道怎么把所有东西放到一起，请参考上一期结尾的代码。</p>
+
+  </div><a class="u-url" href="/opengl%E7%B3%BB%E5%88%97/2026/02/26/OpenGL2.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

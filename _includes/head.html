@@ -10,7 +10,7 @@
   {% endif %}
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 
-  <!-- KaTeX 数学公式支持 -->
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
@@ -22,76 +22,26 @@
               {left: '\\[', right: '\\]', display: true}
           ]
       });"></script>
+
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
-  <script>
-  (function() {
-    // 当 widget 加载完成后执行
-    if (window.netlifyIdentity) {
-      // 监听登录成功事件
-      window.netlifyIdentity.on('login', function(user) {
-        // 检查 sessionStorage 中是否保存了原始请求路径
-        var redirectUrl = sessionStorage.getItem('redirectAfterLogin');
-        if (redirectUrl) {
-          sessionStorage.removeItem('redirectAfterLogin');
-          window.location.href = redirectUrl;
-        }
-      });
 
-      // 如果当前页面是受保护页面（例如 /feedback/）且用户未登录，保存当前路径
-      if (window.location.pathname.startsWith('/feedback/')) {
-        // 稍等片刻以确保 widget 初始化完成
-        setTimeout(function() {
-          var user = window.netlifyIdentity.currentUser();
-          if (!user) {
-            sessionStorage.setItem('redirectAfterLogin', window.location.href);
-            // 不需要手动打开登录框，Netlify 的 401 响应会自动触发
-          }
-        }, 500);
-      }
-    }
-  })();
-</script>
-  
-  <!-- 主题切换脚本（已移入 head 内） -->
-  <script>
-    (function() {
-      const html = document.documentElement;
-      const toggleBtn = document.getElementById('theme-toggle');
-      if (!toggleBtn) return;
+  <!-- 外部脚本：登录重定向逻辑 -->
+  <script src="{{ "/assets/js/auth-redirect.js" | relative_url }}" defer></script>
 
-      // 读取 localStorage 中的主题设置
-      let savedTheme = localStorage.getItem('theme') || 'auto'; // 'auto', 'dark', 'light'
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="{{ "/assets/js/theme.js" | relative_url }}" defer></script>
 
-      // 应用保存的主题
-      function applyTheme(theme) {
-        html.classList.remove('theme-dark', 'theme-light');
-        if (theme === 'dark') {
-          html.classList.add('theme-dark');
-          toggleBtn.textContent = '🌙 深色';
-        } else if (theme === 'light') {
-          html.classList.add('theme-light');
-          toggleBtn.textContent = '☀️ 浅色';
-        } else {
-          // auto: 跟随系统，不添加任何强制类
-          toggleBtn.textContent = '🌓 自动';
-        }
-        localStorage.setItem('theme', theme);
-      }
-
-      applyTheme(savedTheme);
-
-      // 点击按钮循环切换：auto -> dark -> light -> auto
-      toggleBtn.addEventListener('click', () => {
-        let current = localStorage.getItem('theme') || 'auto';
-        if (current === 'auto') {
-          applyTheme('dark');
-        } else if (current === 'dark') {
-          applyTheme('light');
-        } else {
-          applyTheme('auto');
-        }
-      });
-    })();
-  </script>
+  <!-- 内容安全策略 (CSP) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net;
+    style-src 'self' https://cdn.jsdelivr.net;
+    font-src 'self' https://cdn.jsdelivr.net;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self';
+  ">
 </head>

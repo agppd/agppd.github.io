@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nim（公平组合游戏）学习笔记 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Nim（公平组合游戏）学习笔记" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="下午刷题碰到了，发现没学过，就学一下" />
+<meta property="og:description" content="下午刷题碰到了，发现没学过，就学一下" />
+<link rel="canonical" href="http://localhost:4000/%E7%90%86%E8%AE%BA/%E6%95%B0%E5%AD%A6/%E5%8D%9A%E5%BC%88%E8%AE%BA/2026/02/26/Nim.html" />
+<meta property="og:url" content="http://localhost:4000/%E7%90%86%E8%AE%BA/%E6%95%B0%E5%AD%A6/%E5%8D%9A%E5%BC%88%E8%AE%BA/2026/02/26/Nim.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-26T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nim（公平组合游戏）学习笔记" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-02-26T00:00:00+08:00","datePublished":"2026-02-26T00:00:00+08:00","description":"下午刷题碰到了，发现没学过，就学一下","headline":"Nim（公平组合游戏）学习笔记","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E7%90%86%E8%AE%BA/%E6%95%B0%E5%AD%A6/%E5%8D%9A%E5%BC%88%E8%AE%BA/2026/02/26/Nim.html"},"url":"http://localhost:4000/%E7%90%86%E8%AE%BA/%E6%95%B0%E5%AD%A6/%E5%8D%9A%E5%BC%88%E8%AE%BA/2026/02/26/Nim.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- 外部脚本：登录重定向逻辑 -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+  <!-- 内容安全策略 (CSP) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net;
+    style-src 'self' https://cdn.jsdelivr.net;
+    font-src 'self' https://cdn.jsdelivr.net;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self';
+  ">
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <!-- 新增：反馈页面链接（受保护） -->
+          <a class="page-link" href="/feedback/">反馈</a>
+          
+          <!-- 新增：登录/登出按钮（由 Netlify Identity 自动生成） -->
+          <span data-netlify-identity-button></span>
+          <!-- 添加主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Nim（公平组合游戏）学习笔记</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-02-26T00:00:00+08:00" itemprop="datePublished">Feb 26, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#理论">理论</a>
+          , 
+        
+          <a href="/categories/#数学">数学</a>
+          , 
+        
+          <a href="/categories/#博弈论">博弈论</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>下午<a href="https://www.luogu.com.cn/problem/P5675">刷题</a>碰到了，发现没学过，就学一下</p>
+
+<p><strong>注：本学习笔记部分借助AI补充完成</strong></p>
+
+<h2 id="背景">背景</h2>
+
+<p>有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 个石子，有2个人，轮替每轮取走石子，每次可以取任意一堆的任意正整数数量的石子，谁最后能取走最后一个石子，谁获胜</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>容易验证，Nim 游戏是正常规则的公平组合游戏．
+
+举个例子。当前，有3堆石子，石子的数量分别为2,5,4。那么，可以取走第1堆中的2个物品，局面就变成了0,5,4；也可以取走第2堆的4个物品，局面就变成了2,1,4。如果某一时刻的局面变为了0,0,5，甲取走了第3堆的5个物品，也就是取走了最后一个物品，此时甲获胜。
+</code></pre></div></div>
+
+<p>——摘自 <a href="https://oi-wiki.org/math/game-theory/impartial-game/#nim-%E6%B8%B8%E6%88%8F">OI-WIKI</a></p>
+
+<h2 id="博弈图">博弈图</h2>
+
+<p>我们显然可以列举出所有的状态，把各个状态绘制成有向图（方向指向影响的状态）</p>
+
+<p>如以下两堆石子，第一堆一个，第二堆两个的图：</p>
+
+<p><img src="/assets/image/nim.png" alt="Nim" /></p>
+
+<p>显然，这有性质</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>在正常规则的公平组合游戏中，
+
+1. 没有后继状态的状态是必败状态 $\mathcal{P}$，
+
+2. 一个状态是必胜状态 $\mathcal{N}$ 当且仅当存在至少一个它的后继状态为必败状态 $\mathcal{P}$，
+
+3. 一个状态是必败状态 $\mathcal{P}$ 当且仅当它的所有后继状态均为必胜状态 $\mathcal{N}$。
+</code></pre></div></div>
+
+<p>——摘自 <a href="https://oi-wiki.org/math/game-theory/impartial-game/#nim-%E6%B8%B8%E6%88%8F">OI-WIKI</a></p>
+
+<p>所以所有状态必为必胜或必败状态</p>
+
+<h2 id="nim-和">Nim 和</h2>
+
+<h3 id="前言">前言</h3>
+
+<p>直接枚举所有状态显然不现实，我们需要一个简洁的判定方法。定义 <strong>Nim 和</strong> 为所有堆石子数的异或（XOR）值：</p>
+
+\[S = a_1 \oplus a_2 \oplus \dots \oplus a_n\]
+
+<h3 id="定理">定理</h3>
+
+<p>在 Nim 游戏中，一个局面是必败态（即当前玩家无论如何操作都会输，假设对手完美发挥）当且仅当 Nim 和为 $0$。否则为必胜态。</p>
+
+<p>翻译成人话就是</p>
+
+<p>前$N$个状态若想必败，则</p>
+
+\[a_1 \oplus a_2 \oplus \dots \oplus a_n = 0\]
+
+<h3 id="证明by-deepseek">证明（By Deepseek）</h3>
+
+<p>我们只需验证三条性质：</p>
+<ol>
+  <li>所有石子都被取完（即全 $0$ 局面）的 Nim 和为 $0$，且该局面为必败（因为没有石子可取）。</li>
+  <li>若当前 Nim 和 $S \neq 0$，则存在一种取法，使得取后 Nim 和变为 $0$。构造：设 $S$ 的最高位为 $k$，则至少有一堆 $a_i$ 的二进制在该位为 $1$。从该堆中取走 $a_i - (a_i \oplus S)$ 个石子（可以验证该数大于 $0$），新堆变为 $a_i \oplus S$，此时整体异或变为 $0$。</li>
+  <li>若当前 Nim 和 $S = 0$，则无论怎么取，取后 Nim 和一定非 $0$。因为改变任意一堆 $a_i$ 都会破坏异或为零的平衡。</li>
+</ol>
+
+<p>根据博弈论的基本结论，这样的局面划分正好对应必胜态与必败态。</p>
+
+<p>例如，三堆 $(2,5,4)$，$2 \oplus 5 \oplus 4 = (010)_2 \oplus (101)_2 \oplus (100)_2 = (011)_2 = 3 \neq 0$，所以先手必胜。事实上，我们可以按上述构造法找到一步必胜操作。</p>
+
+<h2 id="spraguegrundy-定理">Sprague–Grundy 定理</h2>
+
+<h3 id="定义">定义</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nim 游戏是公平组合游戏的“原型”。更一般地，对于任意一个公平组合游戏，我们可以将其分解为若干个独立子游戏的“和”，而整个游戏的胜负由各子游戏的 SG 值（Sprague–Grundy 值）的异或决定。SG 值定义为当前状态所有可能到达的状态的 SG 值集合的 mex（最小非负整数不在集合中）。
+</code></pre></div></div>
+<p>——来源于Deepseek生成</p>
+
+<h3 id="spraguegrundy-理论">Sprague–Grundy 理论</h3>
+
+<p><strong>所有公平组合游戏都等价于单堆 Nim 游戏</strong></p>
+
+<h3 id="推论">推论</h3>
+
+<p>见<a href="https://oi-wiki.org/math/game-theory/impartial-game/#spraguegrundy-%E5%87%BD%E6%95%B0">OI-WIKI</a></p>
+
+<h2 id="例题">例题</h2>
+
+<h3 id="luogu-p2197">luogu P2197</h3>
+
+<p><a href="https://www.luogu.com.cn/problem/P2197">原题链接</a></p>
+
+<p>纯板子，没啥可讲的，看代码吧（这代码再不会，回卢重早吧）</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">T</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">T</span><span class="o">--</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="p">;</span><span class="kt">int</span> <span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+            <span class="n">ans</span><span class="o">^=</span><span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span><span class="n">ans</span><span class="o">?</span><span class="s">"Yes</span><span class="se">\n</span><span class="s">"</span><span class="o">:</span><span class="s">"No</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="然后就是我的题了-luogu-p5675">然后就是我的题了 luogu P5675</h3>
+
+<p><a href="https://www.luogu.com.cn/problem/P5675">原题链接</a></p>
+
+<p>现在看起来，这题顺眼多了 <del>（其实就是数据范围小）</del></p>
+
+<p>考虑暴力枚举 <code class="language-plaintext highlighter-rouge">Alice</code> 选的哪一堆石子，然后先计算异或和是否为0，但是，题目中又规定，让我必胜，所以还要让 <code class="language-plaintext highlighter-rouge">Alice</code> 无法在这一堆中选择足够的石子使得剩下的异或为0，所以给定 Alice 选择的这堆石子的数量一定需要小于等于其他选择的堆的数量的异或值。</p>
+
+<p>然后设 $dp_{ij}$ 表示前 $i$ 堆中任意选择一些使得异或值为 $j$ 的方案数，然后暴力计算就行了</p>
+
+<p>时间复杂度：
+\(O( n^2 \times C )\)</p>
+
+<p>其中 $C$ 是 $j$ 循环的值域</p>
+
+<p>注意到：$j$ 这第二维是需要循环到值域的，然后我们看一眼每堆石子数量，发现 $C \leq 200$ ，验证一下，能过</p>
+
+<p>然后你就会写出如下的代码</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span class="o">=</span><span class="mf">2e2</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">ans</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">cout</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">dp</span><span class="p">));</span> <span class="c1">//记得清空</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">201</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="o">^</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">201</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">ans</span><span class="o">=</span><span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>发现获得了 40pts 的高分</p>
+
+<p><del>然后翻了一下题解</del></p>
+
+<p>发现这篇<a href="https://www.luogu.com.cn/article/aux9zbpe">文章</a>的第二维 $j$ 循环范围为 $[0,256]$ ，而不是我们使用的 $200$ ，不知道为什么，反正改了就过了</p>
+
+<p>AC CODE:（注意第一个版本的数组会越界）</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span class="o">=</span><span class="mf">2e2</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">ans</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="o">+</span><span class="mi">50</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">cout</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">dp</span><span class="p">));</span> <span class="c1">//记得清空</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">256</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="n">i</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="o">^</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">256</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">ans</span><span class="o">=</span><span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><em>参考资料：OI-Wiki，具体数学</em></p>
+
+<p><del>我才不会说这东西我整了一下午</del></p>
+
+  </div><a class="u-url" href="/%E7%90%86%E8%AE%BA/%E6%95%B0%E5%AD%A6/%E5%8D%9A%E5%BC%88%E8%AE%BA/2026/02/26/Nim.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

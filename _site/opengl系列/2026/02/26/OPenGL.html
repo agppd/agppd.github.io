@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>OpenGL系列转载教程一 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="OpenGL系列转载教程一" />
+<meta name="author" content="fbf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="声明" />
+<meta property="og:description" content="声明" />
+<link rel="canonical" href="http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OPenGL.html" />
+<meta property="og:url" content="http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OPenGL.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-26T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OpenGL系列转载教程一" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"fbf"},"dateModified":"2026-02-26T00:00:00+08:00","datePublished":"2026-02-26T00:00:00+08:00","description":"声明","headline":"OpenGL系列转载教程一","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OPenGL.html"},"url":"http://localhost:4000/opengl%E7%B3%BB%E5%88%97/2026/02/26/OPenGL.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- 外部脚本：登录重定向逻辑 -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+  <!-- 内容安全策略 (CSP) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net;
+    style-src 'self' https://cdn.jsdelivr.net;
+    font-src 'self' https://cdn.jsdelivr.net;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self';
+  ">
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <!-- 新增：反馈页面链接（受保护） -->
+          <a class="page-link" href="/feedback/">反馈</a>
+          
+          <!-- 新增：登录/登出按钮（由 Netlify Identity 自动生成） -->
+          <span data-netlify-identity-button></span>
+          <!-- 添加主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OpenGL系列转载教程一</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-02-26T00:00:00+08:00" itemprop="datePublished">Feb 26, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">fbf</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#OpenGL系列">OpenGL系列</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="声明">声明</h3>
+
+<p>本系列教程均属于转载教程，经作者的整理与重新编写，如有侵权，请联系作者删除。
+本篇转载自https://learnopengl-cn.github.io/</p>
+
+<h2 id="一下载及配置">一、下载及配置</h2>
+
+<p>本教程基于 <code class="language-plaintext highlighter-rouge">c++</code>，建议使用Visual Studio进行编写，本教程以Visual Studio 2022为例。</p>
+
+<h3 id="1下载">1.下载</h3>
+
+<p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文、定义窗口参数以及处理用户输入，对我们来说这就够了。</p>
+
+<p><a href="http://www.glfw.org/download.html">下载页</a></p>
+
+<p>下载后，我们需要编译生成的库和 <code class="language-plaintext highlighter-rouge">include</code>文件夹，使用CMake编译后获得<code class="language-plaintext highlighter-rouge">glfw3.lib</code>。</p>
+
+<p>你可以直接把他放入编译器的<code class="language-plaintext highlighter-rouge">lib</code>目录下，或放在新目录下并链接。</p>
+
+<p>在Windows下OpenGL本体已经内置，在Linux下你需要链接libGL.so库文件，这需要添加-lGL到你的链接器设置中。如果找不到这个库你可能需要安装Mesa，NVidia或AMD的开发包，这部分因平台而异。</p>
+
+<p>OpenGL只是一个标准/规范，具体的实现是由驱动开发商针对特定显卡实现的。由于OpenGL驱动版本众多，它大多数函数的位置都无法在编译时确定下来，需要在运行时查询。</p>
+
+<p>我们需要GLAD来帮我们解决这个问题。</p>
+
+<p>打开GLAD的<a href="http://glad.dav1d.de/">在线服务</a>，将语言(Language)设置为C/C++，在API选项中，选择3.3以上的OpenGL(gl)版本（我们的教程中将使用3.3版本，但更新的版本也能用）。之后将模式(Profile)设置为Core，并且保证选中了生成加载器(Generate a loader)选项。现在可以先（暂时）忽略扩展(Extensions)中的内容。都选择完之后，点击生成(Generate)按钮来生成库文件。</p>
+
+<p>GLAD现在应该提供给你了一个zip压缩文件，包含两个头文件目录，和一个glad.c文件。将两个头文件目录（glad和KHR）复制到你的Include文件夹中（或者增加一个额外的项目指向这些目录），并添加glad.c文件到你的工程中。</p>
+
+<p>运行这份代码(下一节我们要学的)，如果出现一个墨绿色(RGB 0.2 0.3 0.3)的窗口，证明你配置正确。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;glad/glad.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">framebuffer_size_callback</span><span class="p">(</span><span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">processInput</span><span class="p">(</span><span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">SCR_WIDTH</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">SCR_HEIGHT</span> <span class="o">=</span> <span class="mi">600</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">glfwInit</span><span class="p">();</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_OPENGL_PROFILE</span><span class="p">,</span> <span class="n">GLFW_OPENGL_CORE_PROFILE</span><span class="p">);</span>
+
+<span class="cp">#ifdef __APPLE__
+</span>    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_OPENGL_FORWARD_COMPAT</span><span class="p">,</span> <span class="n">GL_TRUE</span><span class="p">);</span>
+<span class="cp">#endif
+</span>
+    <span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">SCR_WIDTH</span><span class="p">,</span> <span class="n">SCR_HEIGHT</span><span class="p">,</span> <span class="s">"LearnOpenGL"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to create GLFW window"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+    <span class="n">glfwSetFramebufferSizeCallback</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">framebuffer_size_callback</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">gladLoadGLLoader</span><span class="p">((</span><span class="n">GLADloadproc</span><span class="p">)</span><span class="n">glfwGetProcAddress</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to initialize GLAD"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>    
+
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">processInput</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+        <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.2f</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+        <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">glfwTerminate</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">processInput</span><span class="p">(</span><span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_ESCAPE</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span>
+        <span class="n">glfwSetWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">framebuffer_size_callback</span><span class="p">(</span><span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/opengl%E7%B3%BB%E5%88%97/2026/02/26/OPenGL.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>
