@@ -55,3 +55,17 @@ header_pages:
   - about.markdown 
   - authors.md
   - Users.md
+
+# 公告集合配置
+collections:
+  announcements:
+    output: true
+    permalink: /announcements/:year/:month/:day/:title/
+
+# 默认布局（可选）
+defaults:
+  - scope:
+      path: ""
+      type: "announcements"
+    values:
+      layout: "announcement"
