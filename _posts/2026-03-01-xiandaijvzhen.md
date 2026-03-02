@@ -17,12 +17,17 @@ author: _endl_
 考虑一个 DP 式子: $dp_i=dp_{i-1}+dp_{i-2}$。
 
 可以矩阵存一下 $\begin{bmatrix} dp_{i-1} & dp_{i-2}  \end{bmatrix}$。  
-然后让这个矩阵乘以 $\begin{bmatrix} 1 & 1 
-\\ 1 & 0  \end{bmatrix}$，就可以得到 $\begin{bmatrix} dp_{i} & dp_{i-1}  \end{bmatrix}$。  
+
+然后让这个矩阵乘以 $\begin{bmatrix} 1 & 1 \\ 1 & 0  \end{bmatrix}$
+
+就可以得到 $\begin{bmatrix} dp_{i} & dp_{i-1}  \end{bmatrix}$。  
+
 然后  
+
 $$
 \begin{bmatrix} 1 & 1 \\ 1 & 0  \end{bmatrix}^{n-2} \times \begin{bmatrix} dp_{2} & dp_{1}  \end{bmatrix}
 $$
+
 最后乘出来的 `ans[1][1]` 就是答案了。[P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962)。然后[P1939 矩阵加速（数列）](https://www.luogu.com.cn/problem/P1962)跟这个是差不多的。
 
 一般就都是先想暴力dp，然后看这个式子怎么用矩阵加速。
