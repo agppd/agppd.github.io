@@ -17,7 +17,8 @@ author: _endl_
 考虑一个 DP 式子: $dp_i=dp_{i-1}+dp_{i-2}$。
 
 可以矩阵存一下 $\begin{bmatrix} dp_{i-1} & dp_{i-2}  \end{bmatrix}$。  
-然后让这个矩阵乘以 $\begin{bmatrix} 1 & 1 \\ 1 & 0  \end{bmatrix}$，就可以得到 $\begin{bmatrix} dp_{i} & dp_{i-1}  \end{bmatrix}$。  
+然后让这个矩阵乘以 $\begin{bmatrix} 1 & 1 
+\\ 1 & 0  \end{bmatrix}$，就可以得到 $\begin{bmatrix} dp_{i} & dp_{i-1}  \end{bmatrix}$。  
 然后  
 $$
 \begin{bmatrix} 1 & 1 \\ 1 & 0  \end{bmatrix}^{n-2} \times \begin{bmatrix} dp_{2} & dp_{1}  \end{bmatrix}
