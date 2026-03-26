@@ -33,11 +33,12 @@
           <a class="page-link" href="{{ '/about/' | relative_url }}">关于本站</a>
           <a class="page-link" href="{{ '/Users/' | relative_url }}">贡献者</a>
           <a class="page-link" href="{{ '/announcements/' | relative_url }}">公告</a>
-          <!-- 反馈链接（受保护） -->
-          <a class="page-link" href="{{ '/feedback/' | relative_url }}">反馈</a>
-          
-          <!-- 手动登录按钮 -->
-          <button id="netlify-login-btn" class="page-link">登录</button>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
           
           <!-- 主题切换按钮 -->
           <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>

@@ -23,25 +23,10 @@
           ]
       });"></script>
 
-  <!-- Netlify Identity Widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- 外部脚本：登录重定向逻辑 -->
+  <!-- 保留自定义的登录重定向脚本（稍后重写） -->
   <script src="{{ "/assets/js/auth-redirect.js" | relative_url }}" defer></script>
 
   <!-- 外部脚本：主题切换逻辑 -->
   <script src="{{ "/assets/js/theme.js" | relative_url }}" defer></script>
 
-  <!-- 内容安全策略 (CSP) -->
-  <meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net 'unsafe-inline';
-  style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
-  font-src 'self' https://cdn.jsdelivr.net;
-  img-src 'self' data:;
-  connect-src 'self' https://*.netlify.com https://*.netlify.app;
-  frame-ancestors 'none';
-  base-uri 'self';
-  form-action 'self';
-  ">
 </head>

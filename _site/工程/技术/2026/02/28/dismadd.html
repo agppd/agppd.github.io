@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Dism++ 使用指南 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Dism++ 使用指南" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一、下载与启动 Github发布页下载，解压后以管理员身份运行 Dism++x64.exe（64位系统）。 必须以管理员权限运行，否则功能受限。" />
+<meta property="og:description" content="一、下载与启动 Github发布页下载，解压后以管理员身份运行 Dism++x64.exe（64位系统）。 必须以管理员权限运行，否则功能受限。" />
+<link rel="canonical" href="http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/02/28/dismadd.html" />
+<meta property="og:url" content="http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/02/28/dismadd.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-28T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Dism++ 使用指南" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-02-28T00:00:00+08:00","datePublished":"2026-02-28T00:00:00+08:00","description":"一、下载与启动 Github发布页下载，解压后以管理员身份运行 Dism++x64.exe（64位系统）。 必须以管理员权限运行，否则功能受限。","headline":"Dism++ 使用指南","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/02/28/dismadd.html"},"url":"http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/02/28/dismadd.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- 保留自定义的登录重定向脚本（稍后重写） -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Dism++ 使用指南</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-02-28T00:00:00+08:00" itemprop="datePublished">Feb 28, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#工程">工程</a>
+          , 
+        
+          <a href="/categories/#技术">技术</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="一下载与启动">一、下载与启动</h2>
+<ul>
+  <li><a href="https://github.com/Chuyu-Team/Dism-Multi-language/releases/tag/v10.1.1002.2">Github发布页下载</a>，解压后以管理员身份运行 <code class="language-plaintext highlighter-rouge">Dism++x64.exe</code>（64位系统）。</li>
+  <li><strong>必须</strong>以管理员权限运行，否则功能受限。</li>
+</ul>
+
+<h2 id="二核心功能">二、核心功能</h2>
+
+<ol>
+  <li><strong>空间回收</strong>
+    <ul>
+      <li>勾选清理项目（如Windows更新清理、临时文件）→ 点击“扫描” → 点击“清理”，一键释放磁盘空间。</li>
+    </ul>
+  </li>
+  <li><strong>系统优化</strong>
+    <ul>
+      <li>在“系统优化”中按分类（如资源管理器、网络）直接开关各项优化设置（如显示文件扩展名、关闭休眠）。</li>
+    </ul>
+  </li>
+  <li><strong>驱动管理</strong>
+    <ul>
+      <li><strong>备份驱动</strong>：勾选驱动 → 点击“导出驱动”保存。</li>
+      <li><strong>添加驱动</strong>：点击“添加驱动” → 选择驱动文件夹，自动注入。</li>
+    </ul>
+  </li>
+  <li><strong>更新管理</strong>
+    <ul>
+      <li>查看已安装更新，勾选问题补丁 → 点击“删除”，卸载导致问题的更新。</li>
+    </ul>
+  </li>
+  <li><strong>工具箱</strong>
+    <ul>
+      <li><strong>系统备份</strong>：热备份当前系统为 <code class="language-plaintext highlighter-rouge">.wim</code> 镜像。</li>
+      <li><strong>引导修复</strong>：修复无法启动的引导问题。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="三映像文件处理">三、映像文件处理</h2>
+<ul>
+  <li><strong>格式转换</strong>：菜单“文件”→“格式转换”，可将ESD转为ISO。</li>
+  <li><strong>释放映像</strong>：直接安装系统（选择镜像→目标盘→勾选“添加引导”和“格式化”→确定）。</li>
+  <li><strong>挂载/保存</strong>：挂载WIM文件后可注入驱动，保存后生成新镜像。</li>
+</ul>
+
+<h1><center><font color="red"> 习惯了使用DISM的用户看过来，DISM++默认的卸载不含保存！！！ </font></center></h1>
+
+<h2 id="四注意事项">四、注意事项</h2>
+<ul>
+  <li>谨慎操作，尤其在删除更新和优化设置前，确保了解其作用。</li>
+  <li>重大操作前建议先用“系统备份”功能创建备份。</li>
+  <li>绿色软件，可放在U盘随身携带。</li>
+</ul>
+
+  </div><a class="u-url" href="/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/02/28/dismadd.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

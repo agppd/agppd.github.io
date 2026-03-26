@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>KMP算法详解 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="KMP算法详解" />
+<meta name="author" content="_endl_" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="问题 给定一个模式串 $s$ 和一个文本串 $t$，求模式串在文本串里出现过的次数。" />
+<meta property="og:description" content="问题 给定一个模式串 $s$ 和一个文本串 $t$，求模式串在文本串里出现过的次数。" />
+<link rel="canonical" href="http://localhost:4000/%E7%90%86%E8%AE%BA/%E7%AE%97%E6%B3%95/2026/03/01/KMP.html" />
+<meta property="og:url" content="http://localhost:4000/%E7%90%86%E8%AE%BA/%E7%AE%97%E6%B3%95/2026/03/01/KMP.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-01T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="KMP算法详解" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"_endl_"},"dateModified":"2026-03-01T00:00:00+08:00","datePublished":"2026-03-01T00:00:00+08:00","description":"问题 给定一个模式串 $s$ 和一个文本串 $t$，求模式串在文本串里出现过的次数。","headline":"KMP算法详解","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E7%90%86%E8%AE%BA/%E7%AE%97%E6%B3%95/2026/03/01/KMP.html"},"url":"http://localhost:4000/%E7%90%86%E8%AE%BA/%E7%AE%97%E6%B3%95/2026/03/01/KMP.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- 保留自定义的登录重定向脚本（稍后重写） -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">KMP算法详解</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-03-01T00:00:00+08:00" itemprop="datePublished">Mar 1, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">_endl_</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#理论">理论</a>
+          , 
+        
+          <a href="/categories/#算法">算法</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="问题">问题</h2>
+<p>给定一个模式串 $s$ 和一个文本串 $t$，求模式串在文本串里出现过的次数。</p>
+
+<h2 id="约定">约定</h2>
+<p>为了方便，下文称 $next_i$ 表示字符串 $s_0..s_i$ 的最长 $border$，$m=|s|，n=|t|$。</p>
+
+<h2 id="暴力做法">暴力做法</h2>
+<p>两个指针 $i,j$，用 $s_i$ 和 $t_j$ 匹配，如果相等，i++，j++，否则 i = 0，j=j-i+1。时间复杂度 $O(nm)$。</p>
+
+<h2 id="进一步的思考">进一步的思考</h2>
+<p>我们会发现 $s_i \neq t_j$ 时，指针回退会导致大量重复比较。</p>
+
+<p>但如果我们让 $j$ 只往右走就会避免重复比较。</p>
+
+<p>考虑当前 $s_0..s_{i-1}$ 和 $t_0..t_{j-1}$ 已经匹配，我们如果能知道 $s_0..s_{i-1}$ 的最长 $border$，就可以直接让 $i$ 跳过去。</p>
+
+<p>现在的问题在于求出 $next$ 数组。在网上有很多方法，这里给出一种比较好写好想的方法。</p>
+
+<p>具体地：遍历模式串，令 j 为当前 $border$ 长度。</p>
+
+<p>当 $j &gt; 0$ 且 $s_i \neq s_j$ 时，反复令 $j = next[j-1]$（不断回退，直到 $j = 0$ 或 $s_i = s_j$）。</p>
+
+<p>如果 $s_i = s_j$，则 $j$ 增加 1（即 $j = j + 1$）。</p>
+
+<p>令 $next[i] = j$。</p>
+
+<p>$next$ 预处理好了，接下来是较为具体的 $KMP$ 匹配过程：</p>
+
+<p>首先 $i$ 指针用于遍历模式串，$j$ 遍历文本串，$ans$ 记录答案。</p>
+
+<ol>
+  <li>如果匹配成功，i++,j++</li>
+  <li>如果 i = m，即匹配完成，ans++,i = next[i-1]</li>
+  <li>如果匹配失败
+    <ul>
+      <li>若 i &gt; 0，则 i = next[i-1]</li>
+      <li>若 i = 0，则 j++</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="复杂度分析">复杂度分析</h2>
+<p>预处理 $next$：$O(m)$
+匹配：$O(n)$
+总复杂度：$O(n+m)$</p>
+
+  </div><a class="u-url" href="/%E7%90%86%E8%AE%BA/%E7%AE%97%E6%B3%95/2026/03/01/KMP.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

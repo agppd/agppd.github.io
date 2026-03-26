@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Latex宏包教学 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Latex宏包教学" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文由大量网上资料与deepseek生成的内容汇总而成" />
+<meta property="og:description" content="本文由大量网上资料与deepseek生成的内容汇总而成" />
+<link rel="canonical" href="http://localhost:4000/%E6%8E%92%E7%89%88/2026/03/14/exlatex.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8E%92%E7%89%88/2026/03/14/exlatex.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-14T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Latex宏包教学" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-03-14T00:00:00+08:00","datePublished":"2026-03-14T00:00:00+08:00","description":"本文由大量网上资料与deepseek生成的内容汇总而成","headline":"Latex宏包教学","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8E%92%E7%89%88/2026/03/14/exlatex.html"},"url":"http://localhost:4000/%E6%8E%92%E7%89%88/2026/03/14/exlatex.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- KaTeX 数学公式支持（使用 SRI 确保完整性） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+      });"></script>
+
+  <!-- 保留自定义的登录重定向脚本（稍后重写） -->
+  <script src="/assets/js/auth-redirect.js" defer></script>
+
+  <!-- 外部脚本：主题切换逻辑 -->
+  <script src="/assets/js/theme.js" defer></script>
+
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Latex宏包教学</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-03-14T00:00:00+08:00" itemprop="datePublished">Mar 14, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#排版">排版</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><strong>本文由大量网上资料与deepseek生成的内容汇总而成</strong></p>
+
+<h2 id="1-通用基础宏包">1. 通用基础宏包</h2>
+
+<p>无论撰写哪个学科的文档，以下宏包都建议加载，它们提供了基础功能与字体、页面、图表等支持。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>宏包</th>
+      <th>用途</th>
+      <th>示例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputenc</code></td>
+      <td>指定源文件编码（如 UTF-8）</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage[utf8]{inputenc}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fontenc</code></td>
+      <td>指定输出编码（如 T1）</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage[T1]{fontenc}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">geometry</code></td>
+      <td>设置页面边距</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage[a4paper,margin=2.5cm]{geometry}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">babel</code></td>
+      <td>多语言支持（如英文、中文）</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage[english]{babel}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">amsmath</code>, <code class="language-plaintext highlighter-rouge">amssymb</code></td>
+      <td>数学公式增强</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage{amsmath,amssymb}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">graphicx</code></td>
+      <td>插入图片</td>
+      <td><code class="language-plaintext highlighter-rouge">\includegraphics[width=0.5\textwidth]{figure.png}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">hyperref</code></td>
+      <td>生成超链接、书签</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage{hyperref}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">caption</code>, <code class="language-plaintext highlighter-rouge">subcaption</code></td>
+      <td>自定义图表标题，支持子图</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage{caption,subcaption}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">listings</code> / <code class="language-plaintext highlighter-rouge">minted</code></td>
+      <td>代码高亮</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage{listings}</code> 或 <code class="language-plaintext highlighter-rouge">\usepackage{minted}</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tikz</code></td>
+      <td>绘制矢量图形</td>
+      <td><code class="language-plaintext highlighter-rouge">\usepackage{tikz}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-数学与计算机科学">2. 数学与计算机科学</h2>
+
+<h3 id="21-数学">2.1 数学</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">amsmath</code></strong>：基础数学环境（<code class="language-plaintext highlighter-rouge">equation</code>, <code class="language-plaintext highlighter-rouge">align</code>, <code class="language-plaintext highlighter-rouge">gather</code> 等）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">amsthm</code></strong>：定理环境（<code class="language-plaintext highlighter-rouge">\newtheorem</code>）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">mathtools</code></strong>：<code class="language-plaintext highlighter-rouge">amsmath</code> 的扩展，提供更多数学工具。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">siunitx</code></strong>：科学单位与数值排版。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">physics</code></strong>：物理学常用符号（导数、括号、向量等），但数学中也可用。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>amsmath, amsthm, mathtools, siunitx, physics<span class="p">}</span>
+<span class="k">\theoremstyle</span><span class="p">{</span>definition<span class="p">}</span>
+<span class="k">\newtheorem</span><span class="p">{</span>theorem<span class="p">}{</span>Theorem<span class="p">}</span>[section]
+<span class="k">\newtheorem</span><span class="p">{</span>definition<span class="p">}</span>[theorem]<span class="p">{</span>Definition<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>示例<span class="p">}</span>
+<span class="nt">\begin{definition}</span>[极限]
+  设函数 <span class="p">$</span><span class="nb">f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="p">$</span> 在 <span class="p">$</span><span class="nb">x</span><span class="p">_</span><span class="m">0</span><span class="p">$</span> 的某邻域内有定义，若存在常数 <span class="p">$</span><span class="nb">A</span><span class="p">$</span>，使得对任意 <span class="p">$</span><span class="nv">\epsilon</span><span class="nb"> &gt; </span><span class="m">0</span><span class="p">$</span>，
+  存在 <span class="p">$</span><span class="nv">\delta</span><span class="nb"> &gt; </span><span class="m">0</span><span class="p">$</span>，当 <span class="p">$</span><span class="m">0</span><span class="nb"> &lt; |x </span><span class="o">-</span><span class="nb"> x</span><span class="p">_</span><span class="m">0</span><span class="nb">| &lt; </span><span class="nv">\delta</span><span class="p">$</span> 时，有 <span class="p">$</span><span class="nb">|f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">-</span><span class="nb"> A| &lt; </span><span class="nv">\epsilon</span><span class="p">$</span>，
+  则称 <span class="p">$</span><span class="nb">A</span><span class="p">$</span> 为 <span class="p">$</span><span class="nb">f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="p">$</span> 当 <span class="p">$</span><span class="nb">x </span><span class="nv">\to</span><span class="nb"> x</span><span class="p">_</span><span class="m">0</span><span class="p">$</span> 的极限，记为
+  <span class="p">\[</span><span class="nb">
+  </span><span class="nv">\lim</span><span class="p">_{</span><span class="nb">x </span><span class="nv">\to</span><span class="nb"> x</span><span class="p">_</span><span class="m">0</span><span class="p">}</span><span class="nb"> f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> A.
+  </span><span class="p">\]</span>
+<span class="nt">\end{definition}</span>
+
+<span class="nt">\begin{theorem}</span>[夹逼准则]
+  若在 <span class="p">$</span><span class="nb">x</span><span class="p">_</span><span class="m">0</span><span class="p">$</span> 的某去心邻域内，<span class="p">$</span><span class="nb">g</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="nv">\le</span><span class="nb"> f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="nv">\le</span><span class="nb"> h</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="p">$</span>，且
+  <span class="p">$</span><span class="nv">\lim</span><span class="p">_{</span><span class="nb">x </span><span class="nv">\to</span><span class="nb"> x</span><span class="p">_</span><span class="m">0</span><span class="p">}</span><span class="nb"> g</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\lim</span><span class="p">_{</span><span class="nb">x </span><span class="nv">\to</span><span class="nb"> x</span><span class="p">_</span><span class="m">0</span><span class="p">}</span><span class="nb"> h</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> A</span><span class="p">$</span>，则
+  <span class="p">\[</span><span class="nb">
+  </span><span class="nv">\lim</span><span class="p">_{</span><span class="nb">x </span><span class="nv">\to</span><span class="nb"> x</span><span class="p">_</span><span class="m">0</span><span class="p">}</span><span class="nb"> f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> A.
+  </span><span class="p">\]</span>
+<span class="nt">\end{theorem}</span>
+
+物理单位示例：<span class="p">$</span><span class="nv">\SI</span><span class="p">{</span><span class="m">3</span><span class="nb">.</span><span class="m">14</span><span class="p">}{</span><span class="nv">\micro\meter</span><span class="p">}$</span>，导数 <span class="p">$</span><span class="nv">\dv</span><span class="p">{</span><span class="nb">f</span><span class="p">}{</span><span class="nb">x</span><span class="p">}$</span>，偏导 <span class="p">$</span><span class="nv">\pdv</span><span class="p">{</span><span class="nb">f</span><span class="p">}{</span><span class="nb">x,y</span><span class="p">}$</span>。
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<h3 id="22-计算机科学">2.2 计算机科学</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">listings</code></strong>：代码块排版，支持多种语言。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">minted</code></strong>：依赖 Pygments，语法高亮更美观。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">algorithm2e</code></strong> / <strong><code class="language-plaintext highlighter-rouge">algorithmicx</code></strong>：算法伪代码排版。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>listings<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>xcolor<span class="p">}</span>
+<span class="k">\lstset</span><span class="p">{</span>
+  language=Python,
+  basicstyle=<span class="k">\ttfamily\small</span>,
+  keywordstyle=<span class="k">\color</span><span class="p">{</span>blue<span class="p">}</span>,
+  commentstyle=<span class="k">\color</span><span class="p">{</span>gray<span class="p">}</span>,
+  stringstyle=<span class="k">\color</span><span class="p">{</span>red<span class="p">}</span>,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=<span class="k">\tiny</span>,
+  frame=single
+<span class="p">}</span>
+
+<span class="k">\usepackage</span><span class="na">[ruled,vlined]</span><span class="p">{</span>algorithm2e<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>代码示例<span class="p">}</span>
+<span class="k">\lstinputlisting</span><span class="na">[caption={Python 示例}]</span><span class="p">{</span>example.py<span class="p">}</span>
+
+<span class="nt">\begin{algorithm}</span>[H]
+  <span class="k">\SetAlgoLined</span>
+  <span class="k">\KwData</span><span class="p">{</span>一个整数 <span class="p">$</span><span class="nb">n</span><span class="p">$}</span>
+  <span class="k">\KwResult</span><span class="p">{</span>斐波那契数列前 <span class="p">$</span><span class="nb">n</span><span class="p">$</span> 项<span class="p">}</span>
+  <span class="k">\BlankLine</span>
+  <span class="p">$</span><span class="nb">F</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="nb"> </span><span class="nv">\leftarrow</span><span class="nb"> </span><span class="m">0</span><span class="p">$</span><span class="k">\;</span>
+  <span class="p">$</span><span class="nb">F</span><span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="nb"> </span><span class="nv">\leftarrow</span><span class="nb"> </span><span class="m">1</span><span class="p">$</span><span class="k">\;</span>
+  <span class="k">\For</span><span class="p">{$</span><span class="nb">i </span><span class="nv">\leftarrow</span><span class="nb"> </span><span class="m">2</span><span class="p">$</span> <span class="k">\KwTo</span> <span class="p">$</span><span class="nb">n</span><span class="o">-</span><span class="m">1</span><span class="p">$}{</span>
+    <span class="p">$</span><span class="nb">F</span><span class="o">[</span><span class="nb">i</span><span class="o">]</span><span class="nb"> </span><span class="nv">\leftarrow</span><span class="nb"> F</span><span class="o">[</span><span class="nb">i</span><span class="o">-</span><span class="m">1</span><span class="o">]</span><span class="nb"> </span><span class="o">+</span><span class="nb"> F</span><span class="o">[</span><span class="nb">i</span><span class="o">-</span><span class="m">2</span><span class="o">]</span><span class="p">$</span><span class="k">\;</span>
+  <span class="p">}</span>
+  <span class="k">\Return</span> <span class="p">$</span><span class="nb">F</span><span class="p">$</span><span class="k">\;</span>
+  <span class="k">\caption</span><span class="p">{</span>斐波那契数列<span class="p">}</span>
+<span class="nt">\end{algorithm}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-物理学">3. 物理学</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">physics</code></strong>：提供 <code class="language-plaintext highlighter-rouge">\dd</code>, <code class="language-plaintext highlighter-rouge">\dv</code>, <code class="language-plaintext highlighter-rouge">\pdv</code>, <code class="language-plaintext highlighter-rouge">\va</code>, <code class="language-plaintext highlighter-rouge">\vb</code> 等快捷命令。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">siunitx</code></strong>：规范单位和数值。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">circuitikz</code></strong>：绘制电路图。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">feynmp</code></strong> / <strong><code class="language-plaintext highlighter-rouge">tikz-feynman</code></strong>：费曼图。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>physics, siunitx, circuitikz<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz-feynman<span class="p">}</span> <span class="c">% 需要 LuaLaTeX 或启用 external</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>物理公式<span class="p">}</span>
+薛定谔方程：
+<span class="p">\[</span><span class="nb">
+i</span><span class="nv">\hbar</span><span class="nb"> </span><span class="nv">\pdv</span><span class="p">{</span><span class="nv">\Psi</span><span class="p">}{</span><span class="nb">t</span><span class="p">}</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="o">-</span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\hbar</span><span class="p">^</span><span class="m">2</span><span class="p">}{</span><span class="m">2</span><span class="nb">m</span><span class="p">}</span><span class="nb"> </span><span class="nv">\laplacian</span><span class="p">{</span><span class="nv">\Psi</span><span class="p">}</span><span class="nb"> </span><span class="o">+</span><span class="nb"> V</span><span class="nv">\Psi</span><span class="nb">.
+</span><span class="p">\]</span>
+
+单位示例：<span class="p">$</span><span class="nb">c </span><span class="o">=</span><span class="nb"> </span><span class="nv">\SI</span><span class="p">{</span><span class="m">299792458</span><span class="p">}{</span><span class="nv">\meter\per\second</span><span class="p">}$</span>。
+
+<span class="k">\section</span><span class="p">{</span>电路图<span class="p">}</span>
+<span class="nt">\begin{circuitikz}</span>
+  <span class="k">\draw</span> (0,0) to[V=<span class="p">$</span><span class="nb">V</span><span class="p">_{</span><span class="nb">in</span><span class="p">}$</span>] (0,2)
+        to[R=<span class="p">$</span><span class="nb">R</span><span class="p">$</span>] (2,2)
+        to[L=<span class="p">$</span><span class="nb">L</span><span class="p">$</span>] (4,2)
+        to[C=<span class="p">$</span><span class="nb">C</span><span class="p">$</span>] (4,0) -- (0,0);
+  <span class="k">\draw</span> (2,2) -- (2,3) to[short,*-o] (2,3) node[right]<span class="p">{$</span><span class="nb">V</span><span class="p">_{</span><span class="nb">out</span><span class="p">}$}</span>;
+<span class="nt">\end{circuitikz}</span>
+
+<span class="k">\section</span><span class="p">{</span>费曼图<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="nt">\begin{feynman}</span>
+    <span class="k">\vertex</span> (a) <span class="p">{\(</span><span class="nb">e</span><span class="p">^</span><span class="o">-</span><span class="p">\)}</span>;
+    <span class="k">\vertex</span> [right=of a] (b);
+    <span class="k">\vertex</span> [right=of b] (c);
+    <span class="k">\vertex</span> [right=of c] (d) <span class="p">{\(</span><span class="nb">e</span><span class="p">^</span><span class="o">-</span><span class="p">\)}</span>;
+    <span class="k">\vertex</span> [above=of b] (e) <span class="p">{\(</span><span class="nv">\gamma</span><span class="p">\)}</span>;
+    <span class="k">\diagram*</span> <span class="p">{</span>
+      (a) -- [fermion] (b) -- [fermion] (c) -- [fermion] (d),
+      (b) -- [photon] (e),
+    <span class="p">}</span>;
+  <span class="nt">\end{feynman}</span>
+<span class="nt">\end{tikzpicture}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-化学">4. 化学</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">mhchem</code></strong>：化学方程式、化学式简便输入。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">chemfig</code></strong>：绘制有机化学结构式。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>mhchem, chemfig<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>化学方程式<span class="p">}</span>
+水电解：<span class="k">\ce</span><span class="p">{</span>2H2O -&gt; 2H2 + O2<span class="p">}</span>
+<span class="k">\par</span>
+苯的硝化：<span class="k">\ce</span><span class="p">{</span>C6H6 + HNO3 -&gt;[H2SO4] C6H5NO2 + H2O<span class="p">}</span>
+
+<span class="k">\section</span><span class="p">{</span>结构式<span class="p">}</span>
+<span class="k">\chemfig</span><span class="p">{</span>*6(=-=-=-)<span class="p">}</span> <span class="c">% 苯环</span>
+<span class="k">\par</span>
+<span class="k">\chemfig</span><span class="p">{</span>CH<span class="p">_</span>3-CH(-OH)-CH<span class="p">_</span>3<span class="p">}</span> <span class="c">% 异丙醇</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-生物学">5. 生物学</h2>
+
+<p>生物学通常使用通用宏包（如 <code class="language-plaintext highlighter-rouge">graphicx</code> 插入图片，<code class="language-plaintext highlighter-rouge">pgfplots</code> 绘制数据图），并无特定强制宏包。但以下宏包可能有用：</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">pgfplots</code></strong>：数据绘图，适合生物统计图表。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">bioinfo</code></strong>：生物信息学专用，但较少用。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">tikz</code></strong> 绘制细胞、器官示意图。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>pgfplots<span class="p">}</span>
+<span class="k">\pgfplotsset</span><span class="p">{</span>compat=1.18<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz<span class="p">}</span>
+<span class="k">\usetikzlibrary</span><span class="p">{</span>shapes,arrows<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>生长曲线<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="nt">\begin{axis}</span>[
+    xlabel=<span class="p">{</span>时间 (h)<span class="p">}</span>,
+    ylabel=<span class="p">{</span>细胞密度 (OD<span class="p">$_{</span><span class="m">600</span><span class="p">}$</span>)<span class="p">}</span>,
+    grid=major,
+    legend pos=north west
+  ]
+    <span class="k">\addplot</span> coordinates <span class="p">{</span>(0,0.1) (2,0.3) (4,0.8) (6,1.5) (8,2.2) (10,2.5)<span class="p">}</span>;
+    <span class="k">\addplot</span> coordinates <span class="p">{</span>(0,0.1) (2,0.2) (4,0.5) (6,1.0) (8,1.8) (10,2.3)<span class="p">}</span>;
+    <span class="k">\legend</span><span class="p">{</span>野生型, 突变型<span class="p">}</span>
+  <span class="nt">\end{axis}</span>
+<span class="nt">\end{tikzpicture}</span>
+
+<span class="k">\section</span><span class="p">{</span>细胞示意图<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> (0,0) circle (1);
+  <span class="k">\draw</span> (0,0) circle (0.6);
+  <span class="k">\fill</span> (0,0) circle (0.1);
+  <span class="k">\node</span> at (0,1.2) <span class="p">{</span>细胞核<span class="p">}</span>;
+  <span class="k">\node</span> at (0,0.8) <span class="p">{</span>细胞质<span class="p">}</span>;
+<span class="nt">\end{tikzpicture}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-工程学">6. 工程学</h2>
+
+<p>工程学科常需要绘制图表、流程图、电路图、力学示意图等。</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">tikz</code></strong> 及其库（<code class="language-plaintext highlighter-rouge">arrows</code>, <code class="language-plaintext highlighter-rouge">shapes</code>, <code class="language-plaintext highlighter-rouge">calc</code>, <code class="language-plaintext highlighter-rouge">patterns</code>）用于绘制机构简图。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">pgfplots</code></strong> 用于数据曲线。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">circuitikz</code></strong> 用于电路。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">algorithm2e</code></strong> 用于算法描述。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">siunitx</code></strong> 用于单位。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz<span class="p">}</span>
+<span class="k">\usetikzlibrary</span><span class="p">{</span>arrows,shapes,calc<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>pgfplots<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>siunitx<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>力学简图<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>[&gt;=stealth]
+  <span class="k">\draw</span><span class="na">[thick]</span> (-2,0) -- (2,0);
+  <span class="k">\draw</span><span class="na">[fill=gray!30]</span> (-0.5,0) rectangle (0.5,1);
+  <span class="k">\draw</span><span class="na">[-&gt;,thick]</span> (0,1) -- (0,2) node[above] <span class="p">{$</span><span class="nb">F</span><span class="p">$}</span>;
+  <span class="k">\draw</span><span class="na">[-&gt;,thick]</span> (0,0) -- (0,-0.8) node[below] <span class="p">{$</span><span class="nb">mg</span><span class="p">$}</span>;
+  <span class="k">\draw</span><span class="na">[-&gt;,thick]</span> (-0.8,0.5) -- (-1.5,0.5) node[left] <span class="p">{$</span><span class="nb">f</span><span class="p">$}</span>;
+  <span class="k">\node</span> at (0,0.5) <span class="p">{</span>m<span class="p">}</span>;
+<span class="nt">\end{tikzpicture}</span>
+
+<span class="k">\section</span><span class="p">{</span>应力-应变曲线<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="nt">\begin{axis}</span>[
+    xlabel=<span class="p">{</span>应变 <span class="p">$</span><span class="nv">\varepsilon</span><span class="p">$}</span>,
+    ylabel=<span class="p">{</span>应力 <span class="p">$</span><span class="nv">\sigma</span><span class="p">$</span> (MPa)<span class="p">}</span>,
+    grid=major,
+    xmin=0, xmax=0.02,
+    ymin=0, ymax=300
+  ]
+    <span class="k">\addplot</span><span class="na">[thick, blue]</span> coordinates <span class="p">{</span>
+      (0,0) (0.001,100) (0.005,200) (0.01,250) (0.015,260) (0.02,250)
+    <span class="p">}</span>;
+  <span class="nt">\end{axis}</span>
+<span class="nt">\end{tikzpicture}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-语言学">7. 语言学</h2>
+
+<p>语言学排版需要处理音标、例句、语法树等。</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">tipa</code></strong> / <strong><code class="language-plaintext highlighter-rouge">fontspec</code></strong>（XeLaTeX）：国际音标。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">gb4e</code></strong> / <strong><code class="language-plaintext highlighter-rouge">linguex</code></strong> / <strong><code class="language-plaintext highlighter-rouge">expex</code></strong>：编号例句。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">tikz-qtree</code></strong> / <strong><code class="language-plaintext highlighter-rouge">forest</code></strong>：句法树。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tipa<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>gb4e<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz-qtree<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>音标<span class="p">}</span>
+The pronunciation of ``ship'' is [<span class="k">\textshtipa</span>].
+
+<span class="k">\section</span><span class="p">{</span>例句<span class="p">}</span>
+<span class="nt">\begin{exe}</span>
+  <span class="k">\ex</span> <span class="k">\label</span><span class="p">{</span>ex:1<span class="p">}</span> John saw Mary.
+  <span class="k">\ex</span> <span class="k">\label</span><span class="p">{</span>ex:2<span class="p">}</span> <span class="k">\gll</span> 我 喜欢 书<span class="k">\\</span>
+          wo  xihuan shu<span class="k">\\</span>
+          <span class="k">\glt</span> `I like books.'
+<span class="nt">\end{exe}</span>
+
+<span class="k">\section</span><span class="p">{</span>句法树<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\Tree</span> [.S [.NP John ] [.VP [.V saw ] [.NP Mary ] ] ]
+<span class="nt">\end{tikzpicture}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-历史与哲学">8. 历史与哲学</h2>
+
+<p>这类人文学科通常不需要特殊宏包，但以下宏包有助于提升排版质量：</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">biblatex</code></strong>：强大的参考文献管理。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">csquotes</code></strong>：智能引号。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">footmisc</code></strong> / <strong><code class="language-plaintext highlighter-rouge">manyfoot</code></strong>：自定义脚注。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">verse</code></strong>：诗歌排版。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[style=chicago]</span><span class="p">{</span>biblatex<span class="p">}</span>
+<span class="k">\addbibresource</span><span class="p">{</span>refs.bib<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>csquotes<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>verse<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\section</span><span class="p">{</span>引言<span class="p">}</span>
+<span class="k">\enquote</span><span class="p">{</span>知之为知之，不知为不知，是知也。<span class="p">}</span> ——《论语·为政》
+
+<span class="k">\section</span><span class="p">{</span>诗歌<span class="p">}</span>
+<span class="nt">\begin{verse}</span>
+  关关雎鸠，在河之洲。<span class="k">\\</span>
+  窈窕淑女，君子好逑。
+<span class="nt">\end{verse}</span>
+
+<span class="k">\nocite</span><span class="p">{</span>*<span class="p">}</span>
+<span class="k">\printbibliography</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-音乐">9. 音乐</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">musixtex</code></strong>：五线谱排版。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">lilypond</code></strong> 更专业，但需外部程序；也可用 <code class="language-plaintext highlighter-rouge">lilypond-book</code> 嵌入 LaTeX。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>musixtex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="nt">\begin{music}</span>
+  <span class="k">\instrumentnumber</span><span class="p">{</span>1<span class="p">}</span>
+  <span class="k">\setname</span>1<span class="p">{</span>Piano<span class="p">}</span>
+  <span class="k">\setstaffs</span>1<span class="p">{</span>2<span class="p">}</span>
+  <span class="k">\startextract</span>
+  <span class="k">\Notes</span> <span class="k">\wh</span><span class="p">{</span>c<span class="p">}</span><span class="k">\en</span>
+  <span class="k">\Notes</span> <span class="k">\wh</span><span class="p">{</span>e<span class="p">}</span><span class="k">\en</span>
+  <span class="k">\zendextract</span>
+<span class="nt">\end{music}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="10-总结">10. 总结</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>学科</th>
+      <th>推荐宏包</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数学</td>
+      <td><code class="language-plaintext highlighter-rouge">amsmath</code>, <code class="language-plaintext highlighter-rouge">amsthm</code>, <code class="language-plaintext highlighter-rouge">mathtools</code>, <code class="language-plaintext highlighter-rouge">siunitx</code>, <code class="language-plaintext highlighter-rouge">physics</code></td>
+    </tr>
+    <tr>
+      <td>计算机</td>
+      <td><code class="language-plaintext highlighter-rouge">listings</code>, <code class="language-plaintext highlighter-rouge">minted</code>, <code class="language-plaintext highlighter-rouge">algorithm2e</code>, <code class="language-plaintext highlighter-rouge">algorithmicx</code></td>
+    </tr>
+    <tr>
+      <td>物理</td>
+      <td><code class="language-plaintext highlighter-rouge">physics</code>, <code class="language-plaintext highlighter-rouge">siunitx</code>, <code class="language-plaintext highlighter-rouge">circuitikz</code>, <code class="language-plaintext highlighter-rouge">tikz-feynman</code></td>
+    </tr>
+    <tr>
+      <td>化学</td>
+      <td><code class="language-plaintext highlighter-rouge">mhchem</code>, <code class="language-plaintext highlighter-rouge">chemfig</code></td>
+    </tr>
+    <tr>
+      <td>生物</td>
+      <td><code class="language-plaintext highlighter-rouge">pgfplots</code>, <code class="language-plaintext highlighter-rouge">tikz</code></td>
+    </tr>
+    <tr>
+      <td>工程</td>
+      <td><code class="language-plaintext highlighter-rouge">tikz</code>, <code class="language-plaintext highlighter-rouge">pgfplots</code>, <code class="language-plaintext highlighter-rouge">circuitikz</code>, <code class="language-plaintext highlighter-rouge">algorithm2e</code></td>
+    </tr>
+    <tr>
+      <td>语言学</td>
+      <td><code class="language-plaintext highlighter-rouge">tipa</code>, <code class="language-plaintext highlighter-rouge">gb4e</code>, <code class="language-plaintext highlighter-rouge">tikz-qtree</code>, <code class="language-plaintext highlighter-rouge">forest</code></td>
+    </tr>
+    <tr>
+      <td>历史/哲学</td>
+      <td><code class="language-plaintext highlighter-rouge">biblatex</code>, <code class="language-plaintext highlighter-rouge">csquotes</code>, <code class="language-plaintext highlighter-rouge">footmisc</code>, <code class="language-plaintext highlighter-rouge">verse</code></td>
+    </tr>
+    <tr>
+      <td>音乐</td>
+      <td><code class="language-plaintext highlighter-rouge">musixtex</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </div><a class="u-url" href="/%E6%8E%92%E7%89%88/2026/03/14/exlatex.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>
