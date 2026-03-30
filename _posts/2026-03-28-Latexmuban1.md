@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Latex模板分享"
-date: 2026-03-23
+date: 2026-03-28
 categories: [排版,模板]
 author: agppd
 ---
