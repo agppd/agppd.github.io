@@ -12,6 +12,8 @@ permalink: /Users/
 
 - bcdmwSjy（贡献快读模板）
 
+- Deepseek(DS)（为部分文章提供补充）
+
 - fbf（OpenGL 系列，贡献网站公告系统的设计来源）
 
 - WYZqaq（贡献套取数据方法）

@@ -12,7 +12,7 @@
 
 ## 在线访问
 
-访问 [agppd团队 的博客](https://agppd.github.io/) 
+访问 [agppd团队 的博客](https://agppd.netlify.app/) 
 
 ## 许可证
 
@@ -38,7 +38,7 @@ This is our team's blog, built with [Jekyll](https://jekyllrb.com/) and the defa
 5. Visit `http://127.0.0.1:4000`
 
 ## Online Access
-Visit [agppd's Blog](https://agppd.github.io/)
+Visit [agppd's Blog](https://agppd.applify.app/)
 
 ## License
 - **Blog Theme**: Modified from [minima](https://github.com/jekyll/minima), licensed under the **MIT License**.  
