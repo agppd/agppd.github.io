@@ -9,6 +9,8 @@ author: agppd
 <h2><center><font color="red"> 作者也只是刷视频刷到相关内容了，并不了解此内容 </font></center></h2>
 <h2><center><font color="red"> 所以，本文大量采用DeepSeek完成，请酌情阅读 </font></center></h2>
 
+**图像采用gnuplot绘制**
+
 ---
 
 ## 一、加密算法两大阵营：对称加密与非对称加密
@@ -56,6 +58,14 @@ author: agppd
 ### 什么是椭圆曲线？
 
 在密码学中，椭圆曲线是指形如 **y² = x³ + ax + b** 的光滑曲线。例如比特币中使用的 secp256k1 曲线：**y² = x³ + 7**。
+
+椭圆曲线示意图$y^2=3 \times x^3+5 \times x+6$
+
+![椭圆曲线示意图y^2=3*x^3+5*x+6](/assets/image/tuoyuan.svg)
+
+椭圆示意图$\frac{x^2}{9}+\frac{y^2}{5}=1$
+
+![椭圆示意图\frac{x^2}{9}+\frac{y^2}{5}=1](/assets/image/ty.svg)
 
 关键的不仅是曲线本身，而是在曲线上定义的**点的加法运算**——通过“切线与弦”规则，可以定义 P + Q = R，并且存在倍点运算。这种运算满足交换律、结合律，形成一个数学上的**群**。
 
