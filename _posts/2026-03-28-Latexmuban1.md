@@ -176,13 +176,14 @@ author: agppd
 }
 
 % ==================== 交叉引用与超链接 ====================
-\usepackage[bookmarks=true, colorlinks=true, linkcolor=blue, citecolor=green, urlcolor=red]{hyperref}
+\usepackage[bookmarks=true, colorlinks=true, linkcolor=blue, citecolor=green, urlcolor=red, pdfborder={0 0 0}]{hyperref}
 % 加载 hyperref 宏包，用于生成超链接和 PDF 书签
 % bookmarks=true   : 生成 PDF 书签（目录树）
 % colorlinks=true  : 将链接设置为彩色（而非彩色边框）
 % linkcolor=blue   : 内部交叉引用（如 \ref）的颜色为蓝色
 % citecolor=green  : 参考文献引用（如 \cite）的颜色为绿色
 % urlcolor=red     : 网址链接（如 \url）的颜色为红色
+% pdfborder={0 0 0}: 去除特别难看的超链接提醒
 \usepackage{cleveref}  % 加载 cleveref 宏包，提供智能交叉引用（如 \cref{label} 自动添加类型名称，如“定理 1”）
 
 \bibliographystyle{plain}   % 设置参考文献样式
