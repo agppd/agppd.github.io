@@ -263,18 +263,27 @@ public:
 强制在线，记上一次输出的答案为last_ans（last_ans初值为0）：  
 对于第一个操作 `1 x y` 
 
+
+
 $$x = min(x + last_{ans}) \% n + 1, (y + last_{ans}) % n + 1)$$
+
+
 $$y = max(x + last_{ans}) \% n + 1, (y + last_{ans}) % n + 1)$$
+
+
 
 对于第二个操作 `2 x y`
 
-$$x = (x + last_ans) \% n + 1$$
-$$y = (y + last_ans) \% n + 1$$
+
+
+$$x = (x + last_{ans}) \% n + 1$$
+
+
+$$y = (y + last_{ans}) \% n + 1$$
 
 ### Output
 
 对于每个1操作，输出 $[x,y]$ 中的最大值。
-
 
 ### Solve
 
