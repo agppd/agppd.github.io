@@ -2,7 +2,7 @@
 layout: post
 title: "C++模板分享——线段树"
 date: 2026-07-06
-categories: 模板
+categories: [模板,数据结构]
 author: agppd
 ---
 
