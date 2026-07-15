@@ -10,7 +10,7 @@ author: agppd
 
 **旧的** `make与cmake教程` **已经删除，本文章完全包含此内容。**
 
-旧的可以在[这里查看](/assets/file/make)
+旧的可以在[这里查看](/assets/file/make.html)
 
 ## 一、make
 
