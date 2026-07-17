@@ -10,48 +10,82 @@
   {% endif %}
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 
-  <!-- ========== 保留原有 KaTeX（版本 0.16.9） ========== -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHo0K0o4+/RRE05" crossorigin="anonymous"
-      onload="renderMathInElement(document.body, {
-          delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
-          ]
-      });"></script>
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
-  <!-- ========== jQuery（Pseudocode.js 依赖） ========== -->
-  <script src="https://code.jquery.com/jquery-3.4.0.min.js" defer></script>
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 
-  <!-- ========== Pseudocode.js 本地资源 ========== -->
-  <link rel="stylesheet" href="/assets/css/pseudocode.css">
-  <script src="/assets/js/pseudocode.js" defer></script>
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="{{ "/assets/css/pseudocode.min.css" | relative_url }}">
+<script src="{{ "/assets/js/pseudocode.min.js" | relative_url }}"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="{{ "/assets/css/pseudocode.min.css" | relative_url }}">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="{{ "/assets/css/pseudocode.min.css" | relative_url }}">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="{{ "/assets/js/pseudocode.min.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/pseudocode.min.js" | relative_url }}"></script>
 
-  <!-- ========== 伪代码渲染脚本（依赖 jQuery） ========== -->
+  <!-- 统一渲染脚本 -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // 使用 jQuery 查找所有 .language-pseudocode 元素
-      $(".language-pseudocode").each(function() {
-        var $this = $(this);
-        var code = $this.text();
-        var parentEl = this.parentElement; // 原生 DOM 元素
-        var options = { lineNumber: true };
-        pseudocode.render(code, parentEl, options);
-        // 移除原始代码块
-        $this.remove();
-        // 用新的 div 替换父容器（保留其内容，但重置外层）
-        var newDiv = document.createElement('div');
-        newDiv.innerHTML = parentEl.innerHTML;
-        parentEl.replaceWith(newDiv);
-      });
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
     });
   </script>
 
-  <!-- 保留原有自定义脚本 -->
+  <!-- 暂时禁用可能导致错误的自定义脚本 -->
+  <!--
   <script src="{{ "/assets/js/auth-redirect.js" | relative_url }}" defer></script>
   <script src="{{ "/assets/js/theme.js" | relative_url }}" defer></script>
-
+  -->
 </head>
