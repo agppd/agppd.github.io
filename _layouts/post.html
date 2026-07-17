@@ -26,8 +26,17 @@ layout: default
     {% endif %}
   </header>
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
   </div>
 
   {%- if site.disqus.shortname -%}

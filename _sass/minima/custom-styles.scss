@@ -736,3 +736,141 @@ img:not([src*=".svg"]) {
   .vi { color: var(--highlight-vi); } /* Name.Variable.Instance */
   .il { color: var(--highlight-il); } /* Literal.Number.Integer.Long */
 }
+/* ========================================
+   文章侧栏目录（TOC）样式
+   ======================================== */
+
+/* 文章容器：为 TOC 提供相对定位基准（仅用于 sticky 备选） */
+.post-with-toc {
+  position: relative;
+}
+
+/* 文章内容：默认不预留空间，因为 TOC 是 fixed */
+.post-content {
+  // 无需额外 padding，TOC 悬浮在右侧
+}
+
+/* ---------- TOC 主样式 ---------- */
+.toc-sidebar {
+  /* 固定定位，脱离文档流，不占用页面空间 */
+  position: fixed;
+  
+  /* 垂直居中 */
+  top: 50%;
+  transform: translateY(-50%);
+
+  /* 水平位置：置于右侧空白区域的中间 */
+  /* 假设 wrapper 宽度为 900px（Minima 默认约 800-960px），则右侧空白宽度 = (100vw - 900px) / 2 */
+  /* 空白中间位置 = 900px + (右侧空白宽度)/2 = 900px + (100vw - 900px)/4 = 25vw + 675px */
+  /* 若您的 wrapper 宽度不同，请调整 675 这个值（即 0.75 * wrapper宽度） */
+  left: calc(25vw + 850px);
+
+  /* 宽度与最大高度 */
+  width: 220px;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* 内边距与背景 */
+  padding: 1rem 1.2rem;
+  background: var(--toc-bg, rgba(255, 255, 255, 0.95));
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--toc-border, #ddd);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  /* 层级 */
+  z-index: 1000;
+
+  /* 字体大小（继承全局，但可微调） */
+  font-size: 0.9rem;
+  color: var(--text-color, #333);
+
+  /* 滚动条美化（可选） */
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+}
+
+/* TOC 标题 */
+.toc-sidebar h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--heading-color, #1a1a1a);
+}
+
+/* 目录列表 */
+#toc-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#toc-list li {
+  padding: 0.15rem 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.05);
+}
+
+#toc-list li:last-child {
+  border-bottom: none;
+}
+
+#toc-list a {
+  display: block;
+  padding: 0.1rem 0.4rem;
+  color: var(--link-color, #555);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+#toc-list a:hover {
+  color: var(--link-hover, #111);
+  background: var(--toc-hover-bg, #f0f0f0);
+}
+
+/* 缩进层级 */
+#toc-list .toc-h2 { padding-left: 0.5rem; }
+#toc-list .toc-h3 { padding-left: 1.5rem; }
+#toc-list .toc-h4 { padding-left: 2.5rem; }
+#toc-list .toc-h5 { padding-left: 3.5rem; }
+#toc-list .toc-h6 { padding-left: 4.5rem; }
+
+/* 高亮当前阅读标题 */
+#toc-list a.active {
+  color: var(--active-color, #1a1a1a);
+  font-weight: 600;
+  border-left-color: var(--active-border, #007bff);
+  background: var(--active-bg, #e9f0ff);
+}
+
+/* ---------- 响应式：移动端隐藏 ---------- */
+@media (max-width: 768px) {
+  .toc-sidebar {
+    display: none;  /* 小屏设备不显示，避免遮挡 */
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .toc-sidebar {
+    --toc-bg: rgba(30, 30, 30, 0.95);
+    --toc-border: #444;
+    --text-color: #ddd;
+    --heading-color: #fff;
+    --link-color: #aaa;
+    --link-hover: #fff;
+    --toc-hover-bg: #2a2a2a;
+    --active-color: #fff;
+    --active-bg: #2a4050;
+    --active-border: #4a9eff;
+  }
+}

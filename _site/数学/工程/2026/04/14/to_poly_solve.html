@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>解三角形 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="解三角形" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="这篇文章的背景是，作者的数学太“好”了，解三角形一个没解出来，写个用计算机辅助计算的文章" />
+<meta property="og:description" content="这篇文章的背景是，作者的数学太“好”了，解三角形一个没解出来，写个用计算机辅助计算的文章" />
+<link rel="canonical" href="http://localhost:4000/%E6%95%B0%E5%AD%A6/%E5%B7%A5%E7%A8%8B/2026/04/14/to_poly_solve.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%95%B0%E5%AD%A6/%E5%B7%A5%E7%A8%8B/2026/04/14/to_poly_solve.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-14T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="解三角形" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-04-14T00:00:00+08:00","datePublished":"2026-04-14T00:00:00+08:00","description":"这篇文章的背景是，作者的数学太“好”了，解三角形一个没解出来，写个用计算机辅助计算的文章","headline":"解三角形","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%95%B0%E5%AD%A6/%E5%B7%A5%E7%A8%8B/2026/04/14/to_poly_solve.html"},"url":"http://localhost:4000/%E6%95%B0%E5%AD%A6/%E5%B7%A5%E7%A8%8B/2026/04/14/to_poly_solve.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">解三角形</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-04-14T00:00:00+08:00" itemprop="datePublished">Apr 14, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#数学">数学</a>
+          , 
+        
+          <a href="/categories/#工程">工程</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <p><del>这篇文章的背景是，作者的数学太“好”了，解三角形一个没解出来，写个用计算机辅助计算的文章</del></p>
+
+<p><del>其实，是已经疯了……</del></p>
+
+<p>我们约定：</p>
+<ul>
+  <li>大写字母 <code class="language-plaintext highlighter-rouge">A, B, C</code> 表示三角形内角</li>
+  <li>小写字母 <code class="language-plaintext highlighter-rouge">a, b, c</code> 表示对应角的对边（即 <code class="language-plaintext highlighter-rouge">a</code> 对 <code class="language-plaintext highlighter-rouge">A</code>，<code class="language-plaintext highlighter-rouge">b</code> 对 <code class="language-plaintext highlighter-rouge">B</code>，<code class="language-plaintext highlighter-rouge">c</code> 对 <code class="language-plaintext highlighter-rouge">C</code>）</li>
+</ul>
+
+<h2 id="1-加载包">1. 加载包</h2>
+
+<pre><code class="language-maxima">load(to_poly_solve)$
+</code></pre>
+
+<hr />
+
+<h2 id="2-基础边角求值">2. 基础边角求值</h2>
+
+<h3 id="21-已知两角一边aasasa">2.1 已知两角一边（AAS/ASA）</h3>
+
+<pre><code class="language-maxima">/* 已知 A=30°, B=45°, a=10 */
+A: %pi/6; B: %pi/4; a: 10;
+C: %pi - A - B;
+/* 正弦定理求 b */
+sol_b: to_poly_solve(a/sin(A)=b/sin(B), b);
+b: rhs(first(sol_b));
+/* 求 c */
+sol_c: to_poly_solve(a/sin(A)=c/sin(C), c);
+c: rhs(first(sol_c));
+/* 输出数值 */
+float([b, c, C*180/%pi]);
+</code></pre>
+
+<h3 id="22-已知两边及夹角sas">2.2 已知两边及夹角（SAS）</h3>
+
+<pre><code class="language-maxima">/* 已知 b=5, c=7, A=60° */
+b:5; c:7; A: %pi/3;
+/* 余弦定理求 a */
+eq_a: a^2 = b^2 + c^2 - 2*b*c*cos(A);
+sol_a: to_poly_solve(eq_a, a);
+a: rhs(assume(a&gt;0), first(sol_a));
+/* 余弦定理求角 B（避免正弦两解） */
+eq_B: cos(B) = (a^2 + c^2 - b^2)/(2*a*c);
+sol_B: to_poly_solve(eq_B, B);
+B: rhs(first(sol_B));
+C: %pi - A - B;
+float([a, B*180/%pi, C*180/%pi]);
+</code></pre>
+
+<h3 id="23-已知三边sss">2.3 已知三边（SSS）</h3>
+
+<pre><code class="language-maxima">/* 已知 a=8, b=6, c=5 */
+a:8; b:6; c:5;
+eq_A: cos(A) = (b^2 + c^2 - a^2)/(2*b*c);
+A: rhs(first(to_poly_solve(eq_A, A)));
+eq_B: cos(B) = (a^2 + c^2 - b^2)/(2*a*c);
+B: rhs(first(to_poly_solve(eq_B, B)));
+C: %pi - A - B;
+float([A, B, C]*180/%pi);
+</code></pre>
+
+<h3 id="24-已知两边及对角ssa两解自动筛选">2.4 已知两边及对角（SSA，两解自动筛选）</h3>
+
+<pre><code class="language-maxima">/* 已知 a=12, b=15, A=40° */
+a:12; b:15; A: 40*%pi/180;
+/* 正弦定理求 sinB，得到两个候选角 */
+B1: asin(b*sin(A)/a);
+B2: %pi - B1;
+/* 自动筛选使 A+B &lt; π 且 B&gt;0 的解 */
+candidates: [];
+if A+B1 &lt; %pi and B1&gt;0 then candidates: cons(B1, candidates);
+if A+B2 &lt; %pi and B2&gt;0 then candidates: cons(B2, candidates);
+/* 输出有效解 */
+for B in candidates do (
+    C: %pi - A - B,
+    c: a*sin(C)/sin(A),
+    print("解: B =", float(B*180/%pi), "°, C =", float(C*180/%pi), "°, c =", float(c))
+)$
+</code></pre>
+
+<hr />
+
+<h2 id="3-条件方程与三角形形状判断边化角">3. 条件方程与三角形形状判断（边化角）</h2>
+
+<h3 id="31-判断等腰a-cos-b--b-cos-a">3.1 判断等腰：<code class="language-plaintext highlighter-rouge">a cos B = b cos A</code></h3>
+
+<pre><code class="language-maxima">/* 边化角：a = 2R sin A, b = 2R sin B */
+eq: sin(A)*cos(B) - sin(B)*cos(A) = 0;
+sol: to_poly_solve(eq, A-B);   /* 得 A-B = π*k */
+/* 利用三角形内角范围自动取 k=0 */
+assume(A&gt;0, A&lt;%pi, B&gt;0, B&lt;%pi, A+B&lt;%pi);
+/* 代入 k=0 得 A=B */
+print("三角形为等腰")$
+</code></pre>
+
+<h3 id="32-求角大小sin-a--2-sin-b-cos-c-且-bc">3.2 求角大小：<code class="language-plaintext highlighter-rouge">sin A = 2 sin B cos C</code> 且 <code class="language-plaintext highlighter-rouge">b=c</code></h3>
+
+<pre><code class="language-maxima">assume(A&gt;0, A&lt;%pi, B&gt;0, B&lt;%pi, C&gt;0, C&lt;%pi)$
+/* 由 b=c 得 B=C，且 A+2B=π */
+B: (%pi - A)/2;
+C: B;
+eq: sin(A) - 2*sin(B)*cos(C) = 0;
+/* 化简后 sin A = sin(π - A) 恒成立，需额外条件求具体值 */
+/* 例如已知 a=√3 b，可加方程 */
+</code></pre>
+
+<hr />
+
+<h2 id="4-复杂混合条件">4. 复杂混合条件</h2>
+
+<p>以 $\sqrt c + a = b \cos C - c \cos B$</p>
+
+<h3 id="41-代数化简自动完成">4.1 代数化简（自动完成）</h3>
+
+<pre><code class="language-maxima">/* 用余弦定理替换 cos */
+cosC: (a^2 + b^2 - c^2)/(2*a*b);
+cosB: (a^2 + c^2 - b^2)/(2*a*c);
+/* 原方程 */
+eq_raw: sqrt(c) + a = b*cosC - c*cosB;
+/* 化简（自动消去分母） */
+eq_simple: ratsimp(eq_raw);
+/* 输出简化方程：sqrt(c) = (b^2 - c^2 - a^2)/a */
+</code></pre>
+
+<h3 id="42-数值求解a5-b7">4.2 数值求解（a=5, b=7）</h3>
+
+<pre><code class="language-maxima">a:5; b:7;
+/* 直接使用简化形式 */
+eq: sqrt(c) = (b^2 - c^2 - a^2)/a;
+/* 平方并求解多项式 */
+eq_sq: (lhs(eq))^2 = (rhs(eq))^2;
+poly_eq: lhs(eq_sq) - rhs(eq_sq);
+sols: to_poly_solve(poly_eq=0, c);
+/* 筛选实数正根并验证原方程 */
+c_candidates: [];
+for sol in sols do (
+    cand: rhs(sol),
+    if freeof(%z, cand) and numberp(float(cand)) and cand&gt;0 then
+        c_candidates: append(c_candidates, [cand])
+);
+for c_val in c_candidates do (
+    c: c_val,
+    lhs_val: sqrt(c) + a,
+    rhs_val: (b^2 - c^2)/a,
+    if abs(lhs_val - rhs_val) &lt; 1e-8 then
+        print("有效解 c =", c_val)
+    else
+        print("增根 c =", c_val)
+);
+</code></pre>
+
+<h3 id="43-符号参数求解ab-未赋值">4.3 符号参数求解（a,b 未赋值）</h3>
+
+<pre><code class="language-maxima">assume(a&gt;0, b&gt;0, c&gt;0)$
+eq: sqrt(c) = (b^2 - c^2 - a^2)/a;
+eq_sq: c = (b^2 - c^2 - a^2)^2 / a^2;
+sol_sym: to_poly_solve(eq_sq, c);   /* 返回四次方程的符号解 */
+</code></pre>
+
+<hr />
+
+<h2 id="5-通用筛选函数">5. 通用筛选函数</h2>
+
+<pre><code class="language-maxima">/* 自动从通解中提取三角形内角有效值 */
+valid_angle(sol, var) := block(
+    [params, vals, res],
+    res: [],
+    for s in sol do (
+        params: listofvars(rhs(s)),
+        for k: -2 thru 2 do (
+            vals: subst(k, %z, rhs(s)),
+            if vals &gt; 0 and vals &lt; %pi then res: cons(vals, res)
+        )
+    ),
+    return(res)
+)$
+</code></pre>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E6%95%B0%E5%AD%A6/%E5%B7%A5%E7%A8%8B/2026/04/14/to_poly_solve.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

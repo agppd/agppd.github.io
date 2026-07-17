@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>关于一个很有病的PPT编写方法 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="关于一个很有病的PPT编写方法" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="考虑到可能有从未使用过Latex的人阅读文章，本文可能存在大量Latex的重复内容" />
+<meta property="og:description" content="考虑到可能有从未使用过Latex的人阅读文章，本文可能存在大量Latex的重复内容" />
+<link rel="canonical" href="http://localhost:4000/%E6%8E%92%E7%89%88/%E6%9D%82%E8%B0%88/2026/04/08/Latexppt.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8E%92%E7%89%88/%E6%9D%82%E8%B0%88/2026/04/08/Latexppt.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-08T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="关于一个很有病的PPT编写方法" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-04-08T00:00:00+08:00","datePublished":"2026-04-08T00:00:00+08:00","description":"考虑到可能有从未使用过Latex的人阅读文章，本文可能存在大量Latex的重复内容","headline":"关于一个很有病的PPT编写方法","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8E%92%E7%89%88/%E6%9D%82%E8%B0%88/2026/04/08/Latexppt.html"},"url":"http://localhost:4000/%E6%8E%92%E7%89%88/%E6%9D%82%E8%B0%88/2026/04/08/Latexppt.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">关于一个很有病的PPT编写方法</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-04-08T00:00:00+08:00" itemprop="datePublished">Apr 8, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#排版">排版</a>
+          , 
+        
+          <a href="/categories/#杂谈">杂谈</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <p>考虑到可能有从未使用过Latex的人阅读文章，本文可能存在大量Latex的重复内容</p>
+
+<p>本文在实例时使用DS，请注意辨别</p>
+
+<p><strong>代码仅供参考，不保证可以正常运行</strong></p>
+
+<h2 id="一beamer-文档的基本骨架">一、Beamer 文档的基本骨架</h2>
+
+<h3 id="11-文档类声明">1.1 文档类声明</h3>
+
+<p>每一个 Beamer 文档都以 <code class="language-plaintext highlighter-rouge">\documentclass</code> 开头，并可通过可选参数定制全局设置：</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="na">[aspectratio=169, utf8, 12pt]</span><span class="p">{</span>beamer<span class="p">}</span>
+</code></pre></div></div>
+
+<p>常用类选项：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">aspectratio</code>：幻灯片宽高比，可选 <code class="language-plaintext highlighter-rouge">43</code>（4:3）、<code class="language-plaintext highlighter-rouge">169</code>（16:9）、<code class="language-plaintext highlighter-rouge">1610</code>（16:10）等。</li>
+  <li><code class="language-plaintext highlighter-rouge">draft</code>：草稿模式，图片以占位框显示，加快编译速度。</li>
+  <li><code class="language-plaintext highlighter-rouge">compress</code>：压缩导航栏间距，增加内容区域。</li>
+  <li><code class="language-plaintext highlighter-rouge">handout</code>：生成讲义版本，忽略所有动画覆盖。</li>
+</ul>
+
+<h3 id="12-导言区宏包与全局设置">1.2 导言区：宏包与全局设置</h3>
+
+<p>在 <code class="language-plaintext highlighter-rouge">\begin{document}</code> 之前的部分称为导言区，用于加载宏包和进行全局配置。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>           <span class="c">% 中文支持</span>
+<span class="k">\usepackage</span><span class="p">{</span>amsmath, amssymb<span class="p">}</span> <span class="c">% 数学扩展</span>
+<span class="k">\usepackage</span><span class="p">{</span>graphicx<span class="p">}</span>       <span class="c">% 插图</span>
+<span class="k">\usepackage</span><span class="p">{</span>booktabs<span class="p">}</span>       <span class="c">% 三线表</span>
+<span class="k">\usepackage</span><span class="p">{</span>listings<span class="p">}</span>       <span class="c">% 代码高亮</span>
+
+<span class="k">\title</span><span class="na">[短标题]</span><span class="p">{</span>完整的演示文稿标题<span class="p">}</span>
+<span class="k">\subtitle</span><span class="p">{</span>副标题（可选）<span class="p">}</span>
+<span class="k">\author</span><span class="na">[报告人]</span><span class="p">{</span>作者姓名<span class="k">\inst</span><span class="p">{</span>1<span class="p">}</span> <span class="k">\and</span> 合作者<span class="k">\inst</span><span class="p">{</span>2<span class="p">}}</span>
+<span class="k">\institute</span><span class="na">[单位简称]</span><span class="p">{</span><span class="k">\inst</span><span class="p">{</span>1<span class="p">}</span>第一单位 <span class="k">\\</span> <span class="k">\inst</span><span class="p">{</span>2<span class="p">}</span>第二单位<span class="p">}</span>
+<span class="k">\date</span><span class="p">{</span><span class="k">\today</span><span class="p">}</span>
+<span class="k">\logo</span><span class="p">{</span><span class="k">\includegraphics</span><span class="na">[height=0.8cm]</span><span class="p">{</span>logo.pdf<span class="p">}}</span> <span class="c">% 全局 Logo</span>
+</code></pre></div></div>
+
+<p>标题、作者等信息既可在导言区定义，也可在正文的 <code class="language-plaintext highlighter-rouge">\titlepage</code> 前定义。中括号内为短标题版本，将显示在导航栏或页脚。</p>
+
+<h3 id="13-正文结构frame-环境">1.3 正文结构：frame 环境</h3>
+
+<p>Beamer 的内容单位是 <strong>帧（frame）</strong>，每一帧对应一页幻灯片。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{frame}</span>
+  <span class="k">\titlepage</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>帧标题<span class="p">}{</span>帧副标题（可选）<span class="p">}</span>
+  内容...
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<p>帧环境支持可选参数：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[plain]</code>：去除页眉页脚和导航栏，只保留内容。</li>
+  <li><code class="language-plaintext highlighter-rouge">[fragile]</code>：当帧内包含 <code class="language-plaintext highlighter-rouge">verbatim</code> 或 <code class="language-plaintext highlighter-rouge">listings</code> 环境时必须使用。</li>
+  <li><code class="language-plaintext highlighter-rouge">[allowframebreaks]</code>：当内容超过一页时自动分页（谨慎使用，通常不推荐）。</li>
+</ul>
+
+<hr />
+
+<h2 id="二中文排版">二、中文排版</h2>
+
+<p>Beamer 处理中文的关键在于<strong>编译器选择</strong>与<strong>宏包配置</strong>。</p>
+
+<h3 id="21-组合xelatex--ctex">2.1 组合：XeLaTeX + ctex</h3>
+
+<p><strong>务必使用 XeLaTeX 编译器</strong>。它原生支持 UTF-8 编码和系统字体，是中文 LaTeX 的最优解。</p>
+
+<p>在 Overleaf 中：点击 Menu → Compiler → 选择 <strong>XeLaTeX</strong>。<br />
+在本地编辑器中：在文件首行添加 <code class="language-plaintext highlighter-rouge">% !TEX program = xelatex</code> 以指定编译器。</p>
+
+<p>随后，在导言区加入一行：</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ctex</code> 宏包会自动配置中文字体、字号和段落缩进，无需额外操作即可获得正确的中文显示。</p>
+
+<h3 id="22-自定义中文字体可选">2.2 自定义中文字体（可选）</h3>
+
+<p>若对默认字体（Windows 下为中易宋体/黑体）不满意，可手动指定：</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>fontspec<span class="p">}</span>
+<span class="k">\setCJKmainfont</span><span class="p">{</span>Noto Serif CJK SC<span class="p">}</span>      <span class="c">% 思源宋体</span>
+<span class="k">\setCJKsansfont</span><span class="p">{</span>Noto Sans CJK SC<span class="p">}</span>       <span class="c">% 思源黑体</span>
+<span class="k">\setCJKmonofont</span><span class="p">{</span>FangSong<span class="p">}</span>               <span class="c">% 仿宋</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="三内容元素从文字到公式的完整语法">三、内容元素：从文字到公式的完整语法</h2>
+
+<h3 id="31-文本块与段落">3.1 文本块与段落</h3>
+
+<p>Beamer 帧内直接书写文本即可，段落之间用空行分隔。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>纯文本示例<span class="p">}</span>
+这是第一段。
+
+这是第二段，Beamer 默认不会自动缩进首行，但会保留段间距。
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<p><strong>强调文本：</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\emph</span><span class="p">{</span>强调<span class="p">}</span> <span class="k">\textbf</span><span class="p">{</span>粗体<span class="p">}</span> <span class="k">\textit</span><span class="p">{</span>斜体<span class="p">}</span> <span class="k">\texttt</span><span class="p">{</span>等宽字体<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="32-列表环境">3.2 列表环境</h3>
+
+<p>Beamer 支持三种列表：无序列表 <code class="language-plaintext highlighter-rouge">itemize</code>、有序列表 <code class="language-plaintext highlighter-rouge">enumerate</code> 和描述列表 <code class="language-plaintext highlighter-rouge">description</code>。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>列表示例<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span> 第一项
+    <span class="k">\item</span> 第二项
+    <span class="nt">\begin{itemize}</span>
+      <span class="k">\item</span> 嵌套子项
+    <span class="nt">\end{itemize}</span>
+  <span class="nt">\end{itemize}</span>
+
+  <span class="nt">\begin{enumerate}</span>
+    <span class="k">\item</span> 步骤一
+    <span class="k">\item</span> 步骤二
+  <span class="nt">\end{enumerate}</span>
+
+  <span class="nt">\begin{description}</span>
+    <span class="k">\item</span><span class="na">[术语]</span> 定义说明
+    <span class="k">\item</span><span class="na">[Beamer]</span> 一种 LaTeX 演示文档类
+  <span class="nt">\end{description}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<p>列表环境可与覆盖动画结合，详见后文。</p>
+
+<h3 id="33-分栏布局columns-环境">3.3 分栏布局：columns 环境</h3>
+
+<p>分栏是学术幻灯片中最常用的排版手段之一。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>分栏布局<span class="p">}</span>
+  <span class="nt">\begin{columns}</span>[T]  <span class="c">% T 表示顶部对齐，也可用 c（居中）、b（底部）</span>
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.48<span class="k">\textwidth</span><span class="p">}</span>
+      左侧内容，可以包含文字、公式、列表等。
+    <span class="nt">\end{column}</span>
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.48<span class="k">\textwidth</span><span class="p">}</span>
+      <span class="k">\includegraphics</span><span class="na">[width=\textwidth]</span><span class="p">{</span>figure.pdf<span class="p">}</span>
+    <span class="nt">\end{column}</span>
+  <span class="nt">\end{columns}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>注意</strong>：在 <code class="language-plaintext highlighter-rouge">columns</code> 环境中，总宽度之和应略小于 <code class="language-plaintext highlighter-rouge">\textwidth</code>，留出栏间距。<code class="language-plaintext highlighter-rouge">[T]</code> 对齐选项能避免图文顶部参差不齐。</p>
+</blockquote>
+
+<h3 id="34-插图与表格">3.4 插图与表格</h3>
+
+<p><strong>插入图片：</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>插图示例<span class="p">}</span>
+  <span class="nt">\begin{figure}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[width=0.6\textwidth]</span><span class="p">{</span>image.png<span class="p">}</span>
+    <span class="k">\caption</span><span class="p">{</span>这是一张图片的说明文字<span class="p">}</span>
+    <span class="k">\label</span><span class="p">{</span>fig:example<span class="p">}</span>
+  <span class="nt">\end{figure}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>⚠️ 警告：在某些 Beamer 版本中，<code class="language-plaintext highlighter-rouge">figure</code> 浮动体可能导致编译错误或内容溢出。更稳妥的做法是直接使用 <code class="language-plaintext highlighter-rouge">\includegraphics</code> 并配合 <code class="language-plaintext highlighter-rouge">\centering</code> 和 <code class="language-plaintext highlighter-rouge">\captionof{figure}{...}</code>（需 <code class="language-plaintext highlighter-rouge">caption</code> 宏包）。</p>
+</blockquote>
+
+<p><strong>制作表格：</strong></p>
+
+<p>推荐使用 <code class="language-plaintext highlighter-rouge">booktabs</code> 宏包绘制三线表，简洁专业。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>booktabs<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>三线表示例<span class="p">}</span>
+  <span class="nt">\begin{table}</span>
+    <span class="k">\centering</span>
+    <span class="nt">\begin{tabular}</span><span class="p">{</span>lcc<span class="p">}</span>
+      <span class="k">\toprule</span>
+      方法 <span class="p">&amp;</span> 准确率 <span class="p">&amp;</span> 召回率 <span class="k">\\</span>
+      <span class="k">\midrule</span>
+      Baseline <span class="p">&amp;</span> 0.82 <span class="p">&amp;</span> 0.79 <span class="k">\\</span>
+      Ours     <span class="p">&amp;</span> 0.91 <span class="p">&amp;</span> 0.88 <span class="k">\\</span>
+      <span class="k">\bottomrule</span>
+    <span class="nt">\end{tabular}</span>
+    <span class="k">\caption</span><span class="p">{</span>实验结果对比<span class="p">}</span>
+  <span class="nt">\end{table}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="35-数学公式与定理环境">3.5 数学公式与定理环境</h3>
+
+<p>Beamer 完全继承 LaTeX 的数学排版能力。</p>
+
+<p><strong>行内公式：</strong> <code class="language-plaintext highlighter-rouge">$E = mc^2$</code><br />
+<strong>行间公式：</strong></p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">\[</span><span class="nb">
+  </span><span class="nv">\int</span><span class="p">_{</span><span class="m">0</span><span class="p">}^{</span><span class="nv">\infty</span><span class="p">}</span><span class="nb"> e</span><span class="p">^{</span><span class="o">-</span><span class="nb">x</span><span class="p">^</span><span class="m">2</span><span class="p">}</span><span class="nb"> dx </span><span class="o">=</span><span class="nb"> </span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\sqrt</span><span class="p">{</span><span class="nv">\pi</span><span class="p">}}{</span><span class="m">2</span><span class="p">}</span><span class="nb">
+</span><span class="p">\]</span>
+</code></pre></div></div>
+
+<p><strong>带编号的公式：</strong></p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{equation}</span>
+  <span class="k">\hat</span><span class="p">{</span><span class="k">\beta</span><span class="p">}</span> = (X<span class="p">^</span>T X)<span class="p">^{</span>-1<span class="p">}</span> X<span class="p">^</span>T y
+  <span class="k">\label</span><span class="p">{</span>eq:ols<span class="p">}</span>
+<span class="nt">\end{equation}</span>
+</code></pre></div></div>
+
+<p><strong>定理类环境：</strong> Beamer 预定义了 <code class="language-plaintext highlighter-rouge">theorem</code>、<code class="language-plaintext highlighter-rouge">definition</code>、<code class="language-plaintext highlighter-rouge">example</code>、<code class="language-plaintext highlighter-rouge">proof</code> 等环境，样式与主题匹配。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>定理环境示例<span class="p">}</span>
+  <span class="nt">\begin{theorem}</span>[勾股定理]
+    直角三角形两直角边的平方和等于斜边的平方：
+    <span class="p">\[</span><span class="nb"> a</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="o">+</span><span class="nb"> b</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="o">=</span><span class="nb"> c</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="p">\]</span>
+  <span class="nt">\end{theorem}</span>
+
+  <span class="nt">\begin{proof}</span>
+    如图，构造四个全等直角三角形拼成正方形...
+  <span class="nt">\end{proof}</span>
+
+  <span class="nt">\begin{definition}</span>[机器学习]
+    机器学习是人工智能的一个分支，研究计算机如何从数据中学习规律。
+  <span class="nt">\end{definition}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="36-代码块展示">3.6 代码块展示</h3>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">listings</code> 宏包可实现语法高亮。注意需在帧环境后添加 <code class="language-plaintext highlighter-rouge">[fragile]</code> 选项。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span>[fragile]<span class="p">{</span>代码展示示例<span class="p">}</span>
+  <span class="nt">\begin{lstlisting}</span>[language=Python, caption=<span class="p">{</span>冒泡排序<span class="p">}</span>]
+def bubble<span class="p">_</span>sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] &gt; arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+  <span class="nt">\end{lstlisting}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="37-块环境block">3.7 块环境（Block）</h3>
+
+<p>块用于突出显示重要内容，有三种预定义类型：普通块 <code class="language-plaintext highlighter-rouge">block</code>、示例块 <code class="language-plaintext highlighter-rouge">exampleblock</code> 和警示块 <code class="language-plaintext highlighter-rouge">alertblock</code>。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>块环境<span class="p">}</span>
+  <span class="nt">\begin{block}</span><span class="p">{</span>普通块标题<span class="p">}</span>
+    这是普通块的内容，背景色与主题主色一致。
+  <span class="nt">\end{block}</span>
+
+  <span class="nt">\begin{alertblock}</span><span class="p">{</span>警示块标题<span class="p">}</span>
+    警示块通常用于强调重要结论，背景为红色系。
+  <span class="nt">\end{alertblock}</span>
+
+  <span class="nt">\begin{exampleblock}</span><span class="p">{</span>示例块标题<span class="p">}</span>
+    示例块背景为绿色系，适合展示应用案例。
+  <span class="nt">\end{exampleblock}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="四动画与逐项显示覆盖overlay语法精讲">四、动画与逐项显示：覆盖（Overlay）语法精讲</h2>
+
+<p>Beamer 的动画基于 <strong>覆盖规范（Overlay Specification）</strong>，通过尖括号 <code class="language-plaintext highlighter-rouge">&lt; &gt;</code> 控制内容出现的时机。</p>
+
+<h3 id="41-基础命令pause">4.1 基础命令：<code class="language-plaintext highlighter-rouge">\pause</code></h3>
+
+<p>最简单的逐项显示命令，在需要暂停的位置插入即可。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>使用 pause<span class="p">}</span>
+  第一行内容 <span class="k">\pause</span>
+  第二行内容 <span class="k">\pause</span>
+  第三行内容
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<p>每插入一个 <code class="language-plaintext highlighter-rouge">\pause</code>，编译后的 PDF 就会多一页，播放时通过翻页实现“点击出现”。</p>
+
+<h3 id="42-列表的自动覆盖-">4.2 列表的自动覆盖：<code class="language-plaintext highlighter-rouge">[&lt;+-&gt;]</code></h3>
+
+<p>列表环境支持自动为每个条目分配覆盖序号。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>列表自动覆盖<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>[&lt;+-&gt;]
+    <span class="k">\item</span> 第一条
+    <span class="k">\item</span> 第二条
+    <span class="k">\item</span> 第三条
+  <span class="nt">\end{itemize}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<p>也可局部指定覆盖序号：</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{itemize}</span>
+  <span class="k">\item</span>&lt;1-&gt; 第一步就出现，并保持到结束
+  <span class="k">\item</span>&lt;2-&gt; 第二步出现
+  <span class="k">\item</span>&lt;3&gt;  只在第三步出现，随后消失
+  <span class="k">\item</span>&lt;1,3&gt; 第一步和第三步出现
+  <span class="k">\item</span>&lt;2-4&gt; 第二步到第四步出现
+<span class="nt">\end{itemize}</span>
+</code></pre></div></div>
+
+<h3 id="43-精准控制onslide-与-only">4.3 精准控制：<code class="language-plaintext highlighter-rouge">\onslide</code> 与 <code class="language-plaintext highlighter-rouge">\only</code></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\onslide&lt;n-&gt;{...}</code>：内容从第 n 步开始显示，之前的步骤中内容不可见但占据空间（占位）。</li>
+  <li><code class="language-plaintext highlighter-rouge">\only&lt;n&gt;{...}</code>：内容只在第 n 步显示，其他步骤完全不占据空间。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>onslide 与 only 的区别<span class="p">}</span>
+  始终可见的文字。
+
+  <span class="k">\onslide</span>&lt;2-&gt;<span class="p">{</span>从第 2 步开始出现，占位。<span class="p">}</span>
+
+  <span class="k">\only</span>&lt;3&gt;<span class="p">{</span>只在第 3 步出现，不占位。<span class="p">}</span>
+
+  <span class="k">\onslide</span>&lt;1,3&gt;<span class="p">{</span>第 1 步和第 3 步出现，占位。<span class="p">}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="44-覆盖与公式图片的配合">4.4 覆盖与公式、图片的配合</h3>
+
+<p>覆盖可以作用于任何 LaTeX 元素。</p>
+
+<p><strong>公式逐步推导：</strong></p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>公式逐步呈现<span class="p">}</span>
+  <span class="nt">\begin{align*}</span>
+    f(x) <span class="p">&amp;</span>= x<span class="p">^</span>2 + 2x + 1 <span class="k">\\</span>
+    <span class="k">\onslide</span>&lt;2-&gt;<span class="p">{&amp;</span>= (x+1)<span class="p">^</span>2 <span class="k">\\</span><span class="p">}</span>
+    <span class="k">\onslide</span>&lt;3-&gt;<span class="p">{&amp;</span><span class="k">\geq</span> 0<span class="p">}</span>
+  <span class="nt">\end{align*}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<p><strong>图片交替出现：</strong></p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>图片交替<span class="p">}</span>
+  <span class="k">\only</span>&lt;1&gt;<span class="p">{</span><span class="k">\includegraphics</span><span class="na">[width=0.8\textwidth]</span><span class="p">{</span>fig1.pdf<span class="p">}}</span>
+  <span class="k">\only</span>&lt;2&gt;<span class="p">{</span><span class="k">\includegraphics</span><span class="na">[width=0.8\textwidth]</span><span class="p">{</span>fig2.pdf<span class="p">}}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="45-覆盖的高级语法">4.5 覆盖的高级语法</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\uncover&lt;n-&gt;{...}</code>：与 <code class="language-plaintext highlighter-rouge">\onslide</code> 类似，但不改变文本颜色。</li>
+  <li><code class="language-plaintext highlighter-rouge">\visible&lt;n-&gt;{...}</code>：与 <code class="language-plaintext highlighter-rouge">\onslide</code> 几乎相同。</li>
+  <li><code class="language-plaintext highlighter-rouge">\invisible&lt;n-&gt;{...}</code>：指定步骤中内容不可见。</li>
+  <li><code class="language-plaintext highlighter-rouge">\alt&lt;n&gt;{在步骤 n 显示的版本}{其他步骤显示的版本}</code>：条件分支。</li>
+</ul>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\alt</span>&lt;2&gt;<span class="p">{</span>第二步时显示此文本<span class="p">}{</span>非第二步时显示此文本<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="五主题与视觉定制">五、主题与视觉定制</h2>
+
+<h3 id="51-主题体系">5.1 主题体系</h3>
+
+<p>Beamer 主题分为五个维度，每个维度可独立更换：</p>
+
+<ul>
+  <li><strong>Presentation Theme</strong>（整体主题）：<code class="language-plaintext highlighter-rouge">\usetheme{Madrid}</code></li>
+  <li><strong>Color Theme</strong>（色彩主题）：<code class="language-plaintext highlighter-rouge">\usecolortheme{beaver}</code></li>
+  <li><strong>Font Theme</strong>（字体主题）：<code class="language-plaintext highlighter-rouge">\usefonttheme{professionalfonts}</code></li>
+  <li><strong>Inner Theme</strong>（内部元素：标题、列表、块）：<code class="language-plaintext highlighter-rouge">\useinnertheme{circles}</code></li>
+  <li><strong>Outer Theme</strong>（外部元素：页眉页脚、侧边栏）：<code class="language-plaintext highlighter-rouge">\useoutertheme{infolines}</code></li>
+</ul>
+
+<p><strong>常用内置主题速览：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>主题名</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">default</code></td>
+      <td>极简，无任何装饰</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Madrid</code></td>
+      <td>顶部导航栏，简洁大方</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CambridgeUS</code></td>
+      <td>经典红灰，带有三行信息栏</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Boadilla</code></td>
+      <td>干净清爽，无侧边栏</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Pittsburgh</code></td>
+      <td>右侧带导航条</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metropolis</code></td>
+      <td>现代极简，底部进度条（需安装）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="52-metropolis-主题的深度定制">5.2 Metropolis 主题的深度定制</h3>
+
+<p>Metropolis 是近年来最受欢迎的第三方主题，以其克制、现代的设计著称。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usetheme</span><span class="p">{</span>metropolis<span class="p">}</span>
+<span class="k">\metroset</span><span class="p">{</span>
+  titleformat=smallcaps,      <span class="c">% 标题小型大写</span>
+  progressbar=frametitle,     <span class="c">% 进度条显示在标题栏</span>
+  block=fill,                 <span class="c">% 块背景填充颜色</span>
+  numbering=fraction          <span class="c">% 页码显示为 3/10 形式</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="53-自定义颜色">5.3 自定义颜色</h3>
+
+<p>通过 <code class="language-plaintext highlighter-rouge">\setbeamercolor</code> 可精细调整每个元素的前景色和背景色。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\definecolor</span><span class="p">{</span>myblue<span class="p">}{</span>RGB<span class="p">}{</span>0, 85, 150<span class="p">}</span>
+<span class="k">\definecolor</span><span class="p">{</span>mygold<span class="p">}{</span>RGB<span class="p">}{</span>200, 150, 0<span class="p">}</span>
+
+<span class="k">\setbeamercolor</span><span class="p">{</span>structure<span class="p">}{</span>fg=myblue<span class="p">}</span>                <span class="c">% 全局结构色</span>
+<span class="k">\setbeamercolor</span><span class="p">{</span>frametitle<span class="p">}{</span>bg=myblue, fg=white<span class="p">}</span>     <span class="c">% 帧标题</span>
+<span class="k">\setbeamercolor</span><span class="p">{</span>palette primary<span class="p">}{</span>bg=myblue, fg=white<span class="p">}</span><span class="c">% 导航栏主色</span>
+<span class="k">\setbeamercolor</span><span class="p">{</span>block title<span class="p">}{</span>bg=myblue!80, fg=white<span class="p">}</span>
+<span class="k">\setbeamercolor</span><span class="p">{</span>block body<span class="p">}{</span>bg=myblue!10<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="54-隐藏导航栏与页脚">5.4 隐藏导航栏与页脚</h3>
+
+<p>有时需要极简的全屏展示，可使用 <code class="language-plaintext highlighter-rouge">plain</code> 帧选项，或全局禁用导航栏：</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\setbeamertemplate</span><span class="p">{</span>navigation symbols<span class="p">}{}</span>  <span class="c">% 隐藏右下角导航图标</span>
+<span class="k">\setbeamertemplate</span><span class="p">{</span>footline<span class="p">}</span>[default]     <span class="c">% 可自定义或清空</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="六组织大型文档章节与目录">六、组织大型文档：章节与目录</h2>
+
+<h3 id="61-章节结构">6.1 章节结构</h3>
+
+<p>Beamer 使用标准的 LaTeX 章节命令，这些命令不会生成新的幻灯片，但会向导航栏和目录提供信息。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\section</span><span class="p">{</span>引言<span class="p">}</span>
+<span class="k">\subsection</span><span class="p">{</span>研究背景<span class="p">}</span>
+<span class="k">\subsection</span><span class="p">{</span>相关工作<span class="p">}</span>
+
+<span class="k">\section</span><span class="p">{</span>方法<span class="p">}</span>
+<span class="k">\subsection</span><span class="p">{</span>模型架构<span class="p">}</span>
+<span class="k">\subsection</span><span class="p">{</span>训练细节<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="62-目录页与节间引导页">6.2 目录页与节间引导页</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>目录<span class="p">}</span>
+  <span class="k">\tableofcontents</span>
+<span class="nt">\end{frame}</span>
+
+<span class="c">% 在每一节开始前自动插入节标题页</span>
+<span class="k">\AtBeginSection</span><span class="na">[]</span><span class="p">{</span>
+  <span class="nt">\begin{frame}</span><span class="p">{</span>本节概要<span class="p">}</span>
+    <span class="k">\tableofcontents</span><span class="na">[currentsection, hideothersubsections]</span>
+  <span class="nt">\end{frame}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">\tableofcontents</code> 可接受选项：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">currentsection</code>：只显示当前节</li>
+  <li><code class="language-plaintext highlighter-rouge">hideothersubsections</code>：隐藏其他节的子节</li>
+  <li><code class="language-plaintext highlighter-rouge">pausesections</code>：逐节显示目录</li>
+</ul>
+
+<hr />
+
+<h2 id="七编译与调试技巧">七、编译与调试技巧</h2>
+
+<h3 id="71-编译流程">7.1 编译流程</h3>
+
+<p>Beamer 文档需经多次编译以正确生成交叉引用、目录和导航信息。推荐顺序：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xelatex presentation.tex
+xelatex presentation.tex
+</code></pre></div></div>
+<p>两次编译后目录页码和超链接跳转才会正确。</p>
+
+<h3 id="72-加速编译">7.2 加速编译</h3>
+
+<p>对于大型文档，草稿模式可显著提速：</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="na">[draft]</span><span class="p">{</span>beamer<span class="p">}</span>  <span class="c">% 图片不实际载入</span>
+</code></pre></div></div>
+<p>或临时注释掉图片和复杂表格，待定稿后再恢复。</p>
+
+<h3 id="73-常见错误速查">7.3 常见错误速查</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>错误信息</th>
+      <th>可能原因</th>
+      <th>解决办法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Missing \begin{document}</code></td>
+      <td>导言区有正文内容</td>
+      <td>检查 <code class="language-plaintext highlighter-rouge">\begin{document}</code> 之前是否有文字或空行</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Not in outer par mode</code></td>
+      <td>帧内使用了浮动体</td>
+      <td>移除 <code class="language-plaintext highlighter-rouge">figure</code>/<code class="language-plaintext highlighter-rouge">table</code> 环境，或改用 <code class="language-plaintext highlighter-rouge">[H]</code> 选项</td>
+    </tr>
+    <tr>
+      <td>中文乱码</td>
+      <td>编译器非 XeLaTeX</td>
+      <td>切换至 XeLaTeX 编译</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Undefined control sequence</code></td>
+      <td>拼写错误或缺少宏包</td>
+      <td>检查命令名，确认已加载所需宏包</td>
+    </tr>
+    <tr>
+      <td>帧溢出警告</td>
+      <td>内容超出页面底部</td>
+      <td>拆分内容或使用 <code class="language-plaintext highlighter-rouge">allowframebreaks</code>（慎用）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="八示例">八、示例</h2>
+
+<h3 id="81-逐步揭示复杂公式">8.1 逐步揭示复杂公式</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>贝叶斯公式推导<span class="p">}</span>
+  <span class="nt">\begin{align*}</span>
+    P(A|B) <span class="p">&amp;</span><span class="k">\onslide</span>&lt;1-&gt;<span class="p">{</span>= <span class="k">\frac</span><span class="p">{</span>P(B|A)P(A)<span class="p">}{</span>P(B)<span class="p">}</span> <span class="k">\\</span><span class="p">}</span>
+    <span class="k">\onslide</span>&lt;2-&gt;<span class="p">{&amp;</span>= <span class="k">\frac</span><span class="p">{</span>P(B|A)P(A)<span class="p">}{</span><span class="k">\sum</span><span class="p">_</span>i P(B|A<span class="p">_</span>i)P(A<span class="p">_</span>i)<span class="p">}</span> <span class="k">\\</span><span class="p">}</span>
+    <span class="k">\onslide</span>&lt;3-&gt;<span class="p">{&amp;</span><span class="k">\propto</span> P(B|A)P(A)<span class="p">}</span>
+  <span class="nt">\end{align*}</span>
+  <span class="k">\onslide</span>&lt;4-&gt;<span class="p">{</span>其中最后一步利用了分母对所有假设恒定的性质。<span class="p">}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="82-并列对比两个图表">8.2 并列对比两个图表</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{frame}</span><span class="p">{</span>方法对比<span class="p">}</span>
+  <span class="nt">\begin{columns}</span>[T]
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.48<span class="k">\textwidth</span><span class="p">}</span>
+      <span class="k">\centering</span>
+      <span class="k">\includegraphics</span><span class="na">[width=\textwidth]</span><span class="p">{</span>baseline.pdf<span class="p">}</span>
+      <span class="k">\textbf</span><span class="p">{</span>基线方法<span class="p">}</span>
+    <span class="nt">\end{column}</span>
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.48<span class="k">\textwidth</span><span class="p">}</span>
+      <span class="k">\centering</span>
+      <span class="k">\includegraphics</span><span class="na">[width=\textwidth]</span><span class="p">{</span>ours.pdf<span class="p">}</span>
+      <span class="k">\textbf</span><span class="p">{</span>本文方法<span class="p">}</span>
+    <span class="nt">\end{column}</span>
+  <span class="nt">\end{columns}</span>
+  <span class="k">\vspace</span><span class="p">{</span>1em<span class="p">}</span>
+  <span class="k">\only</span>&lt;2&gt;<span class="p">{</span><span class="k">\alert</span><span class="p">{</span>本文方法在边缘细节上提升明显。<span class="p">}}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h3 id="83-展示伪代码">8.3 展示伪代码</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>algorithm, algorithmic<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span>[fragile]<span class="p">{</span>算法流程<span class="p">}</span>
+  <span class="nt">\begin{algorithm}</span>[H]
+    <span class="k">\caption</span><span class="p">{</span>梯度下降法<span class="p">}</span>
+    <span class="nt">\begin{algorithmic}</span>[1]
+      <span class="k">\REQUIRE</span> 初始参数 <span class="p">$</span><span class="nv">\theta</span><span class="p">_</span><span class="m">0</span><span class="p">$</span>，学习率 <span class="p">$</span><span class="nv">\eta</span><span class="p">$</span>
+      <span class="k">\FOR</span><span class="p">{$</span><span class="nb">t </span><span class="o">=</span><span class="nb"> </span><span class="m">1</span><span class="p">$</span> to <span class="p">$</span><span class="nb">T</span><span class="p">$}</span>
+        <span class="k">\STATE</span> 计算梯度 <span class="p">$</span><span class="nb">g</span><span class="p">_</span><span class="nb">t </span><span class="o">=</span><span class="nb"> </span><span class="nv">\nabla</span><span class="nb"> f</span><span class="o">(</span><span class="nv">\theta</span><span class="p">_{</span><span class="nb">t</span><span class="o">-</span><span class="m">1</span><span class="p">}</span><span class="o">)</span><span class="p">$</span>
+        <span class="k">\STATE</span> 更新 <span class="p">$</span><span class="nv">\theta</span><span class="p">_</span><span class="nb">t </span><span class="o">=</span><span class="nb"> </span><span class="nv">\theta</span><span class="p">_{</span><span class="nb">t</span><span class="o">-</span><span class="m">1</span><span class="p">}</span><span class="nb"> </span><span class="o">-</span><span class="nb"> </span><span class="nv">\eta</span><span class="nb"> g</span><span class="p">_</span><span class="nb">t</span><span class="p">$</span>
+      <span class="k">\ENDFOR</span>
+      <span class="k">\RETURN</span> <span class="p">$</span><span class="nv">\theta</span><span class="p">_</span><span class="nb">T</span><span class="p">$</span>
+    <span class="nt">\end{algorithmic}</span>
+  <span class="nt">\end{algorithm}</span>
+<span class="nt">\end{frame}</span>
+</code></pre></div></div>
+
+<h2 id="九实战">九、实战</h2>
+
+<p><strong>此部分几乎完全由DS生成，注意查看</strong></p>
+
+<h3 id="实例一最简学术报告模板">实例一：最简学术报告模板</h3>
+
+<p>这是一个适合组会汇报的极简模板，包含标题页、目录、分节和常见元素。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% !TEX program = xelatex</span>
+<span class="k">\documentclass</span><span class="na">[aspectratio=169]</span><span class="p">{</span>beamer<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>
+
+<span class="c">% ---------- 基本信息 ----------</span>
+<span class="k">\title</span><span class="p">{</span>基于深度学习的图像分割方法研究<span class="p">}</span>
+<span class="k">\subtitle</span><span class="p">{</span>组会汇报<span class="p">}</span>
+<span class="k">\author</span><span class="p">{</span>张三<span class="p">}</span>
+<span class="k">\institute</span><span class="p">{</span>某某大学 <span class="k">\ </span>计算机学院<span class="p">}</span>
+<span class="k">\date</span><span class="p">{</span><span class="k">\today</span><span class="p">}</span>
+
+<span class="c">% ---------- 主题设置 ----------</span>
+<span class="k">\usetheme</span><span class="p">{</span>Madrid<span class="p">}</span>
+<span class="k">\usecolortheme</span><span class="p">{</span>beaver<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="c">% 标题页</span>
+<span class="nt">\begin{frame}</span>
+  <span class="k">\titlepage</span>
+<span class="nt">\end{frame}</span>
+
+<span class="c">% 目录页</span>
+<span class="nt">\begin{frame}</span><span class="p">{</span>目录<span class="p">}</span>
+  <span class="k">\tableofcontents</span>
+<span class="nt">\end{frame}</span>
+
+<span class="c">% ---------- 第一节：引言 ----------</span>
+<span class="k">\section</span><span class="p">{</span>引言<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>研究背景<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span> 图像分割是计算机视觉的基础任务之一
+    <span class="k">\item</span> 传统方法依赖手工特征，泛化能力有限
+    <span class="k">\item</span> 深度学习显著提升了分割精度，但仍面临挑战
+  <span class="nt">\end{itemize}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>相关工作<span class="p">}</span>
+  <span class="nt">\begin{block}</span><span class="p">{</span>经典模型<span class="p">}</span>
+    <span class="nt">\begin{itemize}</span>
+      <span class="k">\item</span> FCN：首个端到端的全卷积分割网络
+      <span class="k">\item</span> U-Net：编码器-解码器结构，广泛用于医学图像
+      <span class="k">\item</span> DeepLab：引入空洞卷积与条件随机场
+    <span class="nt">\end{itemize}</span>
+  <span class="nt">\end{block}</span>
+  <span class="k">\pause</span>
+  <span class="nt">\begin{alertblock}</span><span class="p">{</span>现存问题<span class="p">}</span>
+    小目标分割精度不足，边界细节容易丢失。
+  <span class="nt">\end{alertblock}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="c">% ---------- 第二节：方法 ----------</span>
+<span class="k">\section</span><span class="p">{</span>方法<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>整体框架<span class="p">}</span>
+  <span class="k">\centering</span>
+  <span class="k">\includegraphics</span><span class="na">[width=0.8\textwidth]</span><span class="p">{</span>example-image<span class="p">}</span>  <span class="c">% 替换为你的图片</span>
+  <span class="k">\vspace</span><span class="p">{</span>0.5em<span class="p">}</span>
+
+  网络采用编码器-解码器结构，并引入注意力机制增强特征表达。
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>注意力模块设计<span class="p">}</span>
+  核心公式如下：
+  <span class="p">\[</span><span class="nb">
+    </span><span class="nv">\text</span><span class="p">{</span><span class="nb">Attention</span><span class="p">}</span><span class="o">(</span><span class="nb">Q, K, V</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\text</span><span class="p">{</span><span class="nb">softmax</span><span class="p">}</span><span class="nv">\left</span><span class="o">(</span><span class="nv">\frac</span><span class="p">{</span><span class="nb">QK</span><span class="p">^</span><span class="nb">T</span><span class="p">}{</span><span class="nv">\sqrt</span><span class="p">{</span><span class="nb">d</span><span class="p">_</span><span class="nb">k</span><span class="p">}}</span><span class="nv">\right</span><span class="o">)</span><span class="nb">V
+  </span><span class="p">\]</span>
+  <span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span> 在跳跃连接处插入通道注意力模块
+    <span class="k">\item</span> 计算量增加不足 <span class="p">$</span><span class="m">5</span><span class="nv">\%</span><span class="p">$</span>，但 mIoU 提升约 <span class="p">$</span><span class="m">3</span><span class="nb">.</span><span class="m">2</span><span class="nv">\%</span><span class="p">$</span>
+  <span class="nt">\end{itemize}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="c">% ---------- 第三节：实验 ----------</span>
+<span class="k">\section</span><span class="p">{</span>实验<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>实验设置<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span> 数据集：PASCAL VOC 2012 + SBD（共 10,582 张训练图像）
+    <span class="k">\item</span> 优化器：SGD，初始学习率 0.01，动量 0.9
+    <span class="k">\item</span> 训练轮次：50 epochs，batch size = 16
+    <span class="k">\item</span> 评价指标：平均交并比（mIoU）
+  <span class="nt">\end{itemize}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>定量结果<span class="p">}</span>
+  <span class="nt">\begin{table}</span>
+    <span class="k">\centering</span>
+    <span class="nt">\begin{tabular}</span><span class="p">{</span>lcc<span class="p">}</span>
+      <span class="k">\toprule</span>
+      方法 <span class="p">&amp;</span> mIoU (<span class="k">\%</span>) <span class="p">&amp;</span> 参数量 (M) <span class="k">\\</span>
+      <span class="k">\midrule</span>
+      FCN-8s <span class="p">&amp;</span> 62.2 <span class="p">&amp;</span> 134 <span class="k">\\</span>
+      U-Net <span class="p">&amp;</span> 65.8 <span class="p">&amp;</span> 31 <span class="k">\\</span>
+      DeepLabV3+ <span class="p">&amp;</span> 72.5 <span class="p">&amp;</span> 59 <span class="k">\\</span>
+      <span class="k">\textbf</span><span class="p">{</span>本文方法<span class="p">}</span> <span class="p">&amp;</span> <span class="k">\textbf</span><span class="p">{</span>75.7<span class="p">}</span> <span class="p">&amp;</span> 41 <span class="k">\\</span>
+      <span class="k">\bottomrule</span>
+    <span class="nt">\end{tabular}</span>
+    <span class="k">\caption</span><span class="p">{</span>在 VOC 2012 验证集上的对比结果<span class="p">}</span>
+  <span class="nt">\end{table}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="c">% ---------- 第四节：总结 ----------</span>
+<span class="k">\section</span><span class="p">{</span>总结<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>总结与展望<span class="p">}</span>
+  <span class="nt">\begin{block}</span><span class="p">{</span>主要贡献<span class="p">}</span>
+    <span class="nt">\begin{enumerate}</span>
+      <span class="k">\item</span> 提出了一种轻量级注意力分割网络
+      <span class="k">\item</span> 在多个公开数据集上验证了有效性
+    <span class="nt">\end{enumerate}</span>
+  <span class="nt">\end{block}</span>
+
+  <span class="nt">\begin{exampleblock}</span><span class="p">{</span>未来工作<span class="p">}</span>
+    将模型扩展至 3D 医学图像分割，并探索自监督预训练策略。
+  <span class="nt">\end{exampleblock}</span>
+
+  <span class="k">\vfill</span>
+  <span class="k">\centering</span>
+  <span class="k">\Large</span> 感谢聆听！欢迎提问。
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="实例二metropolis-极简风格模板">实例二：Metropolis 极简风格模板</h3>
+
+<p>使用现代感十足的 Metropolis 主题，适合技术分享或非正式报告。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% !TEX program = xelatex</span>
+<span class="k">\documentclass</span><span class="na">[aspectratio=169, 10pt]</span><span class="p">{</span>beamer<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>
+
+<span class="c">% ---------- Metropolis 主题配置 ----------</span>
+<span class="k">\usetheme</span><span class="p">{</span>metropolis<span class="p">}</span>
+<span class="k">\metroset</span><span class="p">{</span>
+  titleformat=smallcaps,
+  progressbar=frametitle,
+  block=fill,
+  numbering=fraction
+<span class="p">}</span>
+
+<span class="c">% ---------- 颜色微调 ----------</span>
+<span class="k">\definecolor</span><span class="p">{</span>myblue<span class="p">}{</span>RGB<span class="p">}{</span>30, 90, 150<span class="p">}</span>
+<span class="k">\setbeamercolor</span><span class="p">{</span>progress bar<span class="p">}{</span>fg=myblue<span class="p">}</span>
+<span class="k">\setbeamercolor</span><span class="p">{</span>frametitle<span class="p">}{</span>bg=myblue, fg=white<span class="p">}</span>
+
+<span class="k">\title</span><span class="p">{</span>LaTeX Beamer 快速入门<span class="p">}</span>
+<span class="k">\subtitle</span><span class="p">{</span>——用代码写幻灯片的艺术<span class="p">}</span>
+<span class="k">\author</span><span class="p">{</span>李四<span class="p">}</span>
+<span class="k">\date</span><span class="p">{</span><span class="k">\today</span><span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="k">\maketitle</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>今天的内容<span class="p">}</span>
+  <span class="k">\setbeamertemplate</span><span class="p">{</span>section in toc<span class="p">}</span>[sections numbered]
+  <span class="k">\tableofcontents</span><span class="na">[hideallsubsections]</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>为什么是 Beamer？<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>动机<span class="p">}</span>
+  <span class="nt">\begin{columns}</span>[T]
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.5<span class="k">\textwidth</span><span class="p">}</span>
+      <span class="k">\textbf</span><span class="p">{</span>PowerPoint 的痛点<span class="p">}</span>
+      <span class="nt">\begin{itemize}</span>
+        <span class="k">\item</span> 公式排版费力
+        <span class="k">\item</span> 版本控制困难
+        <span class="k">\item</span> 换设备格式走样
+      <span class="nt">\end{itemize}</span>
+    <span class="nt">\end{column}</span>
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.5<span class="k">\textwidth</span><span class="p">}</span>
+      <span class="k">\textbf</span><span class="p">{</span>Beamer 的优势<span class="p">}</span>
+      <span class="nt">\begin{itemize}</span>
+        <span class="k">\item</span> 原生 LaTeX 公式
+        <span class="k">\item</span> Git 友好
+        <span class="k">\item</span> PDF 跨平台一致
+      <span class="nt">\end{itemize}</span>
+    <span class="nt">\end{column}</span>
+  <span class="nt">\end{columns}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>核心语法速览<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span>[fragile]<span class="p">{</span>基本结构<span class="p">}</span>
+  <span class="nt">\begin{lstlisting}</span>[language=TeX, basicstyle=<span class="k">\ttfamily\small</span>]
+<span class="k">\documentclass</span><span class="p">{</span>beamer<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>
+<span class="k">\title</span><span class="p">{</span>...<span class="p">}</span>
+<span class="k">\author</span><span class="p">{</span>...<span class="p">}</span>
+<span class="nt">\begin{document}</span>
+<span class="nt">\begin{frame}</span><span class="p">{</span>标题<span class="p">}</span>
+  内容...
+<span class="nt">\end{frame}</span>
+<span class="nt">\end{document}</span>
+  <span class="nt">\end{lstlisting}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>列表与动画<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>[&lt;+-&gt;]
+    <span class="k">\item</span> 使用 <span class="k">\texttt</span><span class="p">{</span>[&lt;+-&gt;]<span class="p">}</span> 自动逐项显示
+    <span class="k">\item</span> 也可以手动指定 <span class="k">\texttt</span><span class="p">{</span><span class="k">\textbackslash</span> pause<span class="p">}</span>
+    <span class="k">\item</span> 覆盖语法极其灵活
+  <span class="nt">\end{itemize}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>一个例子<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>勾股定理<span class="p">}</span>
+  <span class="nt">\begin{theorem}</span>[勾股定理]
+    直角三角形两直角边 <span class="p">$</span><span class="nb">a,b</span><span class="p">$</span> 与斜边 <span class="p">$</span><span class="nb">c</span><span class="p">$</span> 满足：
+    <span class="p">\[</span><span class="nb"> a</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="o">+</span><span class="nb"> b</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="o">=</span><span class="nb"> c</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="p">\]</span>
+  <span class="nt">\end{theorem}</span>
+  <span class="k">\pause</span>
+  <span class="nt">\begin{proof}</span>
+    构造四个全等的直角三角形，拼成大正方形即可证明。
+  <span class="nt">\end{proof}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span>[standout]
+  <span class="k">\Huge</span> 谢谢大家！
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="实例三包含代码与伪算法的技术汇报模板">实例三：包含代码与伪算法的技术汇报模板</h3>
+
+<p>适用于需要展示算法流程或代码片段的场景，使用了 <code class="language-plaintext highlighter-rouge">listings</code> 和 <code class="language-plaintext highlighter-rouge">algorithmic</code>。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% !TEX program = xelatex</span>
+<span class="k">\documentclass</span><span class="na">[aspectratio=169]</span><span class="p">{</span>beamer<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>listings<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>algorithm, algorithmic<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>booktabs<span class="p">}</span>
+
+<span class="k">\usetheme</span><span class="p">{</span>CambridgeUS<span class="p">}</span>
+<span class="k">\usecolortheme</span><span class="p">{</span>dolphin<span class="p">}</span>
+
+<span class="k">\title</span><span class="p">{</span>高效用项集挖掘算法优化<span class="p">}</span>
+<span class="k">\author</span><span class="p">{</span>王五<span class="p">}</span>
+<span class="k">\institute</span><span class="p">{</span>数据挖掘实验室<span class="p">}</span>
+<span class="k">\date</span><span class="p">{</span>2026年4月<span class="p">}</span>
+
+<span class="c">% 代码样式设置</span>
+<span class="k">\lstset</span><span class="p">{</span>
+  language=Python,
+  basicstyle=<span class="k">\ttfamily\small</span>,
+  keywordstyle=<span class="k">\color</span><span class="p">{</span>blue<span class="p">}</span>,
+  commentstyle=<span class="k">\color</span><span class="p">{</span>gray<span class="p">}</span>,
+  showstringspaces=false
+<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{frame}</span>
+  <span class="k">\titlepage</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>目录<span class="p">}</span>
+  <span class="k">\tableofcontents</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>问题定义<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>高效用项集挖掘<span class="p">}</span>
+  <span class="nt">\begin{definition}</span>[效用值]
+    项 <span class="p">$</span><span class="nb">i</span><span class="p">$</span> 在事务 <span class="p">$</span><span class="nb">T</span><span class="p">$</span> 中的效用值定义为：
+    <span class="p">\[</span><span class="nb"> u</span><span class="o">(</span><span class="nb">i, T</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> q</span><span class="o">(</span><span class="nb">i, T</span><span class="o">)</span><span class="nb"> </span><span class="nv">\times</span><span class="nb"> p</span><span class="o">(</span><span class="nb">i</span><span class="o">)</span><span class="nb"> </span><span class="p">\]</span>
+    其中 <span class="p">$</span><span class="nb">q</span><span class="o">(</span><span class="nb">i, T</span><span class="o">)</span><span class="p">$</span> 为购买数量，<span class="p">$</span><span class="nb">p</span><span class="o">(</span><span class="nb">i</span><span class="o">)</span><span class="p">$</span> 为单位利润。
+  <span class="nt">\end{definition}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>算法设计<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span>[fragile]<span class="p">{</span>核心算法伪代码<span class="p">}</span>
+  <span class="nt">\begin{algorithm}</span>[H]
+    <span class="k">\caption</span><span class="p">{</span>Two-Phase Utility Mining<span class="p">}</span>
+    <span class="nt">\begin{algorithmic}</span>[1]
+      <span class="k">\STATE</span> 扫描数据库，计算所有项的 TWU
+      <span class="k">\STATE</span> 移除 TWU 小于阈值的项
+      <span class="k">\STATE</span> 构建效用列表结构
+      <span class="k">\WHILE</span><span class="p">{</span>效用列表集合非空<span class="p">}</span>
+        <span class="k">\STATE</span> 取出一个项集的效用列表
+        <span class="k">\STATE</span> 计算其精确效用值
+        <span class="k">\IF</span><span class="p">{</span>效用值 <span class="p">$</span><span class="nv">\ge</span><span class="p">$</span> 阈值<span class="p">}</span>
+          <span class="k">\STATE</span> 输出该项集
+        <span class="k">\ENDIF</span>
+        <span class="k">\STATE</span> 与其余效用列表两两相交生成超集
+      <span class="k">\ENDWHILE</span>
+    <span class="nt">\end{algorithmic}</span>
+  <span class="nt">\end{algorithm}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span>[fragile]<span class="p">{</span>关键代码实现<span class="p">}</span>
+  <span class="nt">\begin{lstlisting}</span>[language=Python]
+def construct<span class="p">_</span>utility<span class="p">_</span>list(itemset):
+    ul = []
+    for tid in transactions:
+        if itemset.issubset(transaction[tid]):
+            utility = sum(quantity * profit for item in itemset)
+            ul.append((tid, utility))
+    return ul
+  <span class="nt">\end{lstlisting}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>实验结果<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>性能对比<span class="p">}</span>
+  <span class="nt">\begin{table}</span>
+    <span class="k">\centering</span>
+    <span class="nt">\begin{tabular}</span><span class="p">{</span>lrrr<span class="p">}</span>
+      <span class="k">\toprule</span>
+      数据集 <span class="p">&amp;</span> 事务数 <span class="p">&amp;</span> 原算法 (s) <span class="p">&amp;</span> 改进算法 (s) <span class="k">\\</span>
+      <span class="k">\midrule</span>
+      Retail <span class="p">&amp;</span> 88,162 <span class="p">&amp;</span> 45.2 <span class="p">&amp;</span> 18.7 <span class="k">\\</span>
+      Chainstore <span class="p">&amp;</span> 1,112,949 <span class="p">&amp;</span> 321.5 <span class="p">&amp;</span> 156.3 <span class="k">\\</span>
+      Foodmart <span class="p">&amp;</span> 4,141 <span class="p">&amp;</span> 2.3 <span class="p">&amp;</span> 1.1 <span class="k">\\</span>
+      <span class="k">\bottomrule</span>
+    <span class="nt">\end{tabular}</span>
+    <span class="k">\caption</span><span class="p">{</span>运行时间对比<span class="p">}</span>
+  <span class="nt">\end{table}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>总结<span class="p">}</span>
+  <span class="nt">\begin{block}</span><span class="p">{</span>主要改进<span class="p">}</span>
+    <span class="nt">\begin{itemize}</span>
+      <span class="k">\item</span> 引入提前剪枝策略，减少 <span class="p">$</span><span class="m">30</span><span class="nv">\%</span><span class="p">$</span> 的候选集生成
+      <span class="k">\item</span> 优化效用列表相交操作的内存布局
+    <span class="nt">\end{itemize}</span>
+  <span class="nt">\end{block}</span>
+  <span class="k">\vspace</span><span class="p">{</span>1em<span class="p">}</span>
+  <span class="k">\centering</span> <span class="k">\Large</span> 感谢聆听！
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="实例四答辩专用模板带页脚信息栏">实例四：答辩专用模板（带页脚信息栏）</h3>
+
+<p>此模板包含学校 Logo、页码进度条和详细的页脚信息，适合学位论文答辩。</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% !TEX program = xelatex</span>
+<span class="k">\documentclass</span><span class="na">[aspectratio=169, 11pt]</span><span class="p">{</span>beamer<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>ctex<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>graphicx<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz<span class="p">}</span>
+
+<span class="c">% ---------- 主题配置 ----------</span>
+<span class="k">\usetheme</span><span class="p">{</span>AnnArbor<span class="p">}</span>      <span class="c">% 侧边栏主题</span>
+<span class="k">\usecolortheme</span><span class="p">{</span>whale<span class="p">}</span>    <span class="c">% 深蓝色调</span>
+
+<span class="c">% ---------- 自定义页脚模板 ----------</span>
+<span class="k">\setbeamertemplate</span><span class="p">{</span>footline<span class="p">}{</span>
+  <span class="k">\leavevmode</span><span class="c">%</span>
+  <span class="k">\hbox</span><span class="p">{</span>
+  <span class="nt">\begin{beamercolorbox}</span>[wd=.33<span class="k">\paperwidth</span>,ht=2.25ex,dp=1ex,center]<span class="p">{</span>author in head/foot<span class="p">}</span><span class="c">%</span>
+    <span class="k">\usebeamerfont</span><span class="p">{</span>author in head/foot<span class="p">}</span><span class="k">\insertshortauthor</span>
+  <span class="nt">\end{beamercolorbox}</span><span class="c">%</span>
+  <span class="nt">\begin{beamercolorbox}</span>[wd=.34<span class="k">\paperwidth</span>,ht=2.25ex,dp=1ex,center]<span class="p">{</span>title in head/foot<span class="p">}</span><span class="c">%</span>
+    <span class="k">\usebeamerfont</span><span class="p">{</span>title in head/foot<span class="p">}</span><span class="k">\insertshorttitle</span>
+  <span class="nt">\end{beamercolorbox}</span><span class="c">%</span>
+  <span class="nt">\begin{beamercolorbox}</span>[wd=.33<span class="k">\paperwidth</span>,ht=2.25ex,dp=1ex,right]<span class="p">{</span>date in head/foot<span class="p">}</span><span class="c">%</span>
+    <span class="k">\usebeamerfont</span><span class="p">{</span>date in head/foot<span class="p">}</span><span class="k">\insertshortdate</span><span class="p">{}</span><span class="k">\hspace*</span><span class="p">{</span>2em<span class="p">}</span>
+    <span class="k">\insertframenumber</span><span class="p">{}</span> / <span class="k">\inserttotalframenumber\hspace*</span><span class="p">{</span>2ex<span class="p">}</span>
+  <span class="nt">\end{beamercolorbox}</span><span class="p">}</span><span class="c">%</span>
+  <span class="k">\vskip</span>0pt<span class="c">%</span>
+<span class="p">}</span>
+
+<span class="c">% ---------- 信息填写 ----------</span>
+<span class="k">\title</span><span class="na">[博士论文答辩]</span><span class="p">{</span>面向知识图谱的表示学习方法研究<span class="p">}</span>
+<span class="k">\author</span><span class="na">[张三]</span><span class="p">{</span>张<span class="k">\ </span>三<span class="p">}</span>
+<span class="k">\institute</span><span class="na">[某某大学]</span><span class="p">{</span><span class="k">\inst</span><span class="p">{</span>1<span class="p">}</span>某某大学计算机学院 <span class="k">\\</span> <span class="k">\inst</span><span class="p">{</span>2<span class="p">}</span>智能计算实验室<span class="p">}</span>
+<span class="k">\date</span><span class="p">{</span>2026年4月8日<span class="p">}</span>
+<span class="k">\logo</span><span class="p">{</span><span class="k">\includegraphics</span><span class="na">[height=0.8cm]</span><span class="p">{</span>example-image<span class="p">}}</span>  <span class="c">% 替换为校徽</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{frame}</span>
+  <span class="k">\titlepage</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>报告提纲<span class="p">}</span>
+  <span class="k">\tableofcontents</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>研究背景与意义<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>知识图谱的挑战<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span> 知识图谱在搜索引擎、推荐系统中应用广泛
+    <span class="k">\item</span> 传统表示学习方法存在稀疏性和可解释性问题
+  <span class="nt">\end{itemize}</span>
+  <span class="k">\vspace</span><span class="p">{</span>1em<span class="p">}</span>
+  <span class="nt">\begin{figure}</span>
+    <span class="k">\centering</span>
+    <span class="k">\includegraphics</span><span class="na">[width=0.6\textwidth]</span><span class="p">{</span>example-image<span class="p">}</span>
+    <span class="k">\caption</span><span class="p">{</span>知识图谱示例<span class="p">}</span>
+  <span class="nt">\end{figure}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>模型设计<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>整体架构<span class="p">}</span>
+  <span class="nt">\begin{columns}</span>[T]
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.5<span class="k">\textwidth</span><span class="p">}</span>
+      编码器：
+      <span class="nt">\begin{itemize}</span>
+        <span class="k">\item</span> 图卷积网络
+        <span class="k">\item</span> 注意力聚合
+      <span class="nt">\end{itemize}</span>
+    <span class="nt">\end{column}</span>
+    <span class="nt">\begin{column}</span><span class="p">{</span>0.5<span class="k">\textwidth</span><span class="p">}</span>
+      解码器：
+      <span class="nt">\begin{itemize}</span>
+        <span class="k">\item</span> ConvE
+        <span class="k">\item</span> InteractE
+      <span class="nt">\end{itemize}</span>
+    <span class="nt">\end{column}</span>
+  <span class="nt">\end{columns}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>实验结果<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>主要结果<span class="p">}</span>
+  <span class="nt">\begin{table}</span>
+    <span class="k">\centering</span>
+    <span class="nt">\begin{tabular}</span><span class="p">{</span>lcc<span class="p">}</span>
+      <span class="k">\toprule</span>
+      数据集 <span class="p">&amp;</span> MRR <span class="p">&amp;</span> Hits@10 <span class="k">\\</span>
+      <span class="k">\midrule</span>
+      FB15k-237 <span class="p">&amp;</span> 0.358 <span class="p">&amp;</span> 0.542 <span class="k">\\</span>
+      WN18RR <span class="p">&amp;</span> 0.476 <span class="p">&amp;</span> 0.523 <span class="k">\\</span>
+      <span class="k">\bottomrule</span>
+    <span class="nt">\end{tabular}</span>
+  <span class="nt">\end{table}</span>
+  <span class="k">\vspace</span><span class="p">{</span>1em<span class="p">}</span>
+  <span class="nt">\begin{alertblock}</span><span class="p">{</span>亮点<span class="p">}</span>
+    在 FB15k-237 上 MRR 指标较基线提升 5.2<span class="k">\%</span>。
+  <span class="nt">\end{alertblock}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="k">\section</span><span class="p">{</span>总结与展望<span class="p">}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>主要贡献<span class="p">}</span>
+  <span class="nt">\begin{enumerate}</span>
+    <span class="k">\item</span> 提出了一种融合结构信息与文本描述的联合表示模型
+    <span class="k">\item</span> 设计了高效的负采样策略，加速训练收敛
+    <span class="k">\item</span> 在三个公开数据集上验证了模型有效性
+  <span class="nt">\end{enumerate}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span><span class="p">{</span>攻读博士期间成果<span class="p">}</span>
+  <span class="nt">\begin{itemize}</span>
+    <span class="k">\item</span> 发表 SCI 论文 3 篇（其中一区 Top 2 篇）
+    <span class="k">\item</span> 申请发明专利 2 项
+    <span class="k">\item</span> 参加国际学术会议并做口头报告 2 次
+  <span class="nt">\end{itemize}</span>
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\begin{frame}</span>[plain]
+  <span class="k">\centering</span>
+  <span class="k">\Huge</span> 感谢各位专家！
+  <span class="k">\vspace</span><span class="p">{</span>1em<span class="p">}</span>
+
+  <span class="k">\Large</span> 请批评指正
+<span class="nt">\end{frame}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E6%8E%92%E7%89%88/%E6%9D%82%E8%B0%88/2026/04/08/Latexppt.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

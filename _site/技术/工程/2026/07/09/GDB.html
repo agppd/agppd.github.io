@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>GDB 使用教程 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="GDB 使用教程" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一、准备工作" />
+<meta property="og:description" content="一、准备工作" />
+<link rel="canonical" href="http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/07/09/GDB.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/07/09/GDB.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-07-09T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="GDB 使用教程" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-07-09T00:00:00+08:00","datePublished":"2026-07-09T00:00:00+08:00","description":"一、准备工作","headline":"GDB 使用教程","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/07/09/GDB.html"},"url":"http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/07/09/GDB.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">GDB 使用教程</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-07-09T00:00:00+08:00" itemprop="datePublished">Jul 9, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#技术">技术</a>
+          , 
+        
+          <a href="/categories/#工程">工程</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="一准备工作">一、准备工作</h2>
+
+<h3 id="11-记得加--g">1.1 记得加 <code class="language-plaintext highlighter-rouge">-g</code></h3>
+
+<p>Linux 下 <code class="language-plaintext highlighter-rouge">gcc</code>/<code class="language-plaintext highlighter-rouge">g++</code> 默认生成的是 <strong>release 模式</strong>的程序，不包含调试信息（如行号、变量名、类型信息等），无法用 GDB 调试。要使用 GDB，必须在编译时添加 <code class="language-plaintext highlighter-rouge">-g</code> 选项，生成 <strong>debug 模式</strong>的程序。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># release 模式（默认，无法调试）</span>
+gcc program.c <span class="nt">-o</span> program
+
+<span class="c"># debug 模式（添加 -g，可调试）</span>
+gcc <span class="nt">-g</span> program.c <span class="nt">-o</span> program
+</code></pre></div></div>
+
+<p>如果未加 <code class="language-plaintext highlighter-rouge">-g</code> 选项，使用 GDB 调试时会提示无法识别调试信息。另外，调试优化后的代码可能会遇到变量不可见等问题，建议在调试时使用 <code class="language-plaintext highlighter-rouge">-O0</code> 关闭优化。</p>
+
+<h3 id="12-安装-gdb">1.2 安装 GDB</h3>
+
+<p>在主流 Linux 发行版上，可以通过包管理器快速安装：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu/Debian</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>gdb
+
+<span class="c"># CentOS/RHEL</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>gdb
+
+<span class="c"># Fedora</span>
+<span class="nb">sudo </span>dnf <span class="nb">install </span>gdb
+</code></pre></div></div>
+
+<p>或者从源代码安装（<a href="https://ftp.gnu.org/gnu/gdb/gdb-17.2.tar.xz">点我下载</a>）</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>CODE_SOURCES
+./configure
+make
+mak <span class="nb">install</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="二启动与退出-gdb">二、启动与退出 GDB</h2>
+
+<h3 id="21-启动方式">2.1 启动方式</h3>
+
+<p>GDB 有三种常见的启动方式：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>启动方式</th>
+      <th>命令</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>直接调试</td>
+      <td><code class="language-plaintext highlighter-rouge">gdb ./program</code></td>
+      <td>调试普通的可执行程序</td>
+    </tr>
+    <tr>
+      <td>带参数启动</td>
+      <td><code class="language-plaintext highlighter-rouge">gdb --args ./program arg1 arg2</code></td>
+      <td>程序需要命令行参数</td>
+    </tr>
+    <tr>
+      <td>附加到运行进程</td>
+      <td><code class="language-plaintext highlighter-rouge">gdb -p &lt;PID&gt;</code></td>
+      <td>调试正在运行的进程（需权限）</td>
+    </tr>
+    <tr>
+      <td>调试 core 文件</td>
+      <td><code class="language-plaintext highlighter-rouge">gdb ./program core</code></td>
+      <td>分析程序崩溃时的内存状态</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>启动成功后，会进入 GDB 交互界面，提示符为 <code class="language-plaintext highlighter-rouge">(gdb)</code>。</p>
+
+<h3 id="22-退出-gdb">2.2 退出 GDB</h3>
+
+<p>退出 GDB 有两种方式：</p>
+<ul>
+  <li>输入 <code class="language-plaintext highlighter-rouge">quit</code>（或简写 <code class="language-plaintext highlighter-rouge">q</code>）并回车</li>
+  <li>按下 <code class="language-plaintext highlighter-rouge">Ctrl + d</code> 组合键</li>
+</ul>
+
+<hr />
+
+<h2 id="三核心调试命令">三、核心调试命令</h2>
+
+<h3 id="31-查看源代码list">3.1 查看源代码：<code class="language-plaintext highlighter-rouge">list</code></h3>
+
+<p>调试时需要随时查看源代码以确定调试位置。<code class="language-plaintext highlighter-rouge">list</code>（可简写为 <code class="language-plaintext highlighter-rouge">l</code>）命令用于显示源代码：</p>
+
+<pre><code class="language-gdb">(gdb) list         
+(gdb) list 20      
+(gdb) list main    
+(gdb) list test.c:8
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">list</code> 命令具有记忆性，连续按回车会继续显示后续代码。</p>
+
+<h3 id="32-运行与控制">3.2 运行与控制</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>简写</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">run</code></td>
+      <td><code class="language-plaintext highlighter-rouge">r</code></td>
+      <td>启动程序（可带参数，如 <code class="language-plaintext highlighter-rouge">run 10 20</code>）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">continue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">c</code></td>
+      <td>继续执行到下一个断点或程序结束</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">next</code></td>
+      <td><code class="language-plaintext highlighter-rouge">n</code></td>
+      <td>单步执行，<strong>不进入</strong>函数内部（相当于 VS 的 F10）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">step</code></td>
+      <td><code class="language-plaintext highlighter-rouge">s</code></td>
+      <td>单步执行，<strong>进入</strong>函数内部（相当于 VS 的 F11）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">finish</code></td>
+      <td>—</td>
+      <td>执行完当前函数并返回</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">until</code></td>
+      <td>—</td>
+      <td>跳到指定行</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>注意：GDB 会自动记录上一条输入指令，直接按回车会重复执行上一条命令——在单步调试时非常方便。</p>
+
+<h3 id="33-断点管理">3.3 断点管理</h3>
+
+<p>断点是 GDB 调试的核心功能。</p>
+
+<h4 id="设置断点">设置断点</h4>
+
+<pre><code class="language-gdb">(gdb) break 10         
+(gdb) break main       
+(gdb) break test.c:15  
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">break</code> 可以简写为 <code class="language-plaintext highlighter-rouge">b</code>。</p>
+
+<h4 id="查看与管理断点">查看与管理断点</h4>
+
+<pre><code class="language-gdb">(gdb) info break       
+(gdb) delete 2         
+(gdb) disable 1        
+(gdb) enable 1         
+</code></pre>
+
+<p>断点编号可以通过 <code class="language-plaintext highlighter-rouge">info break</code> 查看。</p>
+
+<h3 id="34-查看变量与表达式">3.4 查看变量与表达式</h3>
+
+<h4 id="打印变量">打印变量</h4>
+
+<pre><code class="language-gdb">(gdb) print i          
+(gdb) print *ptr       
+(gdb) print arr@10     
+</code></pre>
+
+<h4 id="自动显示变量">自动显示变量</h4>
+
+<p><code class="language-plaintext highlighter-rouge">display</code> 命令可以在每次程序暂停时自动打印变量的值，非常适合持续观察某个变量：</p>
+
+<pre><code class="language-gdb">(gdb) display sum      
+(gdb) info display     
+(gdb) undisplay 1      
+</code></pre>
+
+<h4 id="查看变量类型">查看变量类型</h4>
+
+<pre><code class="language-gdb">(gdb) ptype variable   
+</code></pre>
+
+<h3 id="35-查看调用栈">3.5 查看调用栈</h3>
+
+<p>当程序在断点处暂停时，可以使用 <code class="language-plaintext highlighter-rouge">backtrace</code>（简写 <code class="language-plaintext highlighter-rouge">bt</code>）查看函数调用栈，快速了解程序的执行路径：</p>
+
+<pre><code class="language-gdb">(gdb) bt
+#0  f () at test.c:3
+#1  0x0000555555555172 in main () at test.c:10
+</code></pre>
+
+<p>注意：调用栈是<strong>从下往上</strong>看的——先调用 main，再调用 f。可以使用 <code class="language-plaintext highlighter-rouge">frame</code>（简写 <code class="language-plaintext highlighter-rouge">f</code>）切换栈帧。</p>
+
+<h3 id="36-查看局部变量">3.6 查看局部变量</h3>
+
+<pre><code class="language-gdb">(gdb) info locals      
+</code></pre>
+
+<hr />
+
+<h2 id="四高级调试技巧">四、高级调试技巧</h2>
+
+<h3 id="41-条件断点">4.1 条件断点</h3>
+
+<p>条件断点仅在满足特定条件时才触发，避免在无关的迭代中反复暂停：</p>
+
+<pre><code class="language-gdb">(gdb) break 10 if i == 5       
+(gdb) break calculate if result &gt; 1000  
+</code></pre>
+
+<p>对于已存在的断点，也可以用 <code class="language-plaintext highlighter-rouge">condition</code> 命令添加条件：</p>
+
+<pre><code class="language-gdb">(gdb) condition 2 i == 0       
+</code></pre>
+
+<h3 id="42-观察点watchpoint">4.2 观察点（Watchpoint）</h3>
+
+<p>观察点用于监控变量或内存的变化——当被监控的值被修改时，程序会自动暂停：</p>
+
+<pre><code class="language-gdb">(gdb) watch variable_name      
+(gdb) rwatch variable_name     
+(gdb) awatch variable_name     
+</code></pre>
+
+<p>这在追踪“这个变量到底在哪里被改了”时特别有用。</p>
+
+<h3 id="43-查看内存">4.3 查看内存</h3>
+
+<p><code class="language-plaintext highlighter-rouge">x</code> 命令用于按指定格式查看内存内容：</p>
+
+<pre><code class="language-gdb">(gdb) x/4xw &amp;var       
+(gdb) x/10cb buffer    
+</code></pre>
+
+<p>格式说明：<code class="language-plaintext highlighter-rouge">/&lt;count&gt;&lt;format&gt;&lt;size&gt;</code>，其中 format 包括 <code class="language-plaintext highlighter-rouge">x</code>（十六进制）、<code class="language-plaintext highlighter-rouge">d</code>（十进制）、<code class="language-plaintext highlighter-rouge">s</code>（字符串）、<code class="language-plaintext highlighter-rouge">i</code>（汇编指令）等，size 包括 <code class="language-plaintext highlighter-rouge">b</code>（字节）、<code class="language-plaintext highlighter-rouge">h</code>（半字）、<code class="language-plaintext highlighter-rouge">w</code>（字）、<code class="language-plaintext highlighter-rouge">g</code>（8字节）。</p>
+
+<h3 id="44-多线程调试">4.4 多线程调试</h3>
+
+<p>GDB 提供了完善的多线程调试支持：</p>
+
+<pre><code class="language-gdb">(gdb) info threads             
+(gdb) thread 2                 
+(gdb) thread apply all bt      
+(gdb) set scheduler-locking on 
+</code></pre>
+
+<p>线程号前有 <code class="language-plaintext highlighter-rouge">*</code> 的表示当前正在调试的线程。</p>
+
+<h3 id="45-修改变量值">4.5 修改变量值</h3>
+
+<p>在调试过程中，可以直接修改变量的值来测试不同的执行路径：</p>
+
+<pre><code class="language-gdb">(gdb) set var i = 10           
+</code></pre>
+
+<h3 id="46-tui-文本界面">4.6 TUI 文本界面</h3>
+
+<p>GDB 自带 TUI（Text User Interface）模式，可以同时显示源代码和命令窗口”：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb <span class="nt">-tui</span> ./program     
+</code></pre></div></div>
+
+<p>在 TUI 模式下的常用快捷键：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl + X</code> 再按 <code class="language-plaintext highlighter-rouge">A</code>：切换进入/退出 TUI 模式</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl + X</code> 再按 <code class="language-plaintext highlighter-rouge">O</code>：切换焦点（代码窗口 ↔ 命令窗口）</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl + L</code>：刷新屏幕（解决花屏问题）</li>
+</ul>
+
+<h3 id="47-脚本自动化">4.7 脚本自动化</h3>
+
+<p>GDB 支持脚本功能，可以将常用的调试命令写入文件批量执行：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># debug.gdb 脚本内容</span>
+file program
+<span class="nb">break </span>main
+run
+</code></pre></div></div>
+
+<p>执行脚本：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb <span class="nt">-x</span> debug.gdb
+</code></pre></div></div>
+
+<h3 id="48-配合--fsanitizeaddress-一同调试">4.8 配合 <code class="language-plaintext highlighter-rouge">-fsanitize=address</code> 一同调试</h3>
+
+<p>如如下代码</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span><span class="cpf">&lt;queue&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">2e5</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">});</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">:</span> <span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">auto</span> <span class="p">[</span><span class="n">val</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="n">and</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span><span class="p">;</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="o">/</span> <span class="n">i</span> <span class="o">*</span> <span class="n">idx</span><span class="p">});</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">%</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">val</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="n">idx</span><span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>在输入</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 7
+5 2 3
+</code></pre></div></div>
+<p>时，发生浮点异常。此时，我们猜测：应该是存在除0的情况（毕竟没有小数）。</p>
+
+<p>所以：编译时我们加上 <code class="language-plaintext highlighter-rouge">-fsanitize=address</code> 参数，输出如下</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==107988==ERROR: AddressSanitizer: FPE on unknown address 0x000000402934 (pc 0x000000402934 bp 0x7ffc591f72f0 sp 0x7ffc591f7180 T0)
+    #0 0x000000402934 in solve() a.cpp
+    #1 0x000000402e00 in main a.cpp
+    #2 0x76000102a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #3 0x76000102a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #4 0x000000402254 in _start (/home/user/Desktop/a+0x402254)
+
+==107988==Register values:
+rax = 0x0000000000000008  rbx = 0x000071ffff1f0120  rcx = 0x0000000000000008  rdx = 0x0000000000000000  
+rdi = 0x0000000000000000  rsi = 0x00007220003e0001  rbp = 0x00007ffc591f72f0  rsp = 0x00007ffc591f7180  
+ r8 = 0x00007600011993c0   r9 = 0x00000000fffffff3  r10 = 0x0000000000000000  r11 = 0x000000000000200d  
+r12 = 0x00000e3fffe3e000  r13 = 0x000071ffff1f0000  r14 = 0x00007ffc591f71b0  r15 = 0x0000760002093000  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: FPE a.cpp:27 in solve()
+==107988==ABORTING
+</code></pre></div></div>
+<p>我们可以发现，寄存器的值明显不对。</p>
+
+<p>这时用GDB进行调试：</p>
+
+<p>我们给27行打上断点，运行时查看<strong>eax</strong>的值</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27	            q.push<span class="o">({</span>i, val / i <span class="k">*</span> idx<span class="o">})</span><span class="p">;</span>
+<span class="o">(</span>gdb<span class="o">)</span> p val
+<span class="nv">$1</span> <span class="o">=</span> <span class="o">(</span>std::tuple_element&lt;0, std::pair&lt;int, int&gt; <span class="o">&gt;</span>::type <span class="o">&amp;&amp;)</span> @0x7bfff51f00c0: 8
+<span class="o">(</span>gdb<span class="o">)</span> p i
+<span class="nv">$2</span> <span class="o">=</span> 0
+<span class="o">(</span>gdb<span class="o">)</span> p <span class="nv">$eax</span>
+<span class="nv">$3</span> <span class="o">=</span> 0
+</code></pre></div></div>
+
+<p>答案显而易见，就是除了0。</p>
+
+<hr />
+
+<h2 id="五命令缩写与快捷键">五、命令缩写与快捷键</h2>
+
+<p>GDB 允许命令缩写，只要缩写没有歧义即可。</p>
+
+<h3 id="常用命令缩写">常用命令缩写</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>完整命令</th>
+      <th>缩写</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">run</code></td>
+      <td><code class="language-plaintext highlighter-rouge">r</code></td>
+      <td>运行程序</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">break</code></td>
+      <td><code class="language-plaintext highlighter-rouge">b</code></td>
+      <td>设置断点</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">continue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">c</code></td>
+      <td>继续执行</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">next</code></td>
+      <td><code class="language-plaintext highlighter-rouge">n</code></td>
+      <td>单步执行（不进入函数）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">step</code></td>
+      <td><code class="language-plaintext highlighter-rouge">s</code></td>
+      <td>单步执行（进入函数）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">print</code></td>
+      <td><code class="language-plaintext highlighter-rouge">p</code></td>
+      <td>打印变量值</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">backtrace</code></td>
+      <td><code class="language-plaintext highlighter-rouge">bt</code></td>
+      <td>查看调用栈</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">quit</code></td>
+      <td><code class="language-plaintext highlighter-rouge">q</code></td>
+      <td>退出 GDB</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list</code></td>
+      <td><code class="language-plaintext highlighter-rouge">l</code></td>
+      <td>查看源代码</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">info</code></td>
+      <td><code class="language-plaintext highlighter-rouge">i</code></td>
+      <td>查看信息（如 <code class="language-plaintext highlighter-rouge">i b</code> 查看断点）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">delete</code></td>
+      <td><code class="language-plaintext highlighter-rouge">d</code></td>
+      <td>删除断点</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="特殊缩写规则">特殊缩写规则</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">s</code> 是 <code class="language-plaintext highlighter-rouge">step</code> 的专属缩写，即使有其他 <code class="language-plaintext highlighter-rouge">s</code> 开头的命令（如 <code class="language-plaintext highlighter-rouge">set</code>、<code class="language-plaintext highlighter-rouge">show</code>），GDB 也规定 <code class="language-plaintext highlighter-rouge">s</code> 专指 <code class="language-plaintext highlighter-rouge">step</code></li>
+  <li><code class="language-plaintext highlighter-rouge">i</code> 是 <code class="language-plaintext highlighter-rouge">info</code> 的合法缩写，因为没有任何其他命令以 <code class="language-plaintext highlighter-rouge">i</code> 开头</li>
+  <li>如果缩写有歧义（如 <code class="language-plaintext highlighter-rouge">in</code> 同时匹配 <code class="language-plaintext highlighter-rouge">info</code> 和 <code class="language-plaintext highlighter-rouge">inspect</code>），GDB 会提示错误</li>
+</ul>
+
+<h3 id="交互快捷键">交互快捷键</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>快捷键</th>
+      <th>功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Tab</code></td>
+      <td>自动补全命令或符号名</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">↑</code> / <code class="language-plaintext highlighter-rouge">↓</code></td>
+      <td>浏览历史命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Enter</code>（空白行）</td>
+      <td>重复上一条命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Ctrl + R</code></td>
+      <td>搜索历史命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Ctrl + C</code></td>
+      <td>中断当前正在执行的命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Ctrl + L</code></td>
+      <td>刷新屏幕</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="自定义别名">自定义别名</h3>
+
+<p>GDB 还允许使用 <code class="language-plaintext highlighter-rouge">alias</code> 命令自定义别名，将复杂的命令序列简化为几个字符：</p>
+
+<pre><code class="language-gdb">(gdb) alias bp = break
+(gdb) alias w = watch
+</code></pre>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/2026/07/09/GDB.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

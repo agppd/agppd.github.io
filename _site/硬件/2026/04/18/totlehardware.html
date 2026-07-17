@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>硬件教学一——大体流程 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="硬件教学一——大体流程" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="这个系列基本上是本人所有的硬件知识储备了，我能想到的我都讲了，部分零碎的知识点没有进行提及，也有的就是没想起来。" />
+<meta property="og:description" content="这个系列基本上是本人所有的硬件知识储备了，我能想到的我都讲了，部分零碎的知识点没有进行提及，也有的就是没想起来。" />
+<link rel="canonical" href="http://localhost:4000/%E7%A1%AC%E4%BB%B6/2026/04/18/totlehardware.html" />
+<meta property="og:url" content="http://localhost:4000/%E7%A1%AC%E4%BB%B6/2026/04/18/totlehardware.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="硬件教学一——大体流程" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-04-18T00:00:00+08:00","datePublished":"2026-04-18T00:00:00+08:00","description":"这个系列基本上是本人所有的硬件知识储备了，我能想到的我都讲了，部分零碎的知识点没有进行提及，也有的就是没想起来。","headline":"硬件教学一——大体流程","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E7%A1%AC%E4%BB%B6/2026/04/18/totlehardware.html"},"url":"http://localhost:4000/%E7%A1%AC%E4%BB%B6/2026/04/18/totlehardware.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">硬件教学一——大体流程</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-04-18T00:00:00+08:00" itemprop="datePublished">Apr 18, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#硬件">硬件</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <p>这个系列基本上是本人所有的硬件知识储备了，我能想到的我都讲了，部分零碎的知识点没有进行提及，也有的就是没想起来。</p>
+
+<p>因为本人并不精通硬件描述语言……</p>
+
+<p>所以，本系列实现部分由DS完成（这意味着不保证代码可以正确运行）</p>
+
+<p>对了，你可以把一个叫<code class="language-plaintext highlighter-rouge">图灵完备</code>的游戏当作测验，进行检测（这是作者硬件内容的启蒙的地方）</p>
+
+<p><strong>本篇文章是本系列的概述</strong></p>
+
+<h2 id="一组合逻辑层功能完备性与门级实现">一、组合逻辑层：功能完备性与门级实现</h2>
+
+<h3 id="11-与非门的功能完备性">1.1 与非门的功能完备性</h3>
+
+<p>数字逻辑电路分为组合逻辑与时序逻辑两类。组合逻辑的输出仅由当前输入决定；时序逻辑的输出同时依赖当前输入与历史状态。</p>
+
+<p>与非门（NAND）的逻辑行为是：仅当所有输入同时有效时输出无效，其余情况均输出有效。其真值表如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>输入A</th>
+      <th>输入B</th>
+      <th>输出</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>与非门具备功能完备性——仅使用与非门即可构造所有基本逻辑函数。这一性质使得整个计算机系统可建立于单一类型的基础元件之上。</p>
+
+<h3 id="12-从与非门到其他逻辑门">1.2 从与非门到其他逻辑门</h3>
+
+<p>以下为仅使用与非门构造其他逻辑门的具体方法：</p>
+
+<p><strong>非门（NOT）</strong> ：将与非门的两个输入端短接。输入0时两输入端均为0，输出1；输入1时两输入端均为1，输出0。</p>
+
+<p><strong>与门（AND）</strong> ：将与非门的输出端再接入一级非门。与非门实现“与后取反”，再加一级非门即抵消取反。</p>
+
+<p><strong>或门（OR）</strong> ：根据德·摩根定律，A + B = (A‘ · B’)‘。先将两个输入分别取反，再将取反后的信号输入与非门，输出即为或逻辑。</p>
+
+<p><strong>异或门（XOR）</strong> ：当两个输入不同时输出1，相同时输出0。可由四个与非门组合实现。</p>
+
+<h3 id="13-实践逻辑门">1.3 实践：逻辑门</h3>
+
+<p>硬件描述语言中，逻辑门可通过连续赋值语句或原语例化实现。以下Verilog代码描述基础逻辑门的三种建模方式：</p>
+
+<div class="language-verilog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 方式一：连续赋值语句</span>
+<span class="kt">wire</span> <span class="n">nand_out</span><span class="p">,</span> <span class="n">not_out</span><span class="p">,</span> <span class="n">and_out</span><span class="p">,</span> <span class="n">or_out</span><span class="p">,</span> <span class="n">xor_out</span><span class="p">;</span>
+
+<span class="k">assign</span> <span class="n">nand_out</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span>   <span class="c1">// 与非门</span>
+<span class="k">assign</span> <span class="n">not_out</span>  <span class="o">=</span> <span class="o">~</span><span class="n">a</span><span class="p">;</span>          <span class="c1">// 非门</span>
+<span class="k">assign</span> <span class="n">and_out</span>  <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">;</span>       <span class="c1">// 与门</span>
+<span class="k">assign</span> <span class="n">or_out</span>   <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">;</span>       <span class="c1">// 或门</span>
+<span class="k">assign</span> <span class="n">xor_out</span>  <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>       <span class="c1">// 异或门</span>
+
+<span class="c1">// 方式二：门级原语例化</span>
+<span class="kt">nand</span> <span class="p">(</span><span class="n">nand_out</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">not</span>  <span class="p">(</span><span class="n">not_out</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="kt">and</span>  <span class="p">(</span><span class="n">and_out</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">or</span>   <span class="p">(</span><span class="n">or_out</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">xor</span>  <span class="p">(</span><span class="n">xor_out</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+
+<span class="c1">// 方式三：仅用与非门构造其他门（结构级建模）</span>
+<span class="kt">wire</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n3</span><span class="p">,</span> <span class="n">n4</span><span class="p">;</span>
+<span class="kt">nand</span> <span class="n">nand_not</span> <span class="p">(</span><span class="n">not_out</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>                <span class="c1">// 非门</span>
+<span class="kt">nand</span> <span class="n">nand_and1</span> <span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">nand</span> <span class="n">nand_and2</span> <span class="p">(</span><span class="n">and_out</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n1</span><span class="p">);</span>             <span class="c1">// 与门</span>
+<span class="kt">nand</span> <span class="n">nand_or1</span> <span class="p">(</span><span class="n">n2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="kt">nand</span> <span class="n">nand_or2</span> <span class="p">(</span><span class="n">n3</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">nand</span> <span class="n">nand_or3</span> <span class="p">(</span><span class="n">or_out</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n3</span><span class="p">);</span>               <span class="c1">// 或门</span>
+<span class="kt">nand</span> <span class="n">nand_xor1</span> <span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="kt">nand</span> <span class="n">nand_xor2</span> <span class="p">(</span><span class="n">n2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">n1</span><span class="p">);</span>
+<span class="kt">nand</span> <span class="n">nand_xor3</span> <span class="p">(</span><span class="n">n3</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n1</span><span class="p">);</span>
+<span class="kt">nand</span> <span class="n">nand_xor4</span> <span class="p">(</span><span class="n">xor_out</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n3</span><span class="p">);</span>             <span class="c1">// 异或门</span>
+</code></pre></div></div>
+
+<p>方式三从结构上直接体现功能完备性原理。综合工具会将这些描述映射为目标器件中的实际逻辑资源。</p>
+
+<h2 id="二运算器层">二、运算器层</h2>
+
+<h3 id="21-半加器与全加器">2.1 半加器与全加器</h3>
+
+<p>两个一位二进制数相加，产生本位和与进位。本位和为异或逻辑，进位为与逻辑。将异或门与与门并联即构成半加器。</p>
+
+<p>全加器在半加器基础上增设进位输入端，可同时处理本位加数与低位进位。全加器由两个半加器级联构成：第一级半加器计算A与B之和及进位，第二级半加器将该和与进位输入相加，两级进位经或门合并后输出。</p>
+
+<h3 id="22-8位加法器">2.2 8位加法器</h3>
+
+<p>将8个全加器的进位输出连接至下一级进位输入，即构成8位串行进位加法器。高位运算需等待低位进位逐级传递，位数增加时最长信号路径延迟随之增加。</p>
+
+<p>超前进位加法器通过引入进位生成函数与进位传播函数，并行计算所有进位信号，以增加逻辑门数量换取固定延迟的进位路径。</p>
+
+<h3 id="23-减法器与补码">2.3 减法器与补码</h3>
+
+<p>固定位宽二进制系统中，减法通过补码加法实现：A - B = A + (~B + 1)。硬件上，减法器与加法器共享同一数据通路：通过控制信号选择将减数取反并置初始进位为1，加法器即输出差值。这种功能复用是ALU设计的核心思想。</p>
+
+<h3 id="24-比较器comp">2.4 比较器（COMP）</h3>
+
+<p>比较器是CPU实现条件判断的核心部件，用于判定两个数值之间的大小关系或相等关系。</p>
+
+<p><strong>一位比较器</strong>：比较两个单比特a与b的大小。当且仅当a=0且b=1时，a &lt; b成立。因此一位比较器的逻辑函数为：<code class="language-plaintext highlighter-rouge">result = (!a) AND b</code>。用逻辑门实现：a经非门后与b共同接入与门。</p>
+
+<p><strong>相等比较器</strong>：判断两个8位数值是否相等。对于单个比特，相等可用同或门（XNOR）实现——当两输入相同时输出1，不同时输出0。将8对输入分别接入同或门，再将8个同或门的输出接入一个8输入与门——只有当所有比特都相同时，与门的输出才为1。</p>
+
+<p><strong>无符号小于比较器</strong>：比较两个8位无符号数的大小体现了比较运算的关键特性——<strong>高位具有一票否决权</strong>。一旦在某一高位上能分出大小，低位的结果就完全不用关心。</p>
+
+<p>从硬件实现角度，逐位比较电路按如下优先级逻辑组织：从最高位（第7位）开始，若该位上A&lt;B，则直接输出“小于”结果；若A&gt;B，则直接输出“不小于”；若A=B，则打开下一位的比较通路继续判断。逐级向下，直至最低位。若所有位均相等，则输出“不小于”。</p>
+
+<p>一种简洁的实现方法是将两个输入分别接入一个8位与门和一个8位或非门，再将两者的输出通过带进位输入的加法器合并，进位输出即为比较结果。该方法的原理是利用补码运算的特性——A-B的进位输出在无符号比较中恰好等于A≥B的标志，取反后即为A&lt;B。</p>
+
+<p><strong>有符号比较器</strong>：有符号数的比较在无符号比较的基础上增加对符号位的特殊处理。在补码表示中，最高位为符号位（0为正，1为负）。有符号比较需首先判断两数符号是否相同——符号相同时，比较方式与无符号数一致；符号不同时，正数必定大于负数。因此有符号比较电路需在无符号比较器的基础上增加符号位判断逻辑，根据符号情况选择最终比较结果。</p>
+
+<h3 id="25-算术逻辑单元">2.5 算术逻辑单元</h3>
+
+<p>ALU将加法、减法、逻辑运算、比较运算及移位操作集成于一体，通过功能选择信号决定当前运算类型。同时更新状态标志位：零标志（ZF）、进位标志（CF）、溢出标志（OF）、符号标志（SF）。这些标志位供条件分支指令使用。比较器通常与ALU紧密耦合——比较结果通过设置标志位而非直接输出数值的方式提供给后续指令使用。</p>
+
+<h3 id="26-实践alu及比较器">2.6 实践：ALU及比较器</h3>
+
+<p>以下为8位ALU的行为级描述，在原有加减、逻辑运算基础上增加了比较功能：</p>
+
+<div class="language-verilog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="n">alu_8bit</span> <span class="p">(</span>
+    <span class="kt">input</span>  <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span>            <span class="c1">// 操作数</span>
+    <span class="kt">input</span>  <span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">alu_op</span><span class="p">,</span>           <span class="c1">// 功能选择</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">result</span><span class="p">,</span>       <span class="c1">// 运算结果</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="n">zero</span><span class="p">,</span>               <span class="c1">// 零标志</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="n">carry</span><span class="p">,</span>              <span class="c1">// 进位/借位标志</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="n">overflow</span><span class="p">,</span>           <span class="c1">// 溢出标志</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="n">sign</span><span class="p">,</span>               <span class="c1">// 符号标志</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="n">lt</span><span class="p">,</span>                 <span class="c1">// 小于标志（有符号）</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="n">ltu</span>                 <span class="c1">// 小于标志（无符号）</span>
+<span class="p">);</span>
+
+    <span class="c1">// 功能编码</span>
+    <span class="k">localparam</span> <span class="n">OP_ADD</span> <span class="o">=</span> <span class="mb">3'b000</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">OP_SUB</span> <span class="o">=</span> <span class="mb">3'b001</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">OP_AND</span> <span class="o">=</span> <span class="mb">3'b010</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">OP_OR</span>  <span class="o">=</span> <span class="mb">3'b011</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">OP_XOR</span> <span class="o">=</span> <span class="mb">3'b100</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">OP_SLT</span> <span class="o">=</span> <span class="mb">3'b101</span><span class="p">;</span>    <span class="c1">// 有符号小于比较</span>
+    <span class="k">localparam</span> <span class="n">OP_SLTU</span><span class="o">=</span> <span class="mb">3'b110</span><span class="p">;</span>    <span class="c1">// 无符号小于比较</span>
+
+    <span class="kt">wire</span> <span class="p">[</span><span class="mi">8</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">add_result</span><span class="p">;</span>
+    <span class="kt">wire</span> <span class="p">[</span><span class="mi">8</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">sub_result</span><span class="p">;</span>
+
+    <span class="k">assign</span> <span class="n">add_result</span> <span class="o">=</span> <span class="o">{</span><span class="mb">1'b0</span><span class="p">,</span> <span class="n">a</span><span class="o">}</span> <span class="o">+</span> <span class="o">{</span><span class="mb">1'b0</span><span class="p">,</span> <span class="n">b</span><span class="o">}</span><span class="p">;</span>
+    <span class="k">assign</span> <span class="n">sub_result</span> <span class="o">=</span> <span class="o">{</span><span class="mb">1'b0</span><span class="p">,</span> <span class="n">a</span><span class="o">}</span> <span class="o">-</span> <span class="o">{</span><span class="mb">1'b0</span><span class="p">,</span> <span class="n">b</span><span class="o">}</span><span class="p">;</span>
+
+    <span class="c1">// 无符号小于判断</span>
+    <span class="kt">wire</span> <span class="n">unsigned_lt</span> <span class="o">=</span> <span class="n">sub_result</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>  <span class="c1">// 借位=1表示a&lt;b</span>
+
+    <span class="c1">// 有符号小于判断：符号不同则直接由符号位决定</span>
+    <span class="kt">wire</span> <span class="n">signed_lt</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">?</span> <span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">:</span> <span class="n">unsigned_lt</span><span class="p">;</span>
+
+    <span class="k">always</span> <span class="o">@</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="k">case</span> <span class="p">(</span><span class="n">alu_op</span><span class="p">)</span>
+            <span class="nl">OP_ADD:</span>  <span class="o">{</span><span class="n">carry</span><span class="p">,</span> <span class="n">result</span><span class="o">}</span> <span class="o">=</span> <span class="n">add_result</span><span class="p">;</span>
+            <span class="nl">OP_SUB:</span>  <span class="o">{</span><span class="n">carry</span><span class="p">,</span> <span class="n">result</span><span class="o">}</span> <span class="o">=</span> <span class="n">sub_result</span><span class="p">;</span>
+            <span class="nl">OP_AND:</span>  <span class="k">begin</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">;</span> <span class="n">carry</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="k">end</span>
+            <span class="nl">OP_OR:</span>   <span class="k">begin</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">;</span> <span class="n">carry</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="k">end</span>
+            <span class="nl">OP_XOR:</span>  <span class="k">begin</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span> <span class="n">carry</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="k">end</span>
+            <span class="nl">OP_SLT:</span>  <span class="k">begin</span> <span class="n">result</span> <span class="o">=</span> <span class="o">{</span><span class="mb">7'b0</span><span class="p">,</span> <span class="n">signed_lt</span><span class="o">}</span><span class="p">;</span> <span class="n">carry</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="k">end</span>
+            <span class="nl">OP_SLTU:</span> <span class="k">begin</span> <span class="n">result</span> <span class="o">=</span> <span class="o">{</span><span class="mb">7'b0</span><span class="p">,</span> <span class="n">unsigned_lt</span><span class="o">}</span><span class="p">;</span> <span class="n">carry</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="k">end</span>
+            <span class="nl">default:</span> <span class="k">begin</span> <span class="n">result</span> <span class="o">=</span> <span class="mb">8'b0</span><span class="p">;</span> <span class="n">carry</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="k">end</span>
+        <span class="k">endcase</span>
+
+        <span class="n">zero</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mb">8'b0</span><span class="p">);</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+        <span class="n">lt</span> <span class="o">=</span> <span class="n">signed_lt</span><span class="p">;</span>
+        <span class="n">ltu</span> <span class="o">=</span> <span class="n">unsigned_lt</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">alu_op</span> <span class="o">==</span> <span class="n">OP_ADD</span><span class="p">)</span>
+            <span class="n">overflow</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">alu_op</span> <span class="o">==</span> <span class="n">OP_SUB</span><span class="p">)</span>
+            <span class="n">overflow</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]);</span>
+        <span class="k">else</span>
+            <span class="n">overflow</span> <span class="o">=</span> <span class="mb">1'b0</span><span class="p">;</span>
+    <span class="k">end</span>
+
+<span class="k">endmodule</span>
+</code></pre></div></div>
+
+<p>比较标志位lt（有符号小于）和ltu（无符号小于）作为ALU的输出，可供后续控制单元在条件分支指令中使用。</p>
+
+<h2 id="三存储与时序层">三、存储与时序层</h2>
+
+<h3 id="31-sr锁存器与反馈原理">3.1 SR锁存器与反馈原理</h3>
+
+<p>存储功能的核心在于反馈——将逻辑门的输出回接至输入端。SR锁存器利用两个交叉耦合的或非门形成双稳态结构：Set端有效时输出置1并保持；Reset端有效时输出清0并保持；两者同时撤销后输出维持原有状态。</p>
+
+<h3 id="32-延时缓冲器">3.2 延时缓冲器</h3>
+
+<p>当然，也有一种新的存储方式，叫：“延时缓冲器”。在更新中引入了延时缓冲器作为替代1位存储器的另一种存储基础元件。延时缓冲器的行为极简：将输入信号延迟一个时钟周期后输出。这种“延迟一拍”的特性使得存储概念更加直观——信号在时间轴上的平移本质上就是一种“记忆”。</p>
+
+<p>从延时缓冲器出发，同样可以构建寄存器：将延时缓冲器的输出反馈回输入端，构成自循环结构，即可实现长期存储。延时缓冲器也是流水线架构中处理数据相关性的重要基础元件。</p>
+
+<p><strong>反正，我个人非常不喜欢这种存储方式，我还是推荐用CLR的</strong></p>
+
+<h3 id="33-时钟与d触发器">3.3 时钟与D触发器</h3>
+
+<p>SR锁存器无时序控制，输入变化随时影响输出。D触发器在锁存器基础上增加时钟输入端，仅当时钟边沿到达时采样输入并更新输出，其余时间输出保持。时钟机制将电路行为离散化为统一节拍，是同步数字系统的基础。</p>
+
+<h3 id="34-栈stack">3.4 栈（Stack）</h3>
+
+<p>栈是一种以后进先出（LIFO）方式工作的特殊存储结构，在CPU中用于支持函数调用、中断处理和局部变量存储。栈的核心操作包括压栈（Push）和弹栈（Pop）。</p>
+
+<p><strong>栈的硬件实现</strong>：栈由三部分构成——一段RAM存储空间、一个栈指针寄存器（Stack Pointer, SP），以及控制逻辑。</p>
+
+<ul>
+  <li><strong>栈指针（SP）</strong> ：专用寄存器，存储当前栈顶地址。通常初始化为RAM的高地址端，压栈时指针递减（向低地址增长），弹栈时指针递增。</li>
+  <li><strong>压栈操作（Push）</strong> ：将数据写入SP所指向的RAM地址，然后SP减1（或加1，取决于栈增长方向）。</li>
+  <li><strong>弹栈操作（Pop）</strong> ：将SP加1，然后从SP所指向的新地址读取数据到目标寄存器。弹出后原位置的数据通常不被清零，仅在后续压栈时被覆盖。</li>
+</ul>
+
+<p>栈指针寄存器需永久输出其当前值到RAM地址端，以保证RAM随时可被寻址。控制单元通过压栈控制线和弹栈控制线协调RAM读写、寄存器写入和指针更新等操作。</p>
+
+<p><strong>栈在CPU中的角色</strong>：函数调用时，返回地址和函数参数被压入栈中；函数返回时，返回地址从栈中弹出并加载至程序计数器。中断处理时，当前程序的上下文（各寄存器值）被压栈保存，中断服务程序执行完毕后再弹栈恢复。局部变量也通常在栈上分配，函数返回时自动释放。</p>
+
+<h3 id="35-寄存器与内存">3.5 寄存器与内存</h3>
+
+<p>多个D触发器共享同一时钟，构成多位寄存器。多组寄存器按地址编码排列，通过地址译码器选通对应单元，构成随机存取存储器（RAM）。译码器将m位地址转换为2^m条字线，确保每次读写仅作用于指定单元。8位CPU的RAM地址空间通常为256字节，栈空间通常位于该地址空间的高端区域。</p>
+
+<p><strong>内存层次</strong>：内存存在不同速度等级的内存元件，如普通RAM、高速RAM等。这种差异反映了实际计算机体系结构中的内存层次思想——离CPU越近的存储部件速度越快、容量越小；离CPU越远的部件速度越慢、容量越大。寄存器是最快的存储单元，数量极其有限；RAM容量较大但访问延迟更长。栈通常映射到RAM的一段连续地址空间，在速度和容量之间取得平衡。</p>
+
+<h3 id="36-实践寄存器组栈">3.6 实践：寄存器组、栈</h3>
+
+<p><strong>4×8位寄存器组</strong>（4个通用寄存器，通过地址选择读写）：</p>
+
+<div class="language-verilog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="n">register_file_4x8</span> <span class="p">(</span>
+    <span class="kt">input</span> <span class="n">clk</span><span class="p">,</span> <span class="n">rst_n</span><span class="p">,</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">rd_addr_a</span><span class="p">,</span>      <span class="c1">// 读地址A</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">rd_addr_b</span><span class="p">,</span>      <span class="c1">// 读地址B</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">wr_addr</span><span class="p">,</span>        <span class="c1">// 写地址</span>
+    <span class="kt">input</span> <span class="n">wr_en</span><span class="p">,</span>                <span class="c1">// 写使能</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">wr_data</span><span class="p">,</span>        <span class="c1">// 写数据</span>
+    <span class="kt">output</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">rd_data_a</span><span class="p">,</span>     <span class="c1">// 读数据A</span>
+    <span class="kt">output</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">rd_data_b</span>      <span class="c1">// 读数据B</span>
+<span class="p">);</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">regs</span> <span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="mi">3</span><span class="p">];</span>       <span class="c1">// 4个8位寄存器</span>
+
+    <span class="k">always</span> <span class="o">@</span><span class="p">(</span><span class="kt">posedge</span> <span class="n">clk</span> <span class="kt">or</span> <span class="kt">negedge</span> <span class="n">rst_n</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rst_n</span><span class="p">)</span> <span class="k">begin</span>
+            <span class="n">regs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span>
+            <span class="n">regs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span>
+            <span class="n">regs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span>
+            <span class="n">regs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span>
+        <span class="k">end</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">wr_en</span><span class="p">)</span> <span class="k">begin</span>
+            <span class="n">regs</span><span class="p">[</span><span class="n">wr_addr</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">wr_data</span><span class="p">;</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">assign</span> <span class="n">rd_data_a</span> <span class="o">=</span> <span class="n">regs</span><span class="p">[</span><span class="n">rd_addr_a</span><span class="p">];</span>
+    <span class="k">assign</span> <span class="n">rd_data_b</span> <span class="o">=</span> <span class="n">regs</span><span class="p">[</span><span class="n">rd_addr_b</span><span class="p">];</span>
+
+<span class="k">endmodule</span>
+</code></pre></div></div>
+
+<p><strong>栈模块</strong>（256字节RAM空间，带压栈/弹栈控制）：</p>
+
+<div class="language-verilog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="n">stack_256x8</span> <span class="p">(</span>
+    <span class="kt">input</span> <span class="n">clk</span><span class="p">,</span> <span class="n">rst_n</span><span class="p">,</span>
+    <span class="kt">input</span> <span class="n">push</span><span class="p">,</span>                 <span class="c1">// 压栈使能</span>
+    <span class="kt">input</span> <span class="n">pop</span><span class="p">,</span>                  <span class="c1">// 弹栈使能</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">data_in</span><span class="p">,</span>        <span class="c1">// 压栈数据</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">data_out</span><span class="p">,</span>  <span class="c1">// 弹栈数据</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">sp</span>         <span class="c1">// 栈指针（用于调试）</span>
+<span class="p">);</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">mem</span> <span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="mi">255</span><span class="p">];</span>      <span class="c1">// 256字节栈空间</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">sp_reg</span><span class="p">;</span>           <span class="c1">// 栈指针寄存器</span>
+
+    <span class="k">always</span> <span class="o">@</span><span class="p">(</span><span class="kt">posedge</span> <span class="n">clk</span> <span class="kt">or</span> <span class="kt">negedge</span> <span class="n">rst_n</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rst_n</span><span class="p">)</span> <span class="k">begin</span>
+            <span class="n">sp_reg</span> <span class="o">&lt;=</span> <span class="mh">8'hFF</span><span class="p">;</span>    <span class="c1">// 初始化栈指针到最高地址</span>
+        <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">push</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">pop</span><span class="p">)</span> <span class="k">begin</span>
+                <span class="n">mem</span><span class="p">[</span><span class="n">sp_reg</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">data_in</span><span class="p">;</span>  <span class="c1">// 压栈：写入当前栈顶</span>
+                <span class="n">sp_reg</span> <span class="o">&lt;=</span> <span class="n">sp_reg</span> <span class="o">-</span> <span class="mb">1'b1</span><span class="p">;</span>  <span class="c1">// 栈指针递减</span>
+            <span class="k">end</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pop</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">push</span><span class="p">)</span> <span class="k">begin</span>
+                <span class="n">sp_reg</span> <span class="o">&lt;=</span> <span class="n">sp_reg</span> <span class="o">+</span> <span class="mb">1'b1</span><span class="p">;</span>  <span class="c1">// 栈指针递增</span>
+                <span class="n">data_out</span> <span class="o">&lt;=</span> <span class="n">mem</span><span class="p">[</span><span class="n">sp_reg</span> <span class="o">+</span> <span class="mb">1'b1</span><span class="p">];</span> <span class="c1">// 弹栈：读取新栈顶</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">assign</span> <span class="n">sp</span> <span class="o">=</span> <span class="n">sp_reg</span><span class="p">;</span>
+<span class="k">endmodule</span>
+</code></pre></div></div>
+
+<p><strong>256字节RAM</strong>（地址8位，数据8位，与栈共享地址空间）：</p>
+
+<div class="language-verilog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="n">ram_256x8</span> <span class="p">(</span>
+    <span class="kt">input</span> <span class="n">clk</span><span class="p">,</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">addr</span><span class="p">,</span>           <span class="c1">// 地址</span>
+    <span class="kt">input</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">data_in</span><span class="p">,</span>        <span class="c1">// 写数据</span>
+    <span class="kt">input</span> <span class="n">wr_en</span><span class="p">,</span>                <span class="c1">// 写使能</span>
+    <span class="kt">input</span> <span class="n">rd_en</span><span class="p">,</span>                <span class="c1">// 读使能</span>
+    <span class="kt">output</span> <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">data_out</span>   <span class="c1">// 读数据</span>
+<span class="p">);</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">mem</span> <span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="mi">255</span><span class="p">];</span>      <span class="c1">// 256个字节</span>
+
+    <span class="k">always</span> <span class="o">@</span><span class="p">(</span><span class="kt">posedge</span> <span class="n">clk</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">wr_en</span><span class="p">)</span>
+            <span class="n">mem</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">data_in</span><span class="p">;</span>
+    <span class="k">end</span>
+
+    <span class="k">always</span> <span class="o">@</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rd_en</span><span class="p">)</span>
+            <span class="n">data_out</span> <span class="o">=</span> <span class="n">mem</span><span class="p">[</span><span class="n">addr</span><span class="p">];</span>
+        <span class="k">else</span>
+            <span class="n">data_out</span> <span class="o">=</span> <span class="mb">8'bz</span><span class="p">;</span>    <span class="c1">// 高阻态，便于总线连接</span>
+    <span class="k">end</span>
+
+<span class="k">endmodule</span>
+</code></pre></div></div>
+
+<p>在实际CPU中，栈和通用RAM可共用同一存储空间——栈指针指向RAM中专门划出的一段区域。这种统一编址方式简化了硬件设计，也是冯·诺依曼架构的自然延伸。</p>
+
+<h2 id="四处理器架构">四、处理器架构</h2>
+
+<h3 id="41-冯诺依曼架构与指令周期">4.1 冯·诺依曼架构与指令周期</h3>
+
+<p>冯·诺依曼架构的核心是程序与数据共用存储空间。CPU通过指令周期循环执行程序：</p>
+
+<ul>
+  <li><strong>取指</strong>：根据程序计数器从内存读取指令</li>
+  <li><strong>译码</strong>：解析操作码与寻址方式，生成控制信号</li>
+  <li><strong>执行</strong>：完成数据运算或访存操作</li>
+  <li><strong>写回</strong>：将结果存入目标寄存器或内存</li>
+</ul>
+
+<h3 id="42-指令集编码">4.2 指令集编码</h3>
+
+<p>指令集架构（ISA）定义了软件与硬件之间的接口规范。一条指令由操作码和操作数两部分构成，操作码指示执行何种操作，操作数指定操作对象。</p>
+
+<p>现在，我们定义一种指令集，共16条指令及2条可选拓展指令。其指令编码采用8位定长格式，按功能分为四种模式：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">模式</th>
+      <th style="text-align: center">编码（高2位）</th>
+      <th style="text-align: left">功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">立即数模式</td>
+      <td style="text-align: center">00</td>
+      <td style="text-align: left">低6位作为立即数写入Reg0（取值范围0~63）</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">计算模式</td>
+      <td style="text-align: center">01</td>
+      <td style="text-align: left">从Reg1和Reg2读取数值，计算结果存入Reg3（支持OR/NAND/NOR/AND/ADD/SUB）</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">复制模式</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: left">将源寄存器的值复制到目的寄存器</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">条件模式</td>
+      <td style="text-align: center">11</td>
+      <td style="text-align: left">检查Reg3与指定条件的匹配情况，满足则跳转到Reg0所指地址</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这种指令编码方式体现了<strong>正交性设计原则</strong>——指令的各字段功能独立，便于硬件译码和软件编程。</p>
+
+<p>现在，我们定义一个框架：</p>
+
+<p>该架构的指令格式为一次读取4个字节的机器码，分别对应操作码（OP）、源操作数1（s1）、源操作数2（s2）和目标地址（addr）。操作码共8位，其中高2位控制立即数模式，第3位控制是否为条件跳转指令，低5位选择具体运算类型。这种变长指令格式提供了更大的寻址灵活性和功能扩展空间。</p>
+
+<p><strong>条件分支的编码实现</strong>：在条件模式下，控制单元根据ALU运算后的标志位判断是否满足跳转条件。OVERTURE架构支持8种条件类型：Never（永假）、=0、&lt;0、&lt;=0、Always（永真）、!=0、&gt;=0、&gt;0。这些条件直接对应ALU标志位的不同组合，硬件上通过组合逻辑即可实现。</p>
+
+<h3 id="43-控制单元">4.3 控制单元</h3>
+
+<p>控制单元输入端为指令操作码与状态标志位，输出端为各功能部件的控制信号。从实现角度分为硬布线控制器与微程序控制器两种。</p>
+
+<p><strong>硬布线控制器</strong>将操作码到控制信号的映射直接固化为门级电路。控制单元通过判断操作码与指定数字是否相同来激活对应的运算通路。操作码译码后产生的控制信号包括：ALU功能选择、寄存器读写使能、内存读写使能、栈压入/弹出控制、程序计数器加载使能等。</p>
+
+<p><strong>微程序控制器</strong>则将映射关系存储于控制存储器中，通过微指令序列产生控制信号。</p>
+
+<h3 id="44-总线与三态门">4.4 总线与三态门</h3>
+
+<p>CPU内部各部件通过总线交换数据。为避免多驱动源冲突，总线接口设置三态门——除输出有效电平外还具有高阻态。任意时刻仅允许一个部件驱动总线，其余部件保持高阻态。</p>
+
+<h3 id="45-条件分支与图灵完备">4.5 条件分支与图灵完备</h3>
+
+<p>条件分支的执行机制：ALU运算后更新标志寄存器；控制单元根据标志位判断分支条件是否满足；若满足则将目标地址加载至PC，否则PC自增。比较器是条件分支的硬件基础——它生成的小于、等于、大于等标志位为跳转判断提供了依据。</p>
+
+<p>图灵完备的计算系统需满足两项核心能力：执行基本运算的能力，以及根据中间计算结果改变执行流程的能力（条件分支）。栈的存在进一步增强了系统的计算能力——通过压栈和弹栈操作，CPU可实现嵌套的函数调用和递归，从而表达任意复杂度的算法。</p>
+
+<h3 id="46-实践简易8位cpu">4.6 实践：简易8位CPU</h3>
+
+<p>以下为一个8位CPU的顶层模块，整合了ALU、寄存器组、栈、RAM和控制单元：</p>
+
+<div class="language-verilog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="n">cpu_8bit</span> <span class="p">(</span>
+    <span class="kt">input</span> <span class="n">clk</span><span class="p">,</span> <span class="n">rst_n</span><span class="p">,</span>
+    <span class="kt">output</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">pc_out</span><span class="p">,</span>        <span class="c1">// 程序计数器</span>
+    <span class="kt">output</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">acc_out</span><span class="p">,</span>       <span class="c1">// 累加器</span>
+    <span class="kt">output</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">sp_out</span>         <span class="c1">// 栈指针</span>
+<span class="p">);</span>
+
+    <span class="c1">// 指令格式：[7:4]操作码 [3:0]立即数/寄存器选择</span>
+    <span class="k">localparam</span> <span class="n">OP_LDI</span>  <span class="o">=</span> <span class="mb">4'b0000</span><span class="p">;</span> <span class="c1">// 加载立即数到累加器</span>
+    <span class="k">localparam</span> <span class="n">OP_ADD</span>  <span class="o">=</span> <span class="mb">4'b0001</span><span class="p">;</span> <span class="c1">// 累加器加立即数</span>
+    <span class="k">localparam</span> <span class="n">OP_SUB</span>  <span class="o">=</span> <span class="mb">4'b0010</span><span class="p">;</span> <span class="c1">// 累加器减立即数</span>
+    <span class="k">localparam</span> <span class="n">OP_CMP</span>  <span class="o">=</span> <span class="mb">4'b0011</span><span class="p">;</span> <span class="c1">// 比较累加器与立即数（设置标志）</span>
+    <span class="k">localparam</span> <span class="n">OP_JZ</span>   <span class="o">=</span> <span class="mb">4'b0100</span><span class="p">;</span> <span class="c1">// 累加器为零则跳转</span>
+    <span class="k">localparam</span> <span class="n">OP_JLT</span>  <span class="o">=</span> <span class="mb">4'b0101</span><span class="p">;</span> <span class="c1">// 小于则跳转</span>
+    <span class="k">localparam</span> <span class="n">OP_PUSH</span> <span class="o">=</span> <span class="mb">4'b0110</span><span class="p">;</span> <span class="c1">// 累加器压栈</span>
+    <span class="k">localparam</span> <span class="n">OP_POP</span>  <span class="o">=</span> <span class="mb">4'b0111</span><span class="p">;</span> <span class="c1">// 弹栈到累加器</span>
+    <span class="k">localparam</span> <span class="n">OP_CALL</span> <span class="o">=</span> <span class="mb">4'b1000</span><span class="p">;</span> <span class="c1">// 调用子程序（压返回地址并跳转）</span>
+    <span class="k">localparam</span> <span class="n">OP_RET</span>  <span class="o">=</span> <span class="mb">4'b1001</span><span class="p">;</span> <span class="c1">// 返回（弹返回地址到PC）</span>
+
+    <span class="c1">// CPU寄存器</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">pc</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">ir</span><span class="p">;</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">mem_addr</span><span class="p">,</span> <span class="n">mem_wr_data</span><span class="p">;</span>
+    <span class="kt">reg</span> <span class="n">mem_rd_en</span><span class="p">,</span> <span class="n">mem_wr_en</span><span class="p">;</span>
+    <span class="kt">wire</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">mem_rd_data</span><span class="p">;</span>
+
+    <span class="c1">// ALU接口</span>
+    <span class="kt">wire</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">alu_result</span><span class="p">;</span>
+    <span class="kt">wire</span> <span class="n">alu_zero</span><span class="p">,</span> <span class="n">alu_carry</span><span class="p">,</span> <span class="n">alu_lt</span><span class="p">,</span> <span class="n">alu_ltu</span><span class="p">;</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">alu_op</span><span class="p">;</span>
+
+    <span class="c1">// 栈接口</span>
+    <span class="kt">reg</span> <span class="n">push</span><span class="p">,</span> <span class="n">pop</span><span class="p">;</span>
+    <span class="kt">wire</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">stack_data_out</span><span class="p">;</span>
+    <span class="kt">wire</span> <span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">sp</span><span class="p">;</span>
+
+    <span class="c1">// 状态机</span>
+    <span class="k">localparam</span> <span class="n">FETCH</span>  <span class="o">=</span> <span class="mb">2'b00</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">DECODE</span> <span class="o">=</span> <span class="mb">2'b01</span><span class="p">;</span>
+    <span class="k">localparam</span> <span class="n">EXEC</span>   <span class="o">=</span> <span class="mb">2'b10</span><span class="p">;</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">state</span><span class="p">;</span>
+    <span class="kt">reg</span> <span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">opcode</span><span class="p">,</span> <span class="n">operand</span><span class="p">;</span>
+
+    <span class="c1">// 实例化ALU</span>
+    <span class="n">alu_8bit</span> <span class="n">alu</span> <span class="p">(</span>
+        <span class="p">.</span><span class="n">a</span><span class="p">(</span><span class="n">acc</span><span class="p">),</span> <span class="p">.</span><span class="n">b</span><span class="p">(</span><span class="o">{</span><span class="mb">4'b0</span><span class="p">,</span> <span class="n">operand</span><span class="o">}</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">alu_op</span><span class="p">(</span><span class="n">alu_op</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">alu_result</span><span class="p">),</span> <span class="p">.</span><span class="n">zero</span><span class="p">(</span><span class="n">alu_zero</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">carry</span><span class="p">(</span><span class="n">alu_carry</span><span class="p">),</span> <span class="p">.</span><span class="n">overflow</span><span class="p">(),</span> <span class="p">.</span><span class="n">sign</span><span class="p">(),</span>
+        <span class="p">.</span><span class="n">lt</span><span class="p">(</span><span class="n">alu_lt</span><span class="p">),</span> <span class="p">.</span><span class="n">ltu</span><span class="p">(</span><span class="n">alu_ltu</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="c1">// 实例化栈</span>
+    <span class="n">stack_256x8</span> <span class="n">stack</span> <span class="p">(</span>
+        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span> <span class="p">.</span><span class="n">rst_n</span><span class="p">(</span><span class="n">rst_n</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">push</span><span class="p">),</span> <span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">pop</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">data_in</span><span class="p">(</span><span class="n">acc</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">data_out</span><span class="p">(</span><span class="n">stack_data_out</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">sp</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="c1">// 实例化RAM</span>
+    <span class="n">ram_256x8</span> <span class="n">ram</span> <span class="p">(</span>
+        <span class="p">.</span><span class="n">clk</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="n">mem_addr</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">data_in</span><span class="p">(</span><span class="n">mem_wr_data</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">wr_en</span><span class="p">(</span><span class="n">mem_wr_en</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">rd_en</span><span class="p">(</span><span class="n">mem_rd_en</span><span class="p">),</span>
+        <span class="p">.</span><span class="n">data_out</span><span class="p">(</span><span class="n">mem_rd_data</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">always</span> <span class="o">@</span><span class="p">(</span><span class="kt">posedge</span> <span class="n">clk</span> <span class="kt">or</span> <span class="kt">negedge</span> <span class="n">rst_n</span><span class="p">)</span> <span class="k">begin</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rst_n</span><span class="p">)</span> <span class="k">begin</span>
+            <span class="n">pc</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span> <span class="n">acc</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span> <span class="n">ir</span> <span class="o">&lt;=</span> <span class="mb">8'b0</span><span class="p">;</span>
+            <span class="n">state</span> <span class="o">&lt;=</span> <span class="n">FETCH</span><span class="p">;</span>
+            <span class="n">mem_wr_en</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="n">mem_rd_en</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span>
+            <span class="n">push</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="n">pop</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span>
+        <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+            <span class="k">case</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span>
+                <span class="nl">FETCH:</span> <span class="k">begin</span>
+                    <span class="n">mem_addr</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">;</span>
+                    <span class="n">mem_rd_en</span> <span class="o">&lt;=</span> <span class="mb">1'b1</span><span class="p">;</span>
+                    <span class="n">state</span> <span class="o">&lt;=</span> <span class="n">DECODE</span><span class="p">;</span>
+                <span class="k">end</span>
+
+                <span class="nl">DECODE:</span> <span class="k">begin</span>
+                    <span class="n">ir</span> <span class="o">&lt;=</span> <span class="n">mem_rd_data</span><span class="p">;</span>
+                    <span class="n">mem_rd_en</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span>
+                    <span class="n">pc</span> <span class="o">&lt;=</span> <span class="n">pc</span> <span class="o">+</span> <span class="mb">1'b1</span><span class="p">;</span>
+                    <span class="n">opcode</span> <span class="o">&lt;=</span> <span class="n">mem_rd_data</span><span class="p">[</span><span class="mi">7</span><span class="o">:</span><span class="mi">4</span><span class="p">];</span>
+                    <span class="n">operand</span> <span class="o">&lt;=</span> <span class="n">mem_rd_data</span><span class="p">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="p">];</span>
+                    <span class="n">state</span> <span class="o">&lt;=</span> <span class="n">EXEC</span><span class="p">;</span>
+                <span class="k">end</span>
+
+                <span class="nl">EXEC:</span> <span class="k">begin</span>
+                    <span class="n">push</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span> <span class="n">pop</span> <span class="o">&lt;=</span> <span class="mb">1'b0</span><span class="p">;</span>
+                    <span class="k">case</span> <span class="p">(</span><span class="n">opcode</span><span class="p">)</span>
+                        <span class="nl">OP_LDI:</span> <span class="n">acc</span> <span class="o">&lt;=</span> <span class="o">{</span><span class="mb">4'b0</span><span class="p">,</span> <span class="n">operand</span><span class="o">}</span><span class="p">;</span>
+                        <span class="nl">OP_ADD:</span> <span class="k">begin</span> <span class="n">alu_op</span> <span class="o">&lt;=</span> <span class="mb">3'b000</span><span class="p">;</span> <span class="n">acc</span> <span class="o">&lt;=</span> <span class="n">alu_result</span><span class="p">;</span> <span class="k">end</span>
+                        <span class="nl">OP_SUB:</span> <span class="k">begin</span> <span class="n">alu_op</span> <span class="o">&lt;=</span> <span class="mb">3'b001</span><span class="p">;</span> <span class="n">acc</span> <span class="o">&lt;=</span> <span class="n">alu_result</span><span class="p">;</span> <span class="k">end</span>
+                        <span class="nl">OP_CMP:</span> <span class="k">begin</span> <span class="n">alu_op</span> <span class="o">&lt;=</span> <span class="mb">3'b101</span><span class="p">;</span> <span class="k">end</span>  <span class="c1">// 只设标志</span>
+                        <span class="nl">OP_JZ:</span>  <span class="k">if</span> <span class="p">(</span><span class="n">alu_zero</span><span class="p">)</span> <span class="n">pc</span> <span class="o">&lt;=</span> <span class="o">{</span><span class="mb">4'b0</span><span class="p">,</span> <span class="n">operand</span><span class="o">}</span><span class="p">;</span>
+                        <span class="nl">OP_JLT:</span> <span class="k">if</span> <span class="p">(</span><span class="n">alu_lt</span><span class="p">)</span>   <span class="n">pc</span> <span class="o">&lt;=</span> <span class="o">{</span><span class="mb">4'b0</span><span class="p">,</span> <span class="n">operand</span><span class="o">}</span><span class="p">;</span>
+                        <span class="nl">OP_PUSH:</span> <span class="n">push</span> <span class="o">&lt;=</span> <span class="mb">1'b1</span><span class="p">;</span>
+                        <span class="nl">OP_POP:</span>  <span class="k">begin</span> <span class="n">pop</span> <span class="o">&lt;=</span> <span class="mb">1'b1</span><span class="p">;</span> <span class="n">acc</span> <span class="o">&lt;=</span> <span class="n">stack_data_out</span><span class="p">;</span> <span class="k">end</span>
+                        <span class="nl">OP_CALL:</span> <span class="k">begin</span>
+                            <span class="n">push</span> <span class="o">&lt;=</span> <span class="mb">1'b1</span><span class="p">;</span>           <span class="c1">// 压返回地址</span>
+                            <span class="n">pc</span> <span class="o">&lt;=</span> <span class="o">{</span><span class="mb">4'b0</span><span class="p">,</span> <span class="n">operand</span><span class="o">}</span><span class="p">;</span>  <span class="c1">// 跳转到子程序</span>
+                        <span class="k">end</span>
+                        <span class="nl">OP_RET:</span> <span class="k">begin</span>
+                            <span class="n">pop</span> <span class="o">&lt;=</span> <span class="mb">1'b1</span><span class="p">;</span>
+                            <span class="n">pc</span> <span class="o">&lt;=</span> <span class="n">stack_data_out</span><span class="p">;</span>   <span class="c1">// 弹返回地址到PC</span>
+                        <span class="k">end</span>
+                    <span class="k">endcase</span>
+                    <span class="n">state</span> <span class="o">&lt;=</span> <span class="n">FETCH</span><span class="p">;</span>
+                <span class="k">end</span>
+            <span class="k">endcase</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">assign</span> <span class="n">pc_out</span> <span class="o">=</span> <span class="n">pc</span><span class="p">;</span>
+    <span class="k">assign</span> <span class="n">acc_out</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+    <span class="k">assign</span> <span class="n">sp_out</span> <span class="o">=</span> <span class="n">sp</span><span class="p">;</span>
+
+<span class="k">endmodule</span>
+</code></pre></div></div>
+
+<p>此CPU整合了比较器（通过CMP指令和条件跳转指令）以及栈（通过PUSH、POP、CALL、RET指令），具备了子程序调用和条件分支的完整能力。这些功能的加入使CPU从单纯的计算部件升格为可运行结构化程序的完整计算系统。</p>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E7%A1%AC%E4%BB%B6/2026/04/18/totlehardware.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

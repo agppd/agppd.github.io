@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>纯GNU Bash环境安装Linux发行版 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="纯GNU Bash环境安装Linux发行版" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="此指南只适用于Linux" />
+<meta property="og:description" content="此指南只适用于Linux" />
+<link rel="canonical" href="http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/04/11/bashinstalllinux.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/04/11/bashinstalllinux.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-11T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="纯GNU Bash环境安装Linux发行版" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-04-11T00:00:00+08:00","datePublished":"2026-04-11T00:00:00+08:00","description":"此指南只适用于Linux","headline":"纯GNU Bash环境安装Linux发行版","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/04/11/bashinstalllinux.html"},"url":"http://localhost:4000/%E6%8A%80%E6%9C%AF/2026/04/11/bashinstalllinux.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">纯GNU Bash环境安装Linux发行版</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-04-11T00:00:00+08:00" itemprop="datePublished">Apr 11, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#技术">技术</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2><center><font color="red"> 此指南只适用于Linux </font></center></h2>
+
+<h4><center><font color="red"> 新手建议直接按照ISO的引导去安装 </font></center></h4>
+
+<h2 id="准备工作">准备工作</h2>
+
+<p>你需要准备以下环境：</p>
+
+<ul>
+  <li><strong>一个可用的Linux环境</strong>（例如Live CD/USB启动后的终端）。本文假设你已经进入了这样一个环境，并且打开了一个 <code class="language-plaintext highlighter-rouge">bash</code>。</li>
+  <li><strong>目标磁盘</strong>（例如 <code class="language-plaintext highlighter-rouge">/dev/sda</code>、<code class="language-plaintext highlighter-rouge">/dev/nvme0n1</code>）。我们将在这块磁盘上安装新系统。</li>
+  <li><strong>Linux发行版的映像文件</strong>（比如 <code class="language-plaintext highlighter-rouge">ubuntu-22.04.iso</code>、<code class="language-plaintext highlighter-rouge">archlinux-2025.01.01-x86_64.iso</code>或任何你喜欢的发行版）。假设该文件位于 <code class="language-plaintext highlighter-rouge">/path/to/distro.iso</code>。</li>
+</ul>
+
+<blockquote>
+  <p>本文假定映像文件的内部包含一个<strong>可复制的根文件系统</strong>（例如Live系统中的 <code class="language-plaintext highlighter-rouge">squashfs</code>镜像，或者是一个直接的 <code class="language-plaintext highlighter-rouge">rootfs.tar</code>归档）。不同发行版的映像结构略有差异，但核心思路一致。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="第一步分区目标磁盘">第一步：分区目标磁盘</h2>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">fdisk</code>（或 <code class="language-plaintext highlighter-rouge">parted</code>）对磁盘进行分区。这里我们创建一个BIOS/MBR模式的简单分区方案（UEFI模式会在步骤5补充说明）。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 以 /dev/sda 为例，请根据实际情况修改</span>
+<span class="nb">sudo </span>fdisk /dev/sda
+</code></pre></div></div>
+
+<p>在 <code class="language-plaintext highlighter-rouge">fdisk</code>交互界面中：</p>
+
+<ul>
+  <li>输入 <code class="language-plaintext highlighter-rouge">g</code> 创建新的GPT分区表（现代系统推荐），或 <code class="language-plaintext highlighter-rouge">o</code> 创建DOS分区表。</li>
+  <li>输入 <code class="language-plaintext highlighter-rouge">n</code> 新建分区，默认主分区，起始扇区默认，结束扇区可以输入 <code class="language-plaintext highlighter-rouge">+20G</code>（根分区大小）。</li>
+  <li>可选：再创建一个 <code class="language-plaintext highlighter-rouge">+2G</code> 的分区作为交换分区（类型改为 <code class="language-plaintext highlighter-rouge">82</code>）。</li>
+  <li>输入 <code class="language-plaintext highlighter-rouge">w</code> 写入并退出。</li>
+</ul>
+
+<blockquote>
+  <p>如果使用UEFI启动，还需要创建一个EFI系统分区（类型 <code class="language-plaintext highlighter-rouge">EFI System</code>，大小建议500MB，格式化为FAT32）。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="第二步格式化分区并挂载">第二步：格式化分区并挂载</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 格式化根分区（假设为 /dev/sda1）</span>
+<span class="nb">sudo </span>mkfs.ext4 /dev/sda1
+
+<span class="c"># 如果有交换分区（假设为 /dev/sda2）</span>
+<span class="nb">sudo </span>mkswap /dev/sda2
+<span class="nb">sudo </span>swapon /dev/sda2
+
+<span class="c"># 挂载根分区到 /mnt</span>
+<span class="nb">sudo </span>mount /dev/sda1 /mnt
+
+<span class="c"># 如果是UEFI系统，还需要：</span>
+<span class="c"># sudo mkfs.fat -F32 /dev/sdaX</span>
+<span class="c"># sudo mount /dev/sdaX /mnt/boot/efi</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="第三步从映像中提取根文件系统">第三步：从映像中提取根文件系统</h2>
+
+<p>这一步取决于你手中的映像格式。下面列出最常见的两种情况。</p>
+
+<h3 id="情况a映像中包含一个-squashfs文件如ubuntufedora-live">情况A：映像中包含一个 <code class="language-plaintext highlighter-rouge">.squashfs</code>文件（如Ubuntu、Fedora Live）</h3>
+
+<p>大多数Live ISO会在 <code class="language-plaintext highlighter-rouge">/casper/</code>或 <code class="language-plaintext highlighter-rouge">/LiveOS/</code>目录下提供一个压缩的根文件系统镜像（例如 <code class="language-plaintext highlighter-rouge">filesystem.squashfs</code>）。我们需要挂载ISO，找到它，然后解压到目标分区。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 创建挂载点并挂载ISO</span>
+<span class="nb">sudo mkdir</span> /mnt/iso
+<span class="nb">sudo </span>mount <span class="nt">-o</span> loop /path/to/distro.iso /mnt/iso
+
+<span class="c"># 查找 squashfs 文件（常见位置）</span>
+find /mnt/iso <span class="nt">-name</span> <span class="s2">"*.squashfs"</span>
+
+<span class="c"># 假设找到 /mnt/iso/casper/ubuntu.squashfs</span>
+<span class="nb">sudo </span>unsquashfs <span class="nt">-f</span> <span class="nt">-d</span> /mnt /mnt/iso/casper/ubuntu.squashfs
+</code></pre></div></div>
+
+<h3 id="情况b映像是一个-rootfstar或-rootfstarxz如alpinearch-linux基础镜像">情况B：映像是一个 <code class="language-plaintext highlighter-rouge">rootfs.tar</code>或 <code class="language-plaintext highlighter-rouge">rootfs.tar.xz</code>（如Alpine、Arch Linux基础镜像）</h3>
+
+<p>这类映像可以直接解压到目标分区：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo tar</span> <span class="nt">-xpf</span> /path/to/rootfs.tar.xz <span class="nt">-C</span> /mnt
+</code></pre></div></div>
+
+<h3 id="情况c映像是一个可挂载的原始文件系统镜像img或-raw">情况C：映像是一个可挂载的原始文件系统镜像（<code class="language-plaintext highlighter-rouge">.img</code>或 <code class="language-plaintext highlighter-rouge">.raw</code>）</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 通过循环设备挂载镜像</span>
+<span class="nb">sudo </span>losetup <span class="nt">-f</span> <span class="nt">-P</span> /path/to/image.img   <span class="c"># -P 加载分区</span>
+<span class="c"># 查看分配的设备名（如 /dev/loop0）</span>
+<span class="nb">sudo </span>lsblk
+<span class="c"># 挂载镜像中的根分区（假设为loop0p1）</span>
+<span class="nb">sudo </span>mount /dev/loop0p1 /mnt
+<span class="c"># 然后复制文件</span>
+<span class="nb">sudo cp</span> <span class="nt">-a</span> /mnt/<span class="k">*</span> /target      <span class="c"># 注意目标分区要先挂载到 /target</span>
+</code></pre></div></div>
+
+<p><strong>实际操作中</strong>，最简单的方式是：<strong>先挂载ISO，然后将其中的根文件系统（可能是 <code class="language-plaintext highlighter-rouge">squashfs</code>或一个完整的目录）复制到 <code class="language-plaintext highlighter-rouge">/mnt</code></strong>。如果你不确定，可以查看ISO内部的目录结构：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-l</span> /mnt/iso
+<span class="c"># 如果看到 bin, etc, home, usr 等目录，说明ISO本身就是可复制的根系统</span>
+<span class="c"># 那么直接复制即可：</span>
+<span class="nb">sudo cp</span> <span class="nt">-a</span> /mnt/iso/<span class="k">*</span> /mnt/
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="第四步进入新系统chroot">第四步：进入新系统（chroot）</h2>
+
+<p>复制完文件后，我们需要进入新系统的环境来完成配置。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 挂载必要的虚拟文件系统</span>
+<span class="nb">sudo </span>mount <span class="nt">--bind</span> /dev /mnt/dev
+<span class="nb">sudo </span>mount <span class="nt">--bind</span> /proc /mnt/proc
+<span class="nb">sudo </span>mount <span class="nt">--bind</span> /sys /mnt/sys
+
+<span class="c"># 如果有UEFI，还要挂载efivarfs（可选）</span>
+<span class="c"># sudo mount --bind /sys/firmware/efi/efivars /mnt/sys/firmware/efi/efivars</span>
+
+<span class="c"># chroot 进入新系统</span>
+<span class="nb">sudo chroot</span> /mnt /bin/bash
+
+<span class="c"># 设置一个可用的环境变量</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/bin:/bin:/usr/sbin:/sbin
+</code></pre></div></div>
+
+<p>现在你已经在新系统的“内部”了。</p>
+
+<hr />
+
+<h2 id="第五步基础系统配置">第五步：基础系统配置</h2>
+
+<h3 id="1-设置root密码">1. 设置root密码</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>passwd
+</code></pre></div></div>
+
+<h3 id="2-创建-etcfstab">2. 创建 <code class="language-plaintext highlighter-rouge">/etc/fstab</code></h3>
+
+<p>根据你的分区情况，手动编写挂载配置。使用 <code class="language-plaintext highlighter-rouge">blkid</code>获取分区的UUID（推荐使用UUID代替设备名）。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>blkid | <span class="nb">grep</span> /dev/sda
+</code></pre></div></div>
+
+<p>编辑 <code class="language-plaintext highlighter-rouge">/etc/fstab</code>：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> /etc/fstab <span class="o">&lt;&lt;</span> <span class="sh">"</span><span class="no">EOF</span><span class="sh">"
+# &lt;设备UUID&gt;  &lt;挂载点&gt;  &lt;文件系统&gt;  &lt;选项&gt;       &lt;dump&gt; &lt;pass&gt;
+UUID=xxx-xxx-xxx /         ext4    defaults,noatime 0 1
+UUID=yyy-yyy-yyy swap      swap    defaults         0 0
+# 如果是UEFI，还要添加EFI分区
+UUID=zzz-zzz-zzz /boot/efi vfat    defaults         0 2
+</span><span class="no">EOF
+</span></code></pre></div></div>
+
+<h3 id="3-设置主机名">3. 设置主机名</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"mynewlinux"</span> <span class="o">&gt;</span> /etc/hostname
+</code></pre></div></div>
+
+<h3 id="4-配置网络以静态ip或dhcp为例">4. 配置网络（以静态IP或DHCP为例）</h3>
+
+<p>对于大多数使用 <code class="language-plaintext highlighter-rouge">systemd-networkd</code>或 <code class="language-plaintext highlighter-rouge">NetworkManager</code>的发行版，可以临时启用DHCP：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 如果使用 systemd-networkd</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/systemd/network/20-dhcp.network <span class="o">&lt;&lt;</span> <span class="sh">"</span><span class="no">EOF</span><span class="sh">"
+[Match]
+Name=en*
+
+[Network]
+DHCP=yes
+</span><span class="no">EOF
+
+</span>systemctl <span class="nb">enable </span>systemd-networkd
+</code></pre></div></div>
+
+<p>或者直接编写 <code class="language-plaintext highlighter-rouge">/etc/network/interfaces</code>（Debian风格）。按你的发行版习惯来。</p>
+
+<h3 id="5-配置时区和键盘映射">5. 配置时区和键盘映射</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 例如设置为上海时区</span>
+<span class="nb">ln</span> <span class="nt">-sf</span> /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+<span class="c"># 键盘映射（可选）</span>
+<span class="nb">echo</span> <span class="s2">"KEYMAP=us"</span> <span class="o">&gt;</span> /etc/vconsole.conf
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="第六步安装引导程序grub">第六步：安装引导程序（GRUB）</h2>
+
+<p>这是最关键的一步。根据启动模式（BIOS或UEFI）选择命令。</p>
+
+<h3 id="对于bioslegacy模式">对于BIOS/Legacy模式：</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 在chroot中执行</span>
+grub-install /dev/sda           <span class="c"># 注意是磁盘，不是分区</span>
+grub-mkconfig <span class="nt">-o</span> /boot/grub/grub.cfg
+</code></pre></div></div>
+
+<h3 id="对于uefi模式">对于UEFI模式：</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 确保 /boot/efi 已经挂载</span>
+grub-install <span class="nt">--target</span><span class="o">=</span>x86_64-efi <span class="nt">--efi-directory</span><span class="o">=</span>/boot/efi <span class="nt">--bootloader-id</span><span class="o">=</span>GRUB
+grub-mkconfig <span class="nt">-o</span> /boot/grub/grub.cfg
+</code></pre></div></div>
+
+<blockquote>
+  <p>如果提示找不到 <code class="language-plaintext highlighter-rouge">grub-install</code>，说明你复制的新系统中没有安装GRUB包。你需要回到原始的Live环境，用 <code class="language-plaintext highlighter-rouge">chroot</code>后运行包管理器安装（例如 <code class="language-plaintext highlighter-rouge">apt install grub-pc</code>或 <code class="language-plaintext highlighter-rouge">pacman -S grub</code>）。这正是纯手动安装的“痛点”——你必须确保基础系统至少包含了 <code class="language-plaintext highlighter-rouge">grub</code>和 <code class="language-plaintext highlighter-rouge">linux</code>内核。</p>
+</blockquote>
+
+<h3 id="手动生成内核引导项如果-grub-mkconfig失败">手动生成内核引导项（如果 <code class="language-plaintext highlighter-rouge">grub-mkconfig</code>失败）</h3>
+
+<p>有时 <code class="language-plaintext highlighter-rouge">grub-mkconfig</code>无法自动检测内核，你可以手动写一个简单的 <code class="language-plaintext highlighter-rouge">grub.cfg</code>：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> /boot/grub/grub.cfg <span class="o">&lt;&lt;</span> <span class="sh">"</span><span class="no">EOF</span><span class="sh">"
+set default=0
+set timeout=5
+
+menuentry "My Linux" {
+    linux /boot/vmlinuz-linux root=/dev/sda1 rw
+    initrd /boot/initramfs-linux.img
+}
+</span><span class="no">EOF
+</span></code></pre></div></div>
+
+<p>（请根据实际的内核文件名和分区号修改）</p>
+
+<hr />
+
+<h2 id="第七步收尾与重启">第七步：收尾与重启</h2>
+
+<p>退出chroot并卸载所有挂载点：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">exit</span>   <span class="c"># 退出 chroot</span>
+<span class="nb">sudo </span>umount <span class="nt">-R</span> /mnt
+<span class="nb">sudo </span>swapoff /dev/sda2   <span class="c"># 如果有交换分区</span>
+</code></pre></div></div>
+
+<p>移除Live介质，然后重启：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>reboot
+</code></pre></div></div>
+
+<p>如果一切顺利，你会看到新系统的引导菜单，并顺利进入登录提示符（tty）。</p>
+
+<h2 id="常见问题与排错">常见问题与排错</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>问题</th>
+      <th>可能的原因</th>
+      <th>解决方法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>启动后卡在 <code class="language-plaintext highlighter-rouge">grub rescue&gt;</code></td>
+      <td>GRUB未正确安装或找不到分区</td>
+      <td>用Live环境重新chroot，执行 <code class="language-plaintext highlighter-rouge">grub-install</code> 并检查 <code class="language-plaintext highlighter-rouge">/boot</code> 是否有内核文件</td>
+    </tr>
+    <tr>
+      <td>内核恐慌 (kernel panic)</td>
+      <td><code class="language-plaintext highlighter-rouge">root=</code> 参数指定的设备不对，或缺少initramfs</td>
+      <td>检查fstab和grub.cfg中的UUID/设备名，重新生成initramfs（如 <code class="language-plaintext highlighter-rouge">mkinitcpio -P</code> 或 <code class="language-plaintext highlighter-rouge">update-initramfs -u</code>）</td>
+    </tr>
+    <tr>
+      <td>网络无法使用</td>
+      <td>未配置网络服务或缺少驱动</td>
+      <td>在chroot中安装对应网卡驱动，启用DHCP客户端</td>
+    </tr>
+    <tr>
+      <td>映像中没有可复制的根目录</td>
+      <td>该ISO是安装器而非Live系统</td>
+      <td>换用官方提供的“Live镜像”或“基础系统镜像”。例如Debian有 <code class="language-plaintext highlighter-rouge">debian-live-xx.iso</code>，Arch有 <code class="language-plaintext highlighter-rouge">archlinux-bootstrap</code></td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E6%8A%80%E6%9C%AF/2026/04/11/bashinstalllinux.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

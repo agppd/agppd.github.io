@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>非递归线段树 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="非递归线段树" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="实际开发的可以跳过本文章，如果你执意要读，请看文末" />
+<meta property="og:description" content="实际开发的可以跳过本文章，如果你执意要读，请看文末" />
+<link rel="canonical" href="http://localhost:4000/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B7%A5%E7%A8%8B/2026/07/17/forsegmentree.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B7%A5%E7%A8%8B/2026/07/17/forsegmentree.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-07-17T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="非递归线段树" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-07-17T00:00:00+08:00","datePublished":"2026-07-17T00:00:00+08:00","description":"实际开发的可以跳过本文章，如果你执意要读，请看文末","headline":"非递归线段树","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B7%A5%E7%A8%8B/2026/07/17/forsegmentree.html"},"url":"http://localhost:4000/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B7%A5%E7%A8%8B/2026/07/17/forsegmentree.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">非递归线段树</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-07-17T00:00:00+08:00" itemprop="datePublished">Jul 17, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#数据结构">数据结构</a>
+          , 
+        
+          <a href="/categories/#工程">工程</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <h4><center><font color="red"> 实际开发的可以跳过本文章，如果你执意要读，请看文末 </font></center></h4>
+
+<h2 id="写在前面">写在前面</h2>
+
+<p>实际上，非递归版本就是模拟了<strong>栈</strong></p>
+
+<h2 id="一定义">一、定义</h2>
+
+<p>我们定义原始数组为 $A[0..n-1]$。定义一个结合律运算 $\oplus$（例如求和 $\sum$、最大值 $\max$、最小值 $\min$），并定义单位元 $I$（求和为 $0$，最大值为 $-\infty$）。</p>
+
+<p>在非递归实现中，我们强制将原数组补全至一颗<strong>完美二叉树</strong>。令 $N$ 为最小的 $2$ 的幂，且 $N \ge n$。</p>
+
+<blockquote>
+  <p>声明数组 $T[1..2N-1]$。树根为 $T[1]$，节点 $i$ 的左儿子为 $2i$，右儿子为 $2i+1$。叶子节点位于 $T[N .. N+n-1]$，多余叶子 $T[N+n .. 2N-1]$ 填充为 $I$。</p>
+</blockquote>
+
+<h2 id="二建树">二、建树</h2>
+
+<h3 id="递归版本">递归版本</h3>
+<p>递归采用<strong>分治</strong>：先处理左右子树，再将结果合并（后序遍历）。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Require $A[0..n-1]$，当前节点编号 $p$，区间 $[l, r]$
+\Ensure 填充 $T[p]$ 的值
+\If{$l = r$}
+\State $T[p] \gets A[l]$
+\Return
+\EndIf
+\State $mid \gets \lfloor (l+r)/2 \rfloor$
+\State \textsc{Build}$(2p, l, mid)$
+\State \textsc{Build}$(2p+1, mid+1, r)$
+\State $T[p] \gets T[2p] \oplus T[2p+1]$ \Comment{合并左右子树}
+\end{algorithmic}
+</code></pre>
+
+<h3 id="非递归版本">非递归版本</h3>
+<p>递归的回溯顺序是“先叶子，后根”。非递归把叶子先铺好，直接从最后一个内部节点（$N-1$）倒序遍历到 $1$，<strong>恰好模拟了递归栈的回溯过程</strong>。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Require $A[0..n-1]$，运算 $\oplus$，单位元 $I$
+\Ensure 数组 $T$ 与补全大小 $N$
+\State $N \gets 1$
+\While{$N &lt; n$}
+\State $N \gets N \times 2$ \Comment{找到最小的 $2$ 的幂}
+\EndWhile
+\State 分配数组 $T[1..2N-1]$
+\For{$i \gets 0$ \To $n-1$} \Comment{复制原始数据到叶子}
+\State $T[N+i] \gets A[i]$
+\EndFor
+\For{$i \gets n$ \To $N-1$} \Comment{多余叶子填单位元}
+\State $T[N+i] \gets I$
+\EndFor
+\For{$i \gets N-1$ \Downto $1$} \Comment{自底向上合并，逆序是精髓}
+\State $T[i] \gets T[2i] \oplus T[2i+1]$
+\EndFor
+\Return $(T, N)$
+\end{algorithmic}
+</code></pre>
+
+<blockquote>
+  <p>递归中最后执行合并的是编号最大的内部节点（靠近叶子），非递归正好从 $N-1$ 开始倒序，保证任意节点 $i$ 的儿子 $2i, 2i+1$ 都大于 $i$，因此在访问 $i$ 时，儿子们已经更新完毕。</p>
+</blockquote>
+
+<h2 id="三单点更新">三、单点更新</h2>
+
+<h3 id="递归版本-1">递归版本</h3>
+<p>递归找到叶子，修改后沿原路返回并合并。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Require 当前节点区间 $[l, r]$，目标位置 $pos$，新值 $val$
+\If{$l = r$}
+\State $T[p] \gets val$
+\Return
+\EndIf
+\State $mid \gets \lfloor (l+r)/2 \rfloor$
+\If{$pos \le mid$}
+\State \textsc{Update}$(2p, l, mid, pos, val)$
+\Else
+\State \textsc{Update}$(2p+1, mid+1, r, pos, val)$
+\EndIf
+\State $T[p] \gets T[2p] \oplus T[2p+1]$ \Comment{回溯合并}
+\end{algorithmic}
+</code></pre>
+
+<h3 id="非递归版本-1">非递归版本</h3>
+<p>非递归不再递归下探，而是<strong>直接跳转到叶子</strong>（下标 $N+pos$），然后一路除以 $2$ 向上爬升，循环体内执行合并。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Require $T, N$，目标位置 $pos$（$0$-based），新值 $val$
+\Ensure 更新后的 $T$
+\State $i \gets N + pos$
+\State $T[i] \gets val$
+\State $i \gets \lfloor i / 2 \rfloor$ \Comment{跳到父节点}
+\While{$i \ge 1$}
+\State $T[i] \gets T[2i] \oplus T[2i+1]$
+\State $i \gets \lfloor i / 2 \rfloor$ \Comment{继续向上}
+\EndWhile
+\end{algorithmic}
+</code></pre>
+
+<blockquote>
+  <p>递归调用栈隐式保存了从根到叶的路径，非递归直接用 $i = \lfloor i/2 \rfloor$ 显式地“原路返回”。</p>
+</blockquote>
+
+<h2 id="四区间查询">四、区间查询</h2>
+
+<h3 id="递归版本-2">递归版本</h3>
+<p>递归判断当前节点区间是否被查询区间 $[L, R]$ 完全覆盖。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Require 当前区间 $[l, r]$，目标区间 $[L, R]$
+\Ensure 区间合并结果 $res$
+\If{$L \le l$ \AND $r \le R$} \Comment{完全包含}
+\Return $T[p]$
+\EndIf
+\State $mid \gets \lfloor (l+r)/2 \rfloor$
+\State $res \gets I$
+\If{$L \le mid$}
+\State $res \gets res \oplus \text{Query}(2p, l, mid, L, R)$
+\EndIf
+\If{$R &gt; mid$}
+\State $res \gets res \oplus \text{Query}(2p+1, mid+1, r, L, R)$
+\EndIf
+\Return $res$
+\end{algorithmic}
+</code></pre>
+
+<h3 id="非递归版本-2">非递归版本</h3>
+<p>将查询闭区间 $[L, R]$ 映射为叶子下标 $l = L+N$，$r = R+N$。我们不再关心节点代表的区间范围，而是利用<strong>下标奇偶性</strong>判断边界节点是左儿子还是右儿子：</p>
+
+<ul>
+  <li>若 $l$ 是右儿子（即 $l \bmod 2 = 1$），则其父节点区间会向左超出查询范围，不能取父节点，只能单独取 $T[l]$，并将 $l$ 右移一位。</li>
+  <li>若 $r$ 是左儿子（即 $r \bmod 2 = 0$），则其父节点区间会向右超出，单独取 $T[r]$，并将 $r$ 左移一位。</li>
+</ul>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Require $T, N$，查询区间 $[L, R]$（$0$-based，闭区间）
+\Ensure 区间合并结果 $res$
+\State $l \gets L + N$
+\State $r \gets R + N$
+\State $res \gets I$
+\While{$l \le r$}
+\If{$l \bmod 2 = 1$} \Comment{$l$ 是右儿子，无法被父亲包含}
+\State $res \gets res \oplus T[l]$
+\State $l \gets l + 1$ \Comment{向右收缩}
+\EndIf
+\If{$r \bmod 2 = 0$} \Comment{$r$ 是左儿子，无法被父亲包含}
+\State $res \gets res \oplus T[r]$
+\State $r \gets r - 1$ \Comment{向左收缩}
+\EndIf
+\State $l \gets \lfloor l / 2 \rfloor$ \Comment{上升到父区间}
+\State $r \gets \lfloor r / 2 \rfloor$
+\EndWhile
+\Return $res$
+\end{algorithmic}
+</code></pre>
+
+<blockquote>
+  <ul>
+    <li>递归中 $\text{Query}$ 命中“完全包含”时直接返回，非递归中当 $l$ 是右儿子（或 $r$ 是左儿子）时，<strong>这两个节点恰好就是一个完全在目标区间内的“整块子树”</strong>，其效果完全等价于递归中返回的那个 $T[p]$。</li>
+    <li>递归通过函数参数 $[l, r]$ 隐式爬升，非递归通过 $l \gets \lfloor l/2 \rfloor, r \gets \lfloor r/2 \rfloor$ 显式爬升。</li>
+  </ul>
+</blockquote>
+
+<h2 id="五关于区间修改">五、关于区间修改</h2>
+
+<h3 id="递归版本的优势">递归版本的优势</h3>
+<p>递归是<strong>自顶向下</strong>，因此可以在进入子节点前轻松地将父节点的懒标记下传（<strong>PushDown</strong>），修改后再自底向上合并（<strong>PushUp</strong>）。这是递归线段树最能发挥优势的地方。</p>
+
+<h3 id="非递归版本的问题">非递归版本的问题</h3>
+<p>非递归是<strong>自底向上</strong>的。当我们定位到需要修改的区间节点时，我们缺乏从根节点到该节点路径上的上下文，<strong>无法执行向下的标记传递</strong>。若强行实现，必须：</p>
+<ol>
+  <li>计算出从根到目标叶子的路径序列。</li>
+  <li>从根开始向下依次 <strong>PushDown</strong>。</li>
+  <li>再进行自底向上的修改和 <strong>PushUp</strong>。</li>
+</ol>
+
+<p>这会导致代码复杂度大幅增加，违背了非递归简洁的初衷。因此，若涉及区间修改与查询，选择递归版本；若仅为单点修改与区间查询，选择非递归版本。</p>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B7%A5%E7%A8%8B/2026/07/17/forsegmentree.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

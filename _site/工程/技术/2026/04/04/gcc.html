@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>GCC编译器获取 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="GCC编译器获取" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文解释内容由DeepSeek生成" />
+<meta property="og:description" content="本文解释内容由DeepSeek生成" />
+<link rel="canonical" href="http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/04/04/gcc.html" />
+<meta property="og:url" content="http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/04/04/gcc.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-04T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="GCC编译器获取" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-04-04T00:00:00+08:00","datePublished":"2026-04-04T00:00:00+08:00","description":"本文解释内容由DeepSeek生成","headline":"GCC编译器获取","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/04/04/gcc.html"},"url":"http://localhost:4000/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/04/04/gcc.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">GCC编译器获取</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-04-04T00:00:00+08:00" itemprop="datePublished">Apr 4, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#工程">工程</a>
+          , 
+        
+          <a href="/categories/#技术">技术</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <p>本文解释内容由DeepSeek生成</p>
+
+<h2 id="第-1-步安装基础编译工具">第 1 步：安装基础编译工具</h2>
+
+<p><strong>命令</strong>（以 Ubuntu 为例）：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> build-essential libmpc-dev libmpfr-dev libgmp-dev flex bison texinfo
+</code></pre></div></div>
+
+<p><strong>解释</strong>：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">build-essential</code>：这是 Ubuntu 中的一个元包，它会自动安装 <code class="language-plaintext highlighter-rouge">gcc</code>、<code class="language-plaintext highlighter-rouge">g++</code>、<code class="language-plaintext highlighter-rouge">make</code> 等最基本的编译工具。由于初始系统没有任何编译器，我们需要先用系统自带的软件包管理器安装一套可用的“种子编译器”。这套编译器虽然版本可能较旧，但足以用来编译新版本的 GCC。</li>
+  <li><code class="language-plaintext highlighter-rouge">libmpc-dev</code>、<code class="language-plaintext highlighter-rouge">libmpfr-dev</code>、<code class="language-plaintext highlighter-rouge">libgmp-dev</code>：分别是 MPC、MPFR、GMP 三个数学库的开发文件。GCC 在进行高精度算术运算（如编译时优化、浮点常量折叠）时需要它们。虽然 GCC 源码包中带有这些库的自动下载脚本，但提前通过包管理器安装可以避免后续手动编译这些库，节省时间。</li>
+  <li><code class="language-plaintext highlighter-rouge">flex</code>、<code class="language-plaintext highlighter-rouge">bison</code>：词法分析器和语法分析器生成工具。GCC 的语法解析部分由它们生成代码。</li>
+  <li><code class="language-plaintext highlighter-rouge">texinfo</code>：生成 GCC 文档（info 格式）所需的工具。如果不需要文档，也可以跳过，但安装它可避免配置阶段警告。</li>
+</ul>
+
+<p><strong>注意</strong>：对于 CentOS/RHEL，<code class="language-plaintext highlighter-rouge">Development Tools</code> 组等价于 <code class="language-plaintext highlighter-rouge">build-essential</code>，而 <code class="language-plaintext highlighter-rouge">gmp-devel</code> 等则是对应的开发包。</p>
+
+<h2 id="第-2-步下载-gcc-源码并准备依赖">第 2 步：下载 GCC 源码并准备依赖</h2>
+
+<p><strong>命令</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://ftp.gnu.org/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz
+<span class="nb">tar</span> <span class="nt">-xf</span> gcc-14.2.0.tar.xz
+<span class="nb">cd </span>gcc-14.2.0
+./contrib/download_prerequisites
+<span class="nb">cd</span> ..
+</code></pre></div></div>
+
+<p><strong>解释</strong>：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">wget</code>：从 GNU 官方镜像下载 GCC 源代码压缩包。选择版本 14.2.0 作为示例，你可以替换为其他版本号。</li>
+  <li><code class="language-plaintext highlighter-rouge">tar -xf</code>：解压源码包（<code class="language-plaintext highlighter-rouge">xz</code> 格式需要 <code class="language-plaintext highlighter-rouge">tar</code> 自动识别）。</li>
+  <li><code class="language-plaintext highlighter-rouge">./contrib/download_prerequisites</code>：这是 GCC 源码自带的便利脚本。它会自动下载 GMP、MPFR、MPC 等依赖库的源码，并解压到 GCC 源码目录下的对应子目录中。这样做的好处是：在配置 GCC 时，构建系统会自动链接这些本地副本，无需手动安装到系统目录，也避免了系统库版本不匹配的问题。该脚本还会验证下载文件的完整性。</li>
+  <li>最后 <code class="language-plaintext highlighter-rouge">cd ..</code> 回到上级目录，为下一步的“外部构建”做准备。</li>
+</ul>
+
+<h2 id="第-3-步配置构建">第 3 步：配置构建</h2>
+
+<p><strong>命令</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build-gcc-14.2.0 <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build-gcc-14.2.0
+../gcc-14.2.0/configure <span class="se">\</span>
+    <span class="nt">--prefix</span><span class="o">=</span>/opt/gcc-14.2.0 <span class="se">\</span>
+    <span class="nt">--enable-languages</span><span class="o">=</span>c,c++ <span class="se">\</span>
+    <span class="nt">--disable-multilib</span>
+</code></pre></div></div>
+
+<p><strong>解释</strong>：</p>
+<ul>
+  <li><strong>外部构建（out‑of‑source build）</strong>：新建一个 <code class="language-plaintext highlighter-rouge">build-gcc-14.2.0</code> 目录并在其中运行 <code class="language-plaintext highlighter-rouge">configure</code>。这是 GCC 官方强烈推荐的做法。它将所有编译生成的临时文件（<code class="language-plaintext highlighter-rouge">.o</code> 文件、中间产物等）与源代码目录分开，便于清理、维护以及同时构建多个配置版本。</li>
+  <li><code class="language-plaintext highlighter-rouge">../gcc-14.2.0/configure</code>：执行源码目录中的配置脚本，相对路径 <code class="language-plaintext highlighter-rouge">..</code> 指向上一级。</li>
+  <li><code class="language-plaintext highlighter-rouge">--prefix=/opt/gcc-14.2.0</code>：指定安装目录。这里选择 <code class="language-plaintext highlighter-rouge">/opt/gcc-14.2.0</code>，而不是默认的 <code class="language-plaintext highlighter-rouge">/usr/local</code>。主要原因是便于多版本共存：每个版本的 GCC 安装在独立的目录下，之后可以通过 <code class="language-plaintext highlighter-rouge">update-alternatives</code> 或环境变量轻松切换。</li>
+  <li><code class="language-plaintext highlighter-rouge">--enable-languages=c,c++</code>：只构建 C 和 C++ 语言前端。你可以根据需要添加 <code class="language-plaintext highlighter-rouge">fortran</code>、<code class="language-plaintext highlighter-rouge">objc</code>、<code class="language-plaintext highlighter-rouge">go</code> 等。保留不需要的语言前端可以减少编译时间和最终安装体积。</li>
+  <li><code class="language-plaintext highlighter-rouge">--disable-multilib</code>：禁用多库支持。默认情况下 GCC 会同时生成 32 位和 64 位版本的库（如果目标平台支持）。禁用后只生成与宿主机相同的位数（通常是 64 位），可以显著缩短构建时间并减少磁盘占用。如果你的应用需要编译 32 位程序，则不应使用此选项。</li>
+</ul>
+
+<p><strong>其他常用配置选项</strong>：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--enable-checking=release</code>：在发布版级别进行内部一致性检查。默认就是 <code class="language-plaintext highlighter-rouge">release</code>，通常无需显式指定。若调试需要，可改为 <code class="language-plaintext highlighter-rouge">--enable-checking=yes</code> 或 <code class="language-plaintext highlighter-rouge">--enable-checking=assert</code>。</li>
+  <li><code class="language-plaintext highlighter-rouge">--disable-bootstrap</code>：禁用三阶段自举。默认启用自举，它会用旧编译器编译新编译器，再用新编译器重新编译自身，确保编译结果可靠。禁用可节省时间，但只建议在测试或交叉编译时使用。</li>
+</ul>
+
+<h2 id="第-4-步编译与安装">第 4 步：编译与安装</h2>
+
+<p><strong>命令</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nt">-j</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>
+<span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><strong>解释</strong>：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">make -j$(nproc)</code>：启动编译。<code class="language-plaintext highlighter-rouge">$(nproc)</code> 返回 CPU 核心数，<code class="language-plaintext highlighter-rouge">-j</code> 参数启用并行编译。例如四核 CPU 上 <code class="language-plaintext highlighter-rouge">-j4</code> 或 <code class="language-plaintext highlighter-rouge">-j8</code>（超线程）。并行编译可以大幅缩短总耗时（从 2‑3 小时降到 30‑60 分钟）。注意：如果系统内存较小，并行度过高可能导致内存不足，可适当降低 <code class="language-plaintext highlighter-rouge">-j</code> 值。</li>
+  <li><strong>自举（bootstrap）</strong>：执行 <code class="language-plaintext highlighter-rouge">make</code> 时，默认会进行三阶段自举。具体过程：
+    <ul>
+      <li><strong>Stage 1</strong>：用系统自带的旧 GCC 编译一个新 GCC（功能受限）。</li>
+      <li><strong>Stage 2</strong>：用 Stage 1 的 GCC 再次编译 GCC 源码。</li>
+      <li><strong>Stage 3</strong>：用 Stage 2 的 GCC 再次编译 GCC 源码，并与 Stage 2 的结果进行比较。如果两者一致，说明编译器可信。这个过程保证了最终编译器的正确性和健壮性。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">sudo make install</code>：将编译好的二进制文件、库文件、头文件等复制到 <code class="language-plaintext highlighter-rouge">--prefix</code> 指定的 <code class="language-plaintext highlighter-rouge">/opt/gcc-14.2.0</code> 目录下。需要 <code class="language-plaintext highlighter-rouge">sudo</code> 是因为 <code class="language-plaintext highlighter-rouge">/opt</code> 通常需要 root 权限写入。</li>
+</ul>
+
+<p><strong>验证安装</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/gcc-14.2.0/bin/gcc <span class="nt">--version</span>
+</code></pre></div></div>
+<p>应显示新安装的 GCC 版本信息。</p>
+
+<h2 id="第-5-步多版本管理">第 5 步：多版本管理</h2>
+
+<h3 id="方法一update-alternativesdebianubuntu">方法一：update-alternatives（Debian/Ubuntu）</h3>
+
+<p><strong>注册命令</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>update-alternatives <span class="nt">--install</span> /usr/bin/gcc gcc /opt/gcc-14.2.0/bin/gcc 140 <span class="se">\</span>
+    <span class="nt">--slave</span> /usr/bin/g++ g++ /opt/gcc-14.2.0/bin/g++
+</code></pre></div></div>
+
+<p><strong>解释</strong>：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">update-alternatives</code> 是 Debian 系系统管理符号链接组的标准工具。它维护一个“替代项系统”，可以将一个通用命令名（如 <code class="language-plaintext highlighter-rouge">/usr/bin/gcc</code>）链接到多个候选版本之一。</li>
+  <li><code class="language-plaintext highlighter-rouge">--install</code> 参数：添加一个候选版本。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">/usr/bin/gcc</code>：主链接的路径（即系统命令的常用位置）。</li>
+      <li><code class="language-plaintext highlighter-rouge">gcc</code>：替代项组的名称（同一组内的候选版本可以相互切换）。</li>
+      <li><code class="language-plaintext highlighter-rouge">/opt/gcc-14.2.0/bin/gcc</code>：该候选版本的实际二进制文件路径。</li>
+      <li><code class="language-plaintext highlighter-rouge">140</code>：优先级数字。当处于“自动模式”时，系统会选择优先级最高的版本。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">--slave</code>：定义从属链接。它确保当切换 <code class="language-plaintext highlighter-rouge">gcc</code> 时，<code class="language-plaintext highlighter-rouge">g++</code> 也同步切换到同一目录下的对应版本，避免编译器版本不一致导致的 ABI 问题。你可以继续添加 <code class="language-plaintext highlighter-rouge">--slave</code> 来关联 <code class="language-plaintext highlighter-rouge">gcov</code>、<code class="language-plaintext highlighter-rouge">gfortran</code> 等。</li>
+</ul>
+
+<p><strong>切换命令</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> gcc
+</code></pre></div></div>
+<p>执行后会列出所有注册的 GCC 版本，输入数字即可切换。切换后，<code class="language-plaintext highlighter-rouge">/usr/bin/gcc</code> 和 <code class="language-plaintext highlighter-rouge">/usr/bin/g++</code> 的符号链接会指向新选择的版本。</p>
+
+<h3 id="方法二alternativescentosrhel">方法二：alternatives（CentOS/RHEL）</h3>
+
+<p>原理与 <code class="language-plaintext highlighter-rouge">update-alternatives</code> 完全相同，只是命令名称不同（<code class="language-plaintext highlighter-rouge">alternatives</code>），用法基本一致。在 RHEL/CentOS 系统中，该工具由 <code class="language-plaintext highlighter-rouge">chkconfig</code> 包提供，通常已预装。</p>
+
+<h3 id="方法三环境变量临时切换">方法三：环境变量（临时切换）</h3>
+
+<p><strong>命令</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CC</span><span class="o">=</span>/opt/gcc-14.2.0/bin/gcc
+<span class="nb">export </span><span class="nv">CXX</span><span class="o">=</span>/opt/gcc-14.2.0/bin/g++
+</code></pre></div></div>
+
+<p><strong>解释</strong>：</p>
+<ul>
+  <li>许多构建系统（如 Autotools、CMake、Makefile）会检查环境变量 <code class="language-plaintext highlighter-rouge">CC</code>（C 编译器）和 <code class="language-plaintext highlighter-rouge">CXX</code>（C++ 编译器）。通过设置这些变量，可以临时覆盖系统默认的编译器。</li>
+  <li>这种方式<strong>不修改系统全局设置</strong>，只影响当前 Shell 会话及其启动的进程。适合单个项目、脚本或持续集成（CI）环境。</li>
+  <li>若希望永久生效，可将 <code class="language-plaintext highlighter-rouge">export</code> 命令写入 <code class="language-plaintext highlighter-rouge">~/.bashrc</code>、<code class="language-plaintext highlighter-rouge">~/.bash_profile</code> 或项目目录下的 <code class="language-plaintext highlighter-rouge">.env</code> 文件。</li>
+</ul>
+
+<p><strong>使用示例</strong>：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 在当前 Shell 中编译项目</span>
+make <span class="nv">CC</span><span class="o">=</span>/opt/gcc-14.2.0/bin/gcc <span class="nv">CXX</span><span class="o">=</span>/opt/gcc-14.2.0/bin/g++
+
+<span class="c"># CMake 项目</span>
+cmake <span class="nt">-DCMAKE_C_COMPILER</span><span class="o">=</span>/opt/gcc-14.2.0/bin/gcc <span class="se">\</span>
+      <span class="nt">-DCMAKE_CXX_COMPILER</span><span class="o">=</span>/opt/gcc-14.2.0/bin/g++ ..
+</code></pre></div></div>
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E5%B7%A5%E7%A8%8B/%E6%8A%80%E6%9C%AF/2026/04/04/gcc.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>

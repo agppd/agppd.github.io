@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>平衡树 | agppd团队 的博客</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="平衡树" />
+<meta name="author" content="agppd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="代码（包括伪代码）由DS生成" />
+<meta property="og:description" content="代码（包括伪代码）由DS生成" />
+<link rel="canonical" href="http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/%E7%90%86%E8%AE%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/07/10/pinghengshu.html" />
+<meta property="og:url" content="http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/%E7%90%86%E8%AE%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/07/10/pinghengshu.html" />
+<meta property="og:site_name" content="agppd团队 的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-07-10T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="平衡树" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"agppd"},"dateModified":"2026-07-10T00:00:00+08:00","datePublished":"2026-07-10T00:00:00+08:00","description":"代码（包括伪代码）由DS生成","headline":"平衡树","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/%E7%90%86%E8%AE%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/07/10/pinghengshu.html"},"url":"http://localhost:4000/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/%E7%90%86%E8%AE%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/07/10/pinghengshu.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="agppd团队 的博客" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== KaTeX (建议保留 CDN，去掉 integrity) ===== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<!-- ===== jQuery ===== -->
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<!-- ===== Pseudocode.js (本地资源) ===== -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<script src="/assets/js/pseudocode.min.js"></script>
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<!-- Pseudocode.js (本地资源) -->
+<link rel="stylesheet" href="/assets/css/pseudocode.min.css">
+<!-- 自定义覆盖样式 -->
+<style>
+  .ps-root .ps-line {
+    line-height: 0.01 !important;
+    margin: 0.01em 0 !important;
+    line-height: 0.3 !important;
+  }
+  .ps-root .ps-keyword {
+    margin-right: 0.01em;
+  }
+   .ps-root {
+    font-size: 1.2em !important;
+  }
+</style>
+<script src="/assets/js/pseudocode.min.js"></script>
+<script src="/assets/js/pseudocode.min.js"></script>
+
+  <!-- 统一渲染脚本 -->
+  <script>
+    window.addEventListener('load', function() {
+      // 1. 首次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+
+      // 2. 伪代码（使用 renderElement）
+      if (typeof pseudocode !== 'undefined' && pseudocode.renderElement) {
+        document.querySelectorAll('.language-pseudocode').forEach(function(el) {
+          try {
+            pseudocode.renderElement(el, { lineNumber: true });
+          } catch(e) {
+            console.warn('伪代码渲染失败:', e);
+          }
+        });
+      }
+
+      // 3. 再次 KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+      }
+    });
+  </script>
+  <!-- 侧栏目录导航 -->
+<script src="/assets/js/toc.js" defer></script>
+</head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">agppd团队 的博客</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <!-- 菜单图标 SVG 内容保持不变 -->
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- 原有页面链接 -->
+          <a class="page-link" href="/">主页</a>
+          <a class="page-link" href="/categories/">内容分类</a>
+          <a class="page-link" href="/authors/">作者分类</a>
+          <a class="page-link" href="/about/">关于本站</a>
+          <a class="page-link" href="/Users/">贡献者</a>
+          <a class="page-link" href="/announcements/">公告</a>
+          <a class="page-link" href="/time/">更新热度</a>
+
+          <script>
+            document.getElementById('login-btn').addEventListener('click', () => {
+              window.location.href = '/api/login';
+            });
+          </script>
+          
+          <!-- 主题切换按钮 -->
+          <button id="theme-toggle" class="page-link" style="background: none; border: none; cursor: pointer;">🌓 自动</button>
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">平衡树</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-07-10T00:00:00+08:00" itemprop="datePublished">Jul 10, 2026
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">agppd</span></span></p>
+
+    <!-- 分类显示（带链接） -->
+    
+      <div class="post-categories">
+        分类：
+        
+          <a href="/categories/#技术">技术</a>
+          , 
+        
+          <a href="/categories/#工程">工程</a>
+          , 
+        
+          <a href="/categories/#理论">理论</a>
+          , 
+        
+          <a href="/categories/#数据结构">数据结构</a>
+          
+        
+      </div>
+    
+  </header>
+
+  <!-- 新增：文章主体 + 侧栏两栏布局 -->
+  <div class="post-with-toc">
+    <div class="post-content e-content" itemprop="articleBody">
+      <p><strong>代码（包括伪代码）由DS生成</strong></p>
+
+<p><strong>部分内容参考DS给出的理论与思路进行编写</strong></p>
+
+<p><strong>关于术语：来自于CSDN</strong></p>
+
+<h1 id="第一部分-splay">第一部分 Splay</h1>
+
+<h2 id="1-splay-树的基本概念">1. Splay 树的基本概念</h2>
+
+<h3 id="11-二叉搜索树性质">1.1 二叉搜索树性质</h3>
+<p>Splay 树首先是一棵<strong>二叉搜索树（BST）</strong>，即对于任意节点 $x$：</p>
+<ul>
+  <li>左子树中所有节点的键值均小于 $x$ 的键值；</li>
+  <li>右子树中所有节点的键值均大于 $x$ 的键值；</li>
+  <li>中序遍历得到键值的有序序列。</li>
+</ul>
+
+<h3 id="12-伸展">1.2 伸展</h3>
+
+<p>By DS</p>
+
+<p>Splay 树区别于普通 BST 的唯一特性是：<strong>每次对节点 $x$ 进行查找、插入或删除等访问后，都需要执行“伸展”操作，将 $x$ 旋转到根节点</strong>。即使访问失败（如查找不存在的键），也会对访问路径上的最后一个节点（或前驱/后继）进行伸展。</p>
+
+<p>伸展操作由一系列 <strong>单旋转（single rotation）</strong> 和 <strong>双旋转（double rotation）</strong> 组成，依据节点与其父节点及祖父节点的相对位置分为三种基本情况（即 <strong>Zig</strong>、<strong>Zig‑Zig</strong>、<strong>Zig‑Zag</strong>）。这些旋转不仅将目标节点提升至根，同时也会降低树的深度，从而改善后续操作的效率。</p>
+
+<hr />
+
+<h2 id="2-旋转操作">2. 旋转操作</h2>
+
+<p><strong>旋转</strong>是 BST 的基本局部调整工具，不会改变 BST 的性质。Splay 树中仅使用两种单旋转：<strong>右旋（Zig）</strong> 和 <strong>左旋（Zag）</strong>，它们互为镜像。</p>
+
+<h3 id="21-右旋">2.1 右旋</h3>
+<p>设节点 $p$ 为其左孩子 $c$ 的父节点，且 $c$ 的右子树为 $B$。右旋后，$c$ 成为子树的新根，$p$ 成为 $c$ 的右孩子，原 $c$ 的右子树 $B$ 变为 $p$ 的左子树。</p>
+
+<p><strong>伪代码</strong>（以节点 $p$ 为旋转中心，对其左孩子 $c$ 进行右旋）：</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Function{rotate-Commentright}{$p$}
+    \State $c \gets p.left$
+    \If{$c = null$}
+        \Return
+    \EndIf
+    \State $p.left \gets c.right$
+    \If{$c.right \neq null$}
+        \State $c.right.parent \gets p$
+    \EndIf
+    \State $c.parent \gets p.parent$
+    \If{$p.parent = null$}
+        \State $root \gets c$
+    \ElsIf{$p = p.parent.left$}
+        \State $p.parent.left \gets c$
+    \Else
+        \State $p.parent.right \gets c$
+    \EndIf
+    \State $c.right \gets p$
+    \State $p.parent \gets c$
+\EndFunction
+\end{algorithmic}
+</code></pre>
+
+<h3 id="22-左旋">2.2 左旋</h3>
+<p>对称地，设 $p$ 为其右孩子 $c$ 的父节点，$c$ 的左子树为 $B$。左旋后，$c$ 成为新根，$p$ 成为 $c$ 的左孩子，原 $c$ 的左子树 $B$ 变为 $p$ 的右子树。<br />
+<strong>伪代码</strong>（对 $p$ 的右孩子 $c$ 进行左旋）：</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Function{rotate-Commentleft}{$p$}
+    \State $c \gets p.right$
+    \If{$c = null$}
+        \Return
+    \EndIf
+    \State $p.right \gets c.left$
+    \If{$c.left \neq null$}
+        \State $c.left.parent \gets p$
+    \EndIf
+    \State $c.parent \gets p.parent$
+    \If{$p.parent = null$}
+        \State $root \gets c$
+    \ElsIf{$p = p.parent.left$}
+        \State $p.parent.left \gets c$
+    \Else
+        \State $p.parent.right \gets c$
+    \EndIf
+    \State $c.left \gets p$
+    \State $p.parent \gets c$
+\EndFunction
+\end{algorithmic}
+</code></pre>
+
+<hr />
+
+<h2 id="3-伸展操作详解">3. 伸展操作详解</h2>
+
+<p>伸展操作的目的是将指定节点 $x$ 通过一系列旋转移动至树根。根据 $x$ 与其父节点 $p$ 和祖父节点 $g$（若存在）的关系，分为三种情形，不断迭代直至 $x$ 成为根。</p>
+
+<h3 id="31-情形一zig单旋">3.1 情形一：Zig（单旋）</h3>
+<p>当 $x$ 的父节点 $p$ 就是根节点时，只需执行一次单旋转（若 $x$ 是 $p$ 的左孩子则右旋，否则左旋），使得 $x$ 成为根。</p>
+
+<h3 id="32-情形二zigzig同侧双旋">3.2 情形二：Zig‑Zig（同侧双旋）</h3>
+<p>当 $x$ 与其父节点 $p$ 以及 $p$ 与其父节点 $g$ 的父子关系<strong>相同</strong>（即 $x$ 是 $p$ 的左孩子且 $p$ 是 $g$ 的左孩子，或 $x$ 是 $p$ 的右孩子且 $p$ 是 $g$ 的右孩子）时，先对 $g$ 进行单旋转，再对 $p$ 进行单旋转。例如 $x$ 为 $g$ 的左子树的左孩子，则先右旋 $g$，再右旋 $p$。</p>
+
+<h3 id="33-情形三zigzag异侧双旋">3.3 情形三：Zig‑Zag（异侧双旋）</h3>
+<p>当 $x$ 与其父节点 $p$ 以及 $p$ 与其父节点 $g$ 的父子关系<strong>不同</strong>（即 $x$ 是 $p$ 的右孩子而 $p$ 是 $g$ 的左孩子，或 $x$ 是 $p$ 的左孩子而 $p$ 是 $g$ 的右孩子）时，先对 $p$ 进行旋转（使得 $x$ 上升），再对 $g$ 进行旋转（此时 $x$ 与 $g$ 同侧，再次旋转）。例如 $x$ 是 $g$ 的左子树的右孩子，则先左旋 $p$，再右旋 $g$。</p>
+
+<p><strong>伸展操作的完整伪代码</strong>：</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Function{splay}{$x$}
+    \While{$x.parent \neq null$}
+        \State $p \gets x.parent$
+        \State $g \gets p.parent$
+        \If{$g = null$}  \Comment{Zig}
+            \If{$x = p.left$}
+                \State \Call{rotate-Commentright}{$p$}
+            \Else
+                \State \Call{rotate-Commentleft}{$p$}
+            \EndIf
+        \Else
+            \If{$(x = p.left) \equiv (p = g.left)$}  \Comment{Zig-Zig 同侧}
+                \If{$x = p.left$}
+                    \State \Call{rotate-Commentright}{$g$}
+                \Else
+                    \State \Call{rotate-Commentleft}{$g$}
+                \EndIf
+                \If{$x = p.left$}
+                    \State \Call{rotate-Commentright}{$p$}
+                \Else
+                    \State \Call{rotate-Commentleft}{$p$}
+                \EndIf
+            \Else  \Comment{Zig-Zag 异侧}
+                \If{$x = p.left$}
+                    \State \Call{rotate-Commentright}{$p$}
+                \Else
+                    \State \Call{rotate-Commentleft}{$p$}
+                \EndIf
+                \If{$x = g.left$}
+                    \State \Call{rotate-Commentright}{$g$}
+                \Else
+                    \State \Call{rotate-Commentleft}{$g$}
+                \EndIf
+            \EndIf
+        \EndIf
+    \EndWhile
+    \State $root \gets x$
+\EndFunction
+\end{algorithmic}
+</code></pre>
+
+<p><strong>实现优化</strong>：实际代码中，常常将 Zig‑Zig 和 Zig‑Zag 分别处理，但上述逻辑清晰。更常见的写法是：</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Comment{优化写法（通常用于实际实现）}
+\While{$p \neq null$}
+    \If{$g = null$}  \Comment{Zig}
+        \State \Call{rotate}{$p, x-Commentside$}
+    \ElsIf{$(x \text{ 是 } p \text{ 的左孩子}) \equiv (p \text{ 是 } g \text{ 的左孩子})$}  \Comment{Zig-Zig}
+        \State \Call{rotate}{$g, side$}
+        \State \Call{rotate}{$p, side$}
+    \Else  \Comment{Zig-Zag}
+        \State \Call{rotate}{$p, x-Commentside$}
+        \State \Call{rotate}{$g, opposite-Commentside$}
+    \EndIf
+    \State 更新 $p, g$ 等
+\EndWhile
+\end{algorithmic}
+</code></pre>
+
+<hr />
+
+<h2 id="4-基本操作">4. 基本操作</h2>
+
+<h3 id="41-查找">4.1 查找</h3>
+<p>查找键值 $k$ 的过程与普通 BST 相同，从根开始比较，若等于则找到；若小于则进入左子树，大于则进入右子树；若遇到空节点则查找失败。<br />
+<strong>关键</strong>：无论查找成功与否，在返回之前，必须对<strong>最后访问的非空节点</strong>（成功时为该节点，失败时为其父节点）执行 <code class="language-plaintext highlighter-rouge">splay</code> 操作，将其提升为根。如果树为空，则直接返回空。</p>
+
+<h3 id="42-插入">4.2 插入</h3>
+<p>插入操作分为两步：</p>
+<ol>
+  <li>按 BST 规则插入新节点 $z$（键值为 $k$），若 $k$ 已存在，可覆盖或忽略（视需求而定）。</li>
+  <li>对 $z$ 执行 <code class="language-plaintext highlighter-rouge">splay(z)</code>，将新节点旋转至根。</li>
+</ol>
+
+<p>注意：若 $k$ 已存在且不允许重复，则可以在找到后直接 <code class="language-plaintext highlighter-rouge">splay</code> 该节点，不插入新节点。</p>
+
+<h3 id="43-删除">4.3 删除</h3>
+<p>删除操作有多种实现方式，这里介绍最常用的“<strong>删除根后合并左右子树</strong>”的方法：</p>
+<ol>
+  <li>先对要删除的键值 $k$ 执行 <code class="language-plaintext highlighter-rouge">find(k)</code>，若查找成功，则该节点已被伸展到根；若查找失败，则无需删除（但可能已经伸展了最后一个节点）。</li>
+  <li>若根节点的键值不等于 $k$（即 $k$ 不存在），则删除结束。</li>
+  <li>若根节点即为待删节点：
+    <ul>
+      <li>记录根节点 $r$，分别取其左子树 $L$ 和右子树 $R$。</li>
+      <li>将 $L$ 和 $R$ 从 $r$ 断开，并清空 $r$ 的左右指针。</li>
+      <li>若左子树为空，则新的根为 $R$，并置 $R.parent = null$；若右子树为空，则新根为 $L$。</li>
+      <li>否则，在左子树中找到最大值节点 $m$（即左子树最右节点），对其执行 <code class="language-plaintext highlighter-rouge">splay(m)</code>，此时 $m$ 成为左子树的根，且其右子树为空（因为它是最大值）。然后将右子树 $R$ 作为 $m$ 的右孩子，并更新 $R.parent = m$，最后 $m$ 成为整棵树的新根。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>另一种常见删除方法：找到前驱或后继来替换，但上述方法利用伸展操作更自然。</p>
+
+<h3 id="44-合并">4.4 合并</h3>
+<p>将两棵 Splay 树 $T-Comment1$ 和 $T-Comment2$ 合并，要求 $T-Comment1$ 中所有键值均小于 $T-Comment2$ 中所有键值。操作步骤：</p>
+<ol>
+  <li>在 $T-Comment1$ 中查找最大节点（向右遍历到最右），然后对其进行 <code class="language-plaintext highlighter-rouge">splay</code>，使该最大节点成为 $T-Comment1$ 的根，且其右子树为空。</li>
+  <li>将 $T-Comment2$ 的根作为该最大节点的右子树，并更新父指针。</li>
+  <li>返回 $T-Comment1$ 的根（即合并后的根）。</li>
+</ol>
+
+<h3 id="45-分裂">4.5 分裂</h3>
+<p>将一棵 Splay 树按键值 $k$ 分裂为两棵树 $T-Comment1$（键值 $\le k$）和 $T-Comment2$（键值 $&gt; k$）：</p>
+<ol>
+  <li>若树为空，则两棵均为空。</li>
+  <li>先执行 <code class="language-plaintext highlighter-rouge">find(k)</code>（或查找 $k$ 的前驱/后继）。更稳健的做法：插入一个临时节点 $k$（若不存在），然后伸展，再删除根，左右子树即为分裂结果。但更常见的做法是：
+    <ul>
+      <li>若存在键值 $k$，则先 <code class="language-plaintext highlighter-rouge">splay</code> 该节点，然后其左子树为 $T-Comment1$，右子树为 $T-Comment2$，并断开根节点（根节点可以归入 $T-Comment1$ 或单独处理）。</li>
+      <li>若不存在，则查找 $k$ 过程中最后访问的节点会被伸展到根。若根键值 $&lt; k$，则根的右子树部分以及根本身（含左子树）构成 $T-Comment1$，右子树为 $T-Comment2$；反之，根键值 $&gt; k$，则左子树为 $T-Comment1$，根及右子树为 $T-Comment2$。具体实现需仔细处理边界。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="5-复杂度分析">5. 复杂度分析</h2>
+
+<h3 id="51-单次操作的复杂度">5.1 单次操作的复杂度</h3>
+<p>单次查找、插入、删除的时间复杂度与树的高度成正比，而在最坏情况下，伸展树可能退化为链状，因此单次操作的最坏时间复杂度为 $O(n)$。例如，若按递增顺序插入节点，每次插入后新节点被伸展到根，树实际上会形成一个链，但插入操作本身仍保持 $O(n)$ 的伸展代价。</p>
+
+<h3 id="52-均摊复杂度">5.2 均摊复杂度</h3>
+<p>Splay 树的卓越之处在于其<strong>均摊性能</strong>。通过势能法（Potential Method），可以证明任意连续 $m$ 次操作（包括查找、插入、删除等）的总时间至多为 $O((m+n)\log n)$，其中 $n$ 为树中节点数。这意味着平均每次操作的均摊时间为 $O(\log n)$。</p>
+
+<p><strong>直观解释</strong>：伸展操作在将访问节点提升到根的同时，也大幅降低了访问路径上节点的深度，使得后续访问这些节点更加迅速。虽然单次操作可能很慢，但代价会被后续的快速操作“摊还”。</p>
+
+<p><strong>势能定义</strong>（通常采用秩（rank））：设每个节点 $x$ 的子树大小为 $size(x)$，定义其秩 $r(x) = \lfloor \log-Comment2 size(x) \rfloor$，整棵树的势能 $\Phi = \sum-Comment{x} r(x)$。可以证明每次旋转的<strong>摊还代价</strong>为 $O(1)$，而一次伸展操作由 $O(\text{深度})$ 次旋转组成，摊还代价为 $O(\log n)$。详细推导可参考 Tarjan 的原始论文或算法教材。</p>
+
+<blockquote>
+  <p>关于摊还分析，后续文章会提到</p>
+</blockquote>
+
+<h3 id="53-空间复杂度">5.3 空间复杂度</h3>
+<p>每个节点需要存储键值、左右孩子指针、父指针，空间复杂度 $O(n)$，与普通 BST 一致。</p>
+
+<hr />
+
+<h2 id="6-优缺点与适用场景">6. 优缺点与适用场景</h2>
+
+<p>By DS</p>
+
+<h3 id="61-优点">6.1 优点</h3>
+<ul>
+  <li><strong>实现简单</strong>：无需维护额外平衡信息（如 AVL 的平衡因子或 Treap 的优先级），代码量相对较少。</li>
+  <li><strong>优秀的均摊性能</strong>：在大多数实际应用场景中，操作序列的总体效率接近 $O(\log n)$。</li>
+  <li><strong>灵活性强</strong>：易于实现合并、分裂等高级操作，适合作为可持久化数据结构的基础。</li>
+  <li><strong>空间利用率高</strong>：每个节点仅需存储父指针与左右孩子，无额外字段。</li>
+  <li><strong>缓存友好</strong>：最近访问的节点被移到根，在局部性较强的访问模式（如重复访问某些元素）下表现优异。</li>
+</ul>
+
+<h3 id="62-缺点">6.2 缺点</h3>
+<ul>
+  <li><strong>最坏情况单次操作较慢</strong>：在实时系统或需要严格最坏时间界限的场景下不适用。</li>
+  <li><strong>均摊分析依赖于访问序列</strong>，对于某些精心设计的恶意序列，可能每次操作都达到 $O(n)$，但这种情况在随机数据中极少出现。</li>
+  <li><strong>旋转操作较多</strong>，常数因子略大于一些基于平衡因子的树（如 AVL），但通常可接受。</li>
+  <li><strong>递归实现易受栈溢出影响</strong>（因为伸展操作可能很深），实际代码常用迭代。</li>
+</ul>
+
+<h3 id="63-典型应用">6.3 典型应用</h3>
+<ul>
+  <li><strong>实现关联容器</strong>（如 C++ 的 <code class="language-plaintext highlighter-rouge">std::set</code> 的某些实现，尽管实际多用红黑树）。</li>
+  <li><strong>区间操作与序列维护</strong>（如文艺平衡树，支持区间翻转等）。</li>
+  <li><strong>可持久化数据结构</strong>（持久化 Splay 虽不常见，但存在变种）。</li>
+  <li><strong>动态树（Link-Cut Tree）</strong> 的底层基础（使用 Splay 维护实链）。</li>
+  <li><strong>网络路由与内存管理</strong>中需要按访问频率调整结构的场景。</li>
+</ul>
+
+<hr />
+
+<h2 id="7-代码实现">7. 代码实现</h2>
+
+<p>以下给出一个简洁的 Splay 树实现框架，省略了内存管理细节（可配合对象池使用）。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Procedure{PUSHUP}{$x$}
+    \If{$x = \text{NIL}$}
+        \Return
+    \EndIf
+    \State $x.size \gets 1$
+    \If{$x.left \neq \text{NIL}$}
+        \State $x.size \gets x.size + x.left.size$
+    \EndIf
+    \If{$x.right \neq \text{NIL}$}
+        \State $x.size \gets x.size + x.right.size$
+    \EndIf
+\EndProcedure
+
+\Function{SIDE}{$x$}
+    \If{$x.parent \neq \text{NIL}$ \AND $x = x.parent.right$}
+        \Return $1$
+    \Else
+        \Return $0$
+    \EndIf
+\EndFunction
+
+\Procedure{ROTATE}{$x$}
+    \Comment{将节点 $x$ 向上旋转一层（单旋）}
+    \State $p \gets x.parent$
+    \State $g \gets p.parent$
+    \If{$p.right = x$}  \Comment{$x$ 是右孩子}
+        \State $p.right \gets x.left$
+        \If{$x.left \neq \text{NIL}$}
+            \State $x.left.parent \gets p$
+        \EndIf
+    \Else  \Comment{$x$ 是左孩子}
+        \State $p.left \gets x.right$
+        \If{$x.right \neq \text{NIL}$}
+            \State $x.right.parent \gets p$
+        \EndIf
+    \EndIf
+    \State $x.parent \gets g$
+    \If{$g \neq \text{NIL}$}
+        \If{$g.left = p$}
+            \State $g.left \gets x$
+        \Else
+            \State $g.right \gets x$
+        \EndIf
+    \EndIf
+    \State $p.parent \gets x$
+    \If{$p.right = x$}  \Comment{将 $p$ 挂到 $x$ 的另一侧}
+        \State $x.left \gets p$
+    \Else
+        \State $x.right \gets p$
+    \EndIf
+    \State \Call{PUSHUP}{$p$}
+    \State \Call{PUSHUP}{$x$}
+\EndProcedure
+
+\Procedure{SPLAY}{$x$}
+    \While{$x.parent \neq \text{NIL}$}
+        \State $p \gets x.parent$
+        \State $g \gets p.parent$
+        \If{$g = \text{NIL}$}  \Comment{Zig 情形}
+            \State \Call{ROTATE}{$x$}
+        \ElsIf{$(g.left = p \text{ 且 } p.left = x) \text{ 或 } (g.right = p \text{ 且 } p.right = x)$}  \Comment{Zig-Zig 同侧}
+            \State \Call{ROTATE}{$p$}   \Comment{先旋父节点}
+            \State \Call{ROTATE}{$x$}
+        \Else  \Comment{Zig-Zag 异侧}
+            \State \Call{ROTATE}{$x$}
+            \State \Call{ROTATE}{$x$}
+        \EndIf
+    \EndWhile
+    \State $root \gets x$   \Comment{更新树根}
+\EndProcedure
+\end{algorithmic}
+</code></pre>
+
+<hr />
+
+<h1 id="第二部分-treap">第二部分 Treap</h1>
+
+<h2 id="1-treap-的基本概念">1. Treap 的基本概念</h2>
+
+<p>By DS</p>
+
+<h3 id="11-双重性质">1.1 双重性质</h3>
+<p>Treap 中的每个节点存储两个关键域：</p>
+<ul>
+  <li><strong>键值（Key）</strong>：满足二叉搜索树（BST）性质，即中序遍历为有序序列。</li>
+  <li><strong>优先级（Priority）</strong>：通常由随机数生成器赋予，满足堆性质（通常为大根堆或小根堆，本文统一采用 <strong>大根堆</strong>，即父节点的优先级大于所有子节点）。</li>
+</ul>
+
+<h3 id="12-平衡原理">1.2 平衡原理</h3>
+<p>当一组确定的键值被插入时，若它们的优先级是独立且均匀随机分布的，则 Treap 的形态等价于以优先级为关键字的<strong>随机二叉搜索树（Random BST）</strong>。数学期望高度为 $O(\log n)$，且这一结论与输入键值的顺序无关。因此，Treap 无需像 AVL 那样时刻检查平衡因子，也无需像 Splay 那样依赖操作的均摊。</p>
+
+<hr />
+
+<h2 id="2-带旋-treap">2. 带旋 Treap</h2>
+
+<p>这是 Treap 最原始的形态。插入或删除节点后，通过<strong>左旋（Zag）</strong> 和 <strong>右旋（Zig）</strong> 来修复可能被破坏的堆性质。这里的旋转操作与 Splay 中的单旋转在几何上完全一致，但<strong>触发时机与目的截然不同</strong>：Splay 的旋转是为了将目标节点提升至根，而 Treap 的旋转是为了将优先级更高的孩子“浮”到父位置，以维持堆序。</p>
+
+<h3 id="21-旋转操作回顾">2.1 旋转操作回顾</h3>
+<p>由于第一篇已详细给出旋转的伪代码，此处仅做符号约定：</p>
+<ul>
+  <li><strong>右旋（Zig）</strong>：作用于父节点 $p$ 与其左孩子 $c$，将 $c$ 上浮。</li>
+  <li><strong>左旋（Zag）</strong>：作用于父节点 $p$ 与其右孩子 $c$，将 $c$ 上浮。</li>
+</ul>
+
+<p><strong>关键区别</strong>：Splay 的旋转以目标节点为中心向上提；Treap 的旋转则以父子关系破坏堆序为出发点，通常从底层向上调整。</p>
+
+<h3 id="22-插入操作">2.2 插入操作</h3>
+<p>插入步骤：</p>
+<ol>
+  <li><strong>标准 BST 插入</strong>：按键值大小递归或迭代插入新节点 $z$，此时 $z$ 作为叶子节点，其随机优先级为 $p$。</li>
+  <li><strong>上浮修复（Rotate Up）</strong>：若 $z$ 的优先级大于其父节点的优先级（大根堆冲突），则对父节点执行相应的旋转（若 $z$ 是左孩子则右旋父节点，若 $z$ 是右孩子则左旋父节点）。旋转后 $z$ 上升一层，继续比较新的父节点，直至满足堆性质或到达根节点。</li>
+</ol>
+
+<p><strong>复杂度</strong>：插入路径长度为 $O(h)$，期望 $O(\log n)$。</p>
+
+<h3 id="23-删除操作">2.3 删除操作</h3>
+<p>删除节点 $x$ 时，传统 BST 删除需处理拥有两个孩子的复杂情况。Treap 利用堆性质提供了一个极其优雅的方法：</p>
+<ol>
+  <li><strong>下沉</strong>：若 $x$ 是叶子节点，直接删除。</li>
+  <li>若 $x$ 有孩子，则比较其左右孩子的优先级。<strong>选择优先级较高的孩子</strong>，对该孩子进行旋转（即把 $x$ 往下旋）。例如，若左孩子优先级更高，则对 $x$ 执行右旋，$x$ 变为其左孩子的右子树；反之执行左旋。</li>
+  <li>反复执行上述下沉操作，直到 $x$ 成为叶子节点。</li>
+  <li>最后将 $x$ 从树中直接摘除。</li>
+</ol>
+
+<h3 id="24-查找与其它操作">2.4 查找与其它操作</h3>
+<p>查找操作与普通 BST 完全一致，且<strong>查找不会触发任何结构调整</strong>（这与 Splay 天差地别）。因此 Treap 的单次查找最坏时间复杂度为树高 $O(h)$，期望 $O(\log n)$，但不存在 Splay 那种“访问即修改”的副作用。</p>
+
+<hr />
+
+<h2 id="3-无旋-treap">3. 无旋 Treap</h2>
+
+<p>尽管旋转版 Treap 已经非常简单高效，但旋转操作在涉及<strong>区间翻转、批量插入/删除</strong>或<strong>可持久化</strong>时显得力不从心。2012 年左右，中国 OI 界广泛传播了由范浩强（FHQ）提出的<strong>无旋 Treap</strong>。它完全抛弃了旋转，仅通过两个基本原语——<strong>分裂（Split）</strong> 和 <strong>合并（Merge）</strong>——即可实现所有数据结构操作，且天然支持懒惰标记（Lazy Tag），是实现可持久化序列的理想选择。</p>
+
+<p>——By OI-WIKI</p>
+
+<h3 id="31-分裂">3.1 分裂</h3>
+<p><code class="language-plaintext highlighter-rouge">Split(root, key)</code> 将一棵 Treap 按键值 <code class="language-plaintext highlighter-rouge">key</code> 分裂为两棵独立的 Treap $A$ 和 $B$，使得 $A$ 中所有节点的键值 <strong>$\le key$</strong>（或 $&lt; key$，视具体定义），$B$ 中所有节点的键值 <strong>$&gt; key$</strong>。该操作递归进行，不破坏任何 BST 或堆性质。</p>
+
+<p><strong>递归逻辑（以键值 $\le key$ 为左树，$&gt; key$ 为右树）</strong>：</p>
+<ol>
+  <li>若当前节点 <code class="language-plaintext highlighter-rouge">cur</code> 为空，返回 <code class="language-plaintext highlighter-rouge">(null, null)</code>。</li>
+  <li>若 <code class="language-plaintext highlighter-rouge">cur-&gt;val &lt;= key</code>，则说明 <code class="language-plaintext highlighter-rouge">cur</code> 及其左子树全部属于左树 $A$。但 <code class="language-plaintext highlighter-rouge">cur</code> 的右子树中可能部分属于 $A$，部分属于 $B$。于是递归分裂 <code class="language-plaintext highlighter-rouge">cur-&gt;right</code>，得到 <code class="language-plaintext highlighter-rouge">(left-Commentpart, right-Commentpart)</code>。将 <code class="language-plaintext highlighter-rouge">cur-&gt;right</code> 指向 <code class="language-plaintext highlighter-rouge">left-Commentpart</code>，更新 <code class="language-plaintext highlighter-rouge">cur</code> 的父节点（若有），则 $A$ 的根为 <code class="language-plaintext highlighter-rouge">cur</code>，$B$ 的根为 <code class="language-plaintext highlighter-rouge">right-Commentpart</code>。</li>
+  <li>若 <code class="language-plaintext highlighter-rouge">cur-&gt;val &gt; key</code>，则对称处理：<code class="language-plaintext highlighter-rouge">cur</code> 及其右子树属于右树 $B$，递归分裂 <code class="language-plaintext highlighter-rouge">cur-&gt;left</code> 得到 <code class="language-plaintext highlighter-rouge">(left-Commentpart, right-Commentpart)</code>，将 <code class="language-plaintext highlighter-rouge">cur-&gt;left</code> 指向 <code class="language-plaintext highlighter-rouge">right-Commentpart</code>，$A$ 根为 <code class="language-plaintext highlighter-rouge">left-Commentpart</code>，$B$ 根为 <code class="language-plaintext highlighter-rouge">cur</code>。</li>
+</ol>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Procedure{SPLIT}{$cur$, $key$, 输出 $a$, 输出 $b$}
+    \Comment{将 $cur$ 为根的树按键值 $key$ 分裂为 $a$（$\le key$）和 $b$（$&gt; key$）}
+    \If{$cur = \text{null}$}
+        \State $a \gets \text{null}$
+        \State $b \gets \text{null}$
+        \State \Return
+    \EndIf
+    \If{$cur.val \le key$}
+        \State $a \gets cur$
+        \State \Call{SPLIT}{$cur.right$, $key$, $cur.right$, $b$}
+        \If{$cur.right \neq \text{null}$}
+            \State $cur.right.parent \gets cur$  \Comment{若维护父指针}
+        \EndIf
+        \State \Call{PUSHUP}{$a$}
+    \Else
+        \State $b \gets cur$
+        \State \Call{SPLIT}{$cur.left$, $key$, $a$, $cur.left$}
+        \If{$cur.left \neq \text{null}$}
+            \State $cur.left.parent \gets cur$  \Comment{若维护父指针}
+        \EndIf
+        \State \Call{PUSHUP}{$b$}
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+</code></pre>
+
+<h3 id="32-合并">3.2 合并</h3>
+<p><code class="language-plaintext highlighter-rouge">Merge(a, b)</code> 将两棵 Treap 合并为一棵，<strong>前提条件</strong>是 $A$ 中所有键值均小于 $B$ 中所有键值（即保证 $A$ 和 $B$ 的有序性）。合并时完全依据优先级维护堆性质。</p>
+<ol>
+  <li>若 $A$ 或 $B$ 为空，返回非空的那棵。</li>
+  <li>若 <code class="language-plaintext highlighter-rouge">A-&gt;prio &gt; B-&gt;prio</code>（大根堆），则 $A$ 应作为合并后的根。由于 $A$ 的所有键值小于 $B$，$B$ 只能合并到 $A$ 的右子树中。递归合并 <code class="language-plaintext highlighter-rouge">A-&gt;right</code> 和 $B$，结果赋给 <code class="language-plaintext highlighter-rouge">A-&gt;right</code>，更新父指针，最后 <code class="language-plaintext highlighter-rouge">pushup(A)</code> 并返回 $A$。</li>
+  <li>若 <code class="language-plaintext highlighter-rouge">B-&gt;prio &gt; A-&gt;prio</code>，则 $B$ 作为根，递归合并 $A$ 和 <code class="language-plaintext highlighter-rouge">B-&gt;left</code>，赋给 <code class="language-plaintext highlighter-rouge">B-&gt;left</code>。</li>
+</ol>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Function{MERGE}{$a$, $b$}
+    \Comment{合并两棵树，要求 $a$ 中所有键值小于 $b$ 中所有键值，返回合并后的根}
+    \If{$a = \text{null}$ \OR $b = \text{null}$}
+        \State \Return $a$ 或 $b$（非空的那个）
+    \EndIf
+    \If{$a.prio &gt; b.prio$}
+        \State $a.right \gets$ \Call{MERGE}{$a.right$, $b$}
+        \If{$a.right \neq \text{null}$}
+            \State $a.right.parent \gets a$  \Comment{若维护父指针}
+        \EndIf
+        \State \Call{PUSHUP}{$a$}
+        \State \Return $a$
+    \Else
+        \State $b.left \gets$ \Call{MERGE}{$a$, $b.left$}
+        \If{$b.left \neq \text{null}$}
+            \State $b.left.parent \gets b$  \Comment{若维护父指针}
+        \EndIf
+        \State \Call{PUSHUP}{$b$}
+        \State \Return $b$
+    \EndIf
+\EndFunction
+\end{algorithmic}
+</code></pre>
+
+<h3 id="33-用-split-和-merge-实现基本操作">3.3 用 Split 和 Merge 实现基本操作</h3>
+
+<p>By DS</p>
+
+<p>无旋 Treap 的所有操作均建立在这两个原语之上，思路极其清晰：</p>
+
+<ul>
+  <li><strong>插入（Insert）</strong>：插入新节点 <code class="language-plaintext highlighter-rouge">z</code>。按 <code class="language-plaintext highlighter-rouge">key</code> 分裂树为 <code class="language-plaintext highlighter-rouge">(a, b)</code>，然后合并 <code class="language-plaintext highlighter-rouge">merge(merge(a, z), b)</code>。</li>
+  <li><strong>删除（Delete）</strong>：删除键值 <code class="language-plaintext highlighter-rouge">key</code>。先按 <code class="language-plaintext highlighter-rouge">key-1</code>（或 <code class="language-plaintext highlighter-rouge">&lt; key</code>）分裂为 <code class="language-plaintext highlighter-rouge">(a, b)</code>，再按 <code class="language-plaintext highlighter-rouge">key</code> 分裂 <code class="language-plaintext highlighter-rouge">b</code> 为 <code class="language-plaintext highlighter-rouge">(mid, c)</code>，此时 <code class="language-plaintext highlighter-rouge">mid</code> 中所有键值等于 <code class="language-plaintext highlighter-rouge">key</code>。丢弃 <code class="language-plaintext highlighter-rouge">mid</code>（或释放其根），最后合并 <code class="language-plaintext highlighter-rouge">merge(a, c)</code>。</li>
+  <li><strong>查询排名（Rank）</strong>：直接按 BST 遍历即可，或使用分裂：<code class="language-plaintext highlighter-rouge">split(root, key-1)</code> 得到左树大小即为小于 <code class="language-plaintext highlighter-rouge">key</code> 的个数。</li>
+  <li><strong>查询第 k 大（Kth）</strong>：利用子树大小在 BST 上二分查找，无需分裂（因为无旋 Treap 依然维护 <code class="language-plaintext highlighter-rouge">size</code> 域）。</li>
+  <li><strong>求前驱/后继</strong>：利用分裂或 BST 标准遍历。</li>
+</ul>
+
+<h3 id="34-区间操作与懒惰标记lazy-propagation">3.4 区间操作与懒惰标记（Lazy Propagation）</h3>
+
+<p>无旋 Treap 在处理<strong>区间</strong>（如区间翻转、区间加）时展现出碾压级优势。若按<strong>下标（序列顺序）</strong> 建立 Treap（而非键值），则 <code class="language-plaintext highlighter-rouge">Split</code> 不再按键值，而是按子树大小（<code class="language-plaintext highlighter-rouge">Size</code>）分裂。</p>
+
+<p>例如，截取区间 $[l, r]$：</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">split(root, l-1, a, b)</code> —— 将前 $l-1$ 个节点分到 $a$。</li>
+  <li><code class="language-plaintext highlighter-rouge">split(b, r-l+1, mid, c)</code> —— 从 $b$ 中取出前 $r-l+1$ 个节点到 $mid$。</li>
+  <li>此时 <code class="language-plaintext highlighter-rouge">mid</code> 即为目标区间，可对其根节点打上翻转标记（<code class="language-plaintext highlighter-rouge">rev ^= 1</code>）。</li>
+  <li>最后合并：<code class="language-plaintext highlighter-rouge">root = merge(merge(a, mid), c)</code>。</li>
+</ol>
+
+<p>由于 <code class="language-plaintext highlighter-rouge">Split</code> 和 <code class="language-plaintext highlighter-rouge">Merge</code> 过程中会触及子树，只需在递归下降时<strong>下传（pushdown）</strong> 标记，即可完美维护区间翻转，而旋转版 Treap 处理区间翻转则需复杂的“下放”逻辑，且难以保持结构稳定。这也是 FHQ Treap 在现代算法竞赛中备受青睐的核心原因。</p>
+
+<hr />
+
+<h2 id="4-复杂度分析与随机性保证">4. 复杂度分析与随机性保证</h2>
+
+<h3 id="41-期望时间复杂度">4.1 期望时间复杂度</h3>
+<p>Treap 的随机优先级决定了其树高的<strong>期望</strong>为 $O(\log n)$。这一结论不依赖任何复杂势能，而是基于经典的随机 BST 高度定理（。</p>
+
+<p>因此，旋转版 Treap 的插入、删除、查找期望时间复杂度均为 $O(\log n)$，最坏情况下仍为 $O(n)$。</p>
+
+<h3 id="42-无旋-treap-的额外开销">4.2 无旋 Treap 的额外开销</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Split</code> 和 <code class="language-plaintext highlighter-rouge">Merge</code> 的递归深度等于树高，期望 $O(\log n)$。</li>
+  <li>每次操作（如插入）调用两次分裂和两次合并，常数因子略大于旋转版单次插入，但在可接受范围内（通常为 2~3 倍）。</li>
+  <li>空间复杂度 $O(n)$，存储优先级需额外 $4$ 或 $8$ 字节，相比 Splay 并无劣势。</li>
+</ul>
+
+<h3 id="43-确定性与随机性">4.3 确定性与随机性</h3>
+<p>严格来说，Treap 是<strong>随机化（Randomized）</strong> 数据结构，而非确定性数据结构。其复杂度保证是概率性的（高概率保证）。</p>
+
+<hr />
+
+<h2 id="5-对比">5. 对比</h2>
+
+<p>By DS</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">特性</th>
+      <th style="text-align: left">旋转版 Treap</th>
+      <th style="text-align: left">无旋版 Treap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>核心操作</strong></td>
+      <td style="text-align: left">旋转修复堆</td>
+      <td style="text-align: left">Split + Merge</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>实现难度</strong></td>
+      <td style="text-align: left">简单，但旋转方向易混淆</td>
+      <td style="text-align: left">递归逻辑直观，不易出错</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>常数性能</strong></td>
+      <td style="text-align: left">常数较小，旋转仅涉及少量指针</td>
+      <td style="text-align: left">常数较大（多次递归调用与指针赋值）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>区间操作</strong></td>
+      <td style="text-align: left">支持困难，需引入复杂的懒标记下放与旋转调整</td>
+      <td style="text-align: left"><strong>天生支持</strong>，配合 <code class="language-plaintext highlighter-rouge">Size</code> 分裂即可实现高效区间修改</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>可持久化（Persistent）</strong></td>
+      <td style="text-align: left">极难（旋转会改变父子关系，拷贝开销大）</td>
+      <td style="text-align: left"><strong>易于实现</strong>（仅需在递归路径上拷贝节点，路径期望 $O(\log n)$）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>父指针需求</strong></td>
+      <td style="text-align: left">需要（用于旋转后更新父链）</td>
+      <td style="text-align: left">可以不需要（合并时直接赋值，更简洁）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>查找操作</strong></td>
+      <td style="text-align: left">只读，不修改结构</td>
+      <td style="text-align: left">只读，不修改结构</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>结论</strong>：若仅需维护有序集合（键值增删改查），<strong>旋转版 Treap</strong> 代码量最少且速度飞快；若需要支持区间翻转、区间赋值或可持久化，<strong>无旋版 Treap</strong> 是不二之选。后者的设计哲学极其优美，几乎将树形结构的递归特性发挥到极致。</p>
+
+<hr />
+
+<h2 id="6-代码实现要点">6. 代码实现要点</h2>
+
+<h3 id="61-旋转版核心框架仅展示插入与删除">6.1 旋转版核心框架（仅展示插入与删除）</h3>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Comment{节点包含：值 val，随机优先级 prio，子树大小 size，左孩子 left，右孩子 right}
+
+\Procedure{PUSHUP}{$x$}
+    \If{$x = \text{null}$}
+        \Return
+    \EndIf
+    \State $x.size \gets 1$
+    \If{$x.left \neq \text{null}$}
+        \State $x.size \gets x.size + x.left.size$
+    \EndIf
+    \If{$x.right \neq \text{null}$}
+        \State $x.size \gets x.size + x.right.size$
+    \EndIf
+\EndProcedure
+
+\Function{ROTATE}{$p$, $dir$}
+    \Comment{$dir=0$: 左旋，$dir=1$: 右旋，返回新根}
+    \If{$dir = 0$}
+        \State $c \gets p.right$
+        \State $p.right \gets c.left$
+        \State $c.left \gets p$
+    \Else
+        \State $c \gets p.left$
+        \State $p.left \gets c.right$
+        \State $c.right \gets p$
+    \EndIf
+    \State \Call{PUSHUP}{$p$}
+    \State \Call{PUSHUP}{$c$}
+    \Return $c$
+\EndFunction
+
+\Function{INSERT}{$p$, $val$}
+    \Comment{返回插入后的子树根}
+    \If{$p = \text{null}$}
+        \Return 新建节点（$val$，随机优先级，$size=1$）
+    \EndIf
+    \If{$val &lt; p.val$}
+        \State $p.left \gets$ \Call{INSERT}{$p.left$, $val$}
+        \If{$p.left.prio &gt; p.prio$}
+            \State $p \gets$ \Call{ROTATE}{$p$, $1$}
+        \EndIf
+    \Else
+        \State $p.right \gets$ \Call{INSERT}{$p.right$, $val$}
+        \If{$p.right.prio &gt; p.prio$}
+            \State $p \gets$ \Call{ROTATE}{$p$, $0$}
+        \EndIf
+    \EndIf
+    \State \Call{PUSHUP}{$p$}
+    \Return $p$
+\EndFunction
+
+\Function{ERASE}{$p$, $val$}
+    \Comment{返回删除后的子树根}
+    \If{$p = \text{null}$}
+        \Return $\text{null}$
+    \EndIf
+    \If{$val = p.val$}
+        \If{$p.left = \text{null}$ \OR $p.right = \text{null}$}
+            \State $tmp \gets p$
+            \If{$p.left \neq \text{null}$}
+                \State $p \gets p.left$
+            \Else
+                \State $p \gets p.right$
+            \EndIf
+            \State 删除 $tmp$
+        \Else
+            \If{$p.left.prio &gt; p.right.prio$}
+                \State $p \gets$ \Call{ROTATE}{$p$, $1$}
+                \State $p.right \gets$ \Call{ERASE}{$p.right$, $val$}
+            \Else
+                \State $p \gets$ \Call{ROTATE}{$p$, $0$}
+                \State $p.left \gets$ \Call{ERASE}{$p.left$, $val$}
+            \EndIf
+        \EndIf
+    \ElsIf{$val &lt; p.val$}
+        \State $p.left \gets$ \Call{ERASE}{$p.left$, $val$}
+    \Else
+        \State $p.right \gets$ \Call{ERASE}{$p.right$, $val$}
+    \EndIf
+    \State \Call{PUSHUP}{$p$}
+    \Return $p$
+\EndFunction
+\end{algorithmic}
+</code></pre>
+
+<h3 id="62-无旋版核心框架含懒标记示例">6.2 无旋版核心框架（含懒标记示例）</h3>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Comment{节点包含：值 val，随机优先级 prio，子树大小 size，翻转标记 rev，左孩子 left，右孩子 right}
+
+\Procedure{PUSHUP}{$p$}
+    \State $p.size \gets 1 + p.left.size + p.right.size$
+    \Comment{注意：空节点视为 size = 0}
+\EndProcedure
+
+\Procedure{PUSHDOWN}{$p$}
+    \If{$p \neq \text{null}$ \AND $p.rev$ 为真}
+        \State 交换 $p.left$ 和 $p.right$
+        \If{$p.left \neq \text{null}$}
+            \State $p.left.rev \gets \neg p.left.rev$
+        \EndIf
+        \If{$p.right \neq \text{null}$}
+            \State $p.right.rev \gets \neg p.right.rev$
+        \EndIf
+        \State $p.rev \gets \text{假}$
+    \EndIf
+\EndProcedure
+
+\Procedure{SPLIT}{$cur$, $k$, 输出 $a$, 输出 $b$}
+    \Comment{将 $cur$ 的前 $k$ 个节点分到 $a$，其余分到 $b$}
+    \If{$cur = \text{null}$}
+        \State $a \gets \text{null}$
+        \State $b \gets \text{null}$
+        \State \Return
+    \EndIf
+    \State \Call{PUSHDOWN}{$cur$}
+    \If{$cur.left.size \ge k$}
+        \State \Call{SPLIT}{$cur.left$, $k$, $a$, $cur.left$}
+        \State $b \gets cur$
+        \If{$cur.left \neq \text{null}$}
+            \State $cur.left.parent \gets cur$
+        \EndIf
+        \State \Call{PUSHUP}{$b$}
+    \Else
+        \State \Call{SPLIT}{$cur.right$, $k - cur.left.size - 1$, $cur.right$, $b$}
+        \State $a \gets cur$
+        \If{$cur.right \neq \text{null}$}
+            \State $cur.right.parent \gets cur$
+        \EndIf
+        \State \Call{PUSHUP}{$a$}
+    \EndIf
+\EndProcedure
+
+\Function{MERGE}{$a$, $b$}
+    \Comment{合并两棵树，要求 $a$ 中所有键值小于 $b$ 中所有键值}
+    \If{$a = \text{null}$}
+        \State \Return $b$
+    \EndIf
+    \If{$b = \text{null}$}
+        \State \Return $a$
+    \EndIf
+    \If{$a.prio &gt; b.prio$}
+        \State \Call{PUSHDOWN}{$a$}
+        \State $a.right \gets$ \Call{MERGE}{$a.right$, $b$}
+        \If{$a.right \neq \text{null}$}
+            \State $a.right.parent \gets a$
+        \EndIf
+        \State \Call{PUSHUP}{$a$}
+        \State \Return $a$
+    \Else
+        \State \Call{PUSHDOWN}{$b$}
+        \State $b.left \gets$ \Call{MERGE}{$a$, $b.left$}
+        \If{$b.left \neq \text{null}$}
+            \State $b.left.parent \gets b$
+        \EndIf
+        \State \Call{PUSHUP}{$b$}
+        \State \Return $b$
+    \EndIf
+\EndFunction
+
+\Procedure{REVERSE}{$root$, $l$, $r$}
+    \Comment{翻转区间 $[l, r]$，下标从 1 开始}
+    \State \Call{SPLIT}{$root$, $l-1$, $a$, $b$}
+    \State \Call{SPLIT}{$b$, $r-l+1$, $mid$, $c$}
+    \If{$mid \neq \text{null}$}
+        \State $mid.rev \gets \neg mid.rev$
+    \EndIf
+    \State $root \gets$ \Call{MERGE}{\Call{MERGE}{$a$, $mid$}, $c$}
+\EndProcedure
+\end{algorithmic}
+</code></pre>
+
+<hr />
+
+<h2 id="7-优缺点与适用场景总结">7. 优缺点与适用场景总结</h2>
+
+<p>By DS</p>
+
+<h3 id="71-treap-的共同优点">7.1 Treap 的共同优点</h3>
+<ul>
+  <li><strong>实现极简</strong>：无论旋转还是无旋，代码量通常仅为 Splay 的一半。</li>
+  <li><strong>期望性能稳定</strong>：随机优先级对抗构造数据，无需担心恶意输入导致链状退化。</li>
+  <li><strong>无需维护复杂平衡因子</strong>：比 AVL 轻松得多。</li>
+  <li><strong>无旋版额外优势</strong>：天然递归，易于理解；支持区间操作和可持久化；无需父指针，内存更紧凑。</li>
+</ul>
+
+<h3 id="72-treap-的共同缺点">7.2 Treap 的共同缺点</h3>
+<ul>
+  <li><strong>依赖随机数</strong>：在调试或确定性要求极高的场景（如航空航天）中可能不被信任；部分 OJ 可能卡随机（但可用时间种子或 <code class="language-plaintext highlighter-rouge">std::mt19937-Comment64</code> 规避）。</li>
+  <li><strong>递归风险</strong>：虽然期望深度 $\log n$，但递归实现可能在极少数情况下（随机种子不佳）触发栈溢出；亦可改写为迭代，但实现复杂度陡增。</li>
+  <li><strong>查找不修改结构</strong>：相比 Splay 的“自适应”局部性，Treap 没有缓存友好特性，在反复访问少数热点元素时，Splay 性能更优。</li>
+</ul>
+
+<h3 id="73-如何选择">7.3 如何选择？</h3>
+<ul>
+  <li><strong>当任务仅为静态或半动态有序集合（增删查）</strong>：优先选择旋转版 Treap，常数小且代码简练。</li>
+  <li><strong>当任务涉及区间翻转、区间加、序列挪移等</strong>：毫不犹豫选择无旋 Treap。</li>
+  <li><strong>当需要严格最坏时间 $O(\log n)$ 保证</strong>：应选择 AVL 或红黑树（请期待第三篇）。</li>
+  <li><strong>当访问模式具有极强的局部性（如 LRU 缓存）</strong>：Splay 更擅长。</li>
+</ul>
+
+<hr />
+
+<h1 id="第三部分-avl">第三部分 AVL</h1>
+
+<h2 id="1-avl-树的核心思想">1. AVL 树的核心思想</h2>
+
+<h3 id="11-平衡因子balance-factor">1.1 平衡因子（Balance Factor）</h3>
+
+<blockquote>
+  <p>注：正常来讲，平衡因子应该是个大写的 BF，但是作者喜欢小写</p>
+</blockquote>
+
+<p>对于任意节点 $x$，定义其<strong>平衡因子</strong>为：</p>
+
+\[bf(x) = \text{height}(x.\text{left}) - \text{height}(x.\text{right})\]
+
+<p>其中子树高度定义为该子树中最长路径的边数（或节点数，约定统一即可）。AVL 树要求对于<strong>每个节点</strong>，其平衡因子的绝对值 <strong>≤ 1</strong>，即：</p>
+
+\[-1 \le bf(x) \le 1\]
+
+<p>这意味着任意节点的左右子树高度差至多为 1。这个约束保证了整棵树的高度在最坏情况下不超过 $1.44 \log-Comment2 (n+2) - 0.328$（即约为 $1.44\log n$），从而确保所有操作的时间复杂度为 $O(\log n)$。</p>
+
+<h3 id="12-最小节点数与树高的关系">1.2 最小节点数与树高的关系</h3>
+<p>设 $N-Commenth$ 为高度为 $h$ 的 AVL 树所包含的最少节点数。由 AVL 的递归定义，高度 $h$ 的树由根、一棵高度 $h-1$ 的子树和另一棵高度 $h-2$ 的子树构成（因为高度差至多 1，且要节点数最少，则取高度 $h-1$ 和 $h-2$）。因此：</p>
+
+\[N-Commenth = N-Comment{h-1} + N-Comment{h-2} + 1,\quad N-Comment0 = 1 \ (\text{或 }0),\; N-Comment1 = 2\]
+
+<p>这恰是斐波那契数列的变体，由此可推出高度 $h = O(\log n)$。例如，当 $n=10^6$ 时，AVL 树高度约为 28，远小于可能的退化为 $10^6$ 的链状结构。</p>
+
+<p>——By OI-WIKI</p>
+
+<hr />
+
+<h2 id="2-旋转操作-1">2. 旋转操作</h2>
+
+<p>与 <strong>Splay</strong> 和 <strong>Treap</strong> 不同，<strong>AVL</strong> 的旋转不仅仅是局部调整，而是<strong>恢复平衡</strong>的精确手段。每次插入或删除后，我们需要从修改点沿路径向上回溯，检查每个祖先的平衡因子，一旦发现 <code>|bf| &gt; 1</code>，立即通过旋转来修正。旋转后，该子树的高度会降低，从而可能影响更高层的祖先，因此需要继续向上检查，直至根节点。</p>
+
+<p>AVL 的旋转分为四种经典情形，统称为 <strong>LL、RR、LR、RL</strong>（命名依据是<strong>不平衡发生的位置</strong>以及<strong>插入/删除发生在哪个子树</strong>）。</p>
+
+<h3 id="21-定义符号">2.1 定义符号</h3>
+<p>设失衡节点为 $x$（即 $|bf(x)| = 2$）。</p>
+<ul>
+  <li>若 $bf(x) = 2$，说明左子树比右子树高 2，问题出在左子树。
+    <ul>
+      <li>若左孩子 $y$ 的平衡因子 $bf(y) \ge 0$（即左子树高或等高），则属于 <strong>LL 型</strong>（插入发生在左孩子的左子树，或删除发生在左孩子的右子树但左子树仍主导）。</li>
+      <li>若 $bf(y) = -1$，则属于 <strong>LR 型</strong>（左孩子的右子树过重）。</li>
+    </ul>
+  </li>
+  <li>若 $bf(x) = -2$，说明右子树比左子树高 2，问题出在右子树。
+    <ul>
+      <li>若右孩子 $y$ 的平衡因子 $bf(y) \le 0$，则属于 <strong>RR 型</strong>。</li>
+      <li>若 $bf(y) = +1$，则属于 <strong>RL 型</strong>。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>以下分别详述各情形的旋转操作（图中的箭头表示指针调整）。</p>
+
+<h3 id="22-ll-型右单旋">2.2 LL 型（右单旋）</h3>
+<p><strong>失衡节点</strong> $x$，其左孩子 $y$ 的左子树 $A$ 高度过高。<br />
+<strong>解决方案</strong>：对 $x$ 执行一次<strong>右旋</strong>（与前述右旋完全相同）。旋转后，$y$ 成为新根，$x$ 成为 $y$ 的右孩子，$y$ 原来的右子树 $B$ 变为 $x$ 的左子树。<br />
+<strong>平衡因子变化</strong>：旋转后，$x$ 和 $y$ 的平衡因子均变为 0（假设旋转前 $bf(y)=0$ 时略有不同，但绝对值仍满足）。<br />
+<strong>代码</strong>：与之前 <code class="language-plaintext highlighter-rouge">rotate-Commentright(x)</code> 相同。</p>
+
+<h3 id="23-rr-型左单旋">2.3 RR 型（左单旋）</h3>
+<p>对称于 LL，对失衡节点 $x$ 执行<strong>左旋</strong>即可。</p>
+
+<h3 id="24-lr-型先左旋后右旋">2.4 LR 型（先左旋后右旋）</h3>
+<p><strong>失衡节点</strong> $x$，其左孩子 $y$ 的右子树 $B$ 过高。<br />
+<strong>解决方案</strong>：分两步：</p>
+<ol>
+  <li>对 $y$ 执行<strong>左旋</strong>（即让 $y$ 的右孩子 $z$ 上升为 $y$ 的父节点），此时转化为 <strong>LL 型</strong>。</li>
+  <li>对 $x$ 执行<strong>右旋</strong>，最终 $z$ 成为新根。
+<strong>平衡因子调整</strong>：需根据旋转前 $z$ 的平衡因子来设置最终的 $x$ 和 $y$ 的平衡因子，通常有三种情况（$z$ 的 $bf$ 为 -1、0、1），但旋转后 $z$ 的 $bf$ 为 0。</li>
+</ol>
+
+<h3 id="25-rl-型先右旋后左旋">2.5 RL 型（先右旋后左旋）</h3>
+<p>对称于 LR，先对右孩子 $y$ 执行右旋，再对 $x$ 执行左旋。</p>
+
+<p><strong>重要提示</strong>：旋转操作仅会改变少数节点的平衡因子，而不会破坏 BST 性质。每次旋转后，该子树的高度降低 1，因此只需从旋转点向上继续检查父节点即可。</p>
+
+<p><strong>总结：</strong></p>
+
+\[\text{左左型的右旋}\]
+
+\[\text{左右型的左右旋}\]
+
+\[\text{右右型的左旋}\]
+
+\[\text{右左型的右左旋}\]
+
+<hr />
+
+<h2 id="3-插入操作">3. 插入操作</h2>
+
+<p>插入新节点的过程：</p>
+<ol>
+  <li>执行标准 BST 插入，将新节点作为叶子插入。</li>
+  <li>插入后，新节点的平衡因子为 0（左右孩子均为空）。</li>
+  <li>从新节点的父节点开始，<strong>沿路径向上回溯</strong>，更新每个节点的平衡因子（高度可能变化）。</li>
+  <li>若某节点的平衡因子绝对值变为 2，则根据上述四种情形进行旋转调整。旋转后，该子树的高度恢复为插入前的高度，因此其祖先的平衡因子无需再调整（可提前终止回溯）。</li>
+  <li>若没有失衡，则继续向上更新平衡因子，直至根节点。</li>
+</ol>
+
+<p><strong>复杂度</strong>：插入路径长度为 $O(h)$，每次检查 $O(1)$，单次插入最坏 $O(\log n)$。</p>
+
+<hr />
+
+<h2 id="4-删除操作">4. 删除操作</h2>
+
+<p>与插入不同，删除可能需要在多个祖先节点进行旋转，因为一次删除可能导致多个节点失衡。</p>
+
+<p>常用方法：</p>
+<ol>
+  <li>按 BST 删除规则删除目标节点（若有两个孩子，则用前驱或后继替换，然后删除该替换节点，实际上转换为删除一个最多只有一个孩子的节点）。</li>
+  <li>从被删节点的父节点开始，<strong>向上回溯</strong>，更新平衡因子。</li>
+  <li>
+    <p>若某节点失衡（<code>|bf| = 2</code>），执行相应的旋转（注意与插入时的旋转情形判定略有不同，因为删除可能使得失衡节点的孩子平衡因子为 0，此时 <strong>LL</strong> 或 <strong>RR</strong> 型旋转仍有效，但平衡因子的最终值需专门处理）。</p>
+  </li>
+  <li>旋转后，该子树的高度可能降低，因此<strong>必须继续向上回溯</strong>，因为祖先的平衡因子可能随之改变（不同于插入时旋转后高度不变可提前终止）。</li>
+  <li>持续到根节点。</li>
+</ol>
+
+<p><strong>特别注意</strong>：删除时旋转的四种情形与插入完全相同，但判断条件需结合孩子节点的平衡因子，有时当孩子 $bf=0$ 时，单旋转即可解决问题，但旋转后该子树的<strong>高度会降低</strong>，因此可能向上影响，而在插入时若孩子 $bf=0$ 则不会发生失衡（因为插入前该孩子左右等高，插入一侧后其 $bf$ 变为 ±1，会导致父节点失衡，若孩子 $bf=0$ 且插入一侧，父节点可能失衡，此时旋转后高度不变）。</p>
+
+<p><strong>复杂度</strong>：最坏情况下，删除可能需要沿着整条路径旋转，但总旋转次数仍然 $O(\log n)$，因为路径长度为树高。</p>
+
+<hr />
+
+<h2 id="5-查找与其它操作">5. 查找与其它操作</h2>
+
+<p>查找、求前驱、后继、求排名等只读操作与普通 BST 完全相同，且<strong>不会触发任何结构调整</strong>，因此它们的时间复杂度严格为 $O(\log n)$ 最坏情况，这是 AVL 相比 Splay（单次查找可能 $O(n)$）和 Treap（期望 $\log n$ 但最坏可能 $n$）的决定性优势。</p>
+
+<hr />
+
+<h2 id="6-复杂度分析">6. 复杂度分析</h2>
+
+<h3 id="61-最坏情况高度">6.1 最坏情况高度</h3>
+<p>如前所述，AVL 树的高度 $h$ 满足 $h \le 1.44 \log-Comment2 (n+2) - 0.328$，因此所有操作（查找、插入、删除、合并、分裂，若支持）的最坏时间复杂度均为 $O(\log n)$，且这个界限是<strong>绝对且确定</strong>的，不依赖于任何随机性或输入顺序。</p>
+
+<h3 id="62-空间复杂度">6.2 空间复杂度</h3>
+<p>除 BST 必需的指针外，每个节点需额外存储平衡因子（通常用一个有符号整数表示，范围 -2 到 2，可用 <code class="language-plaintext highlighter-rouge">int8-Commentt</code>），空间 $O(n)$。若还需要子树大小等，则额外增加。</p>
+
+<h3 id="63-旋转次数">6.3 旋转次数</h3>
+<p>插入时最多进行<strong>一次</strong>单旋转或双旋转（即常数次）；删除时最多可能进行 $O(\log n)$ 次旋转（但均摊也是 $O(\log n)$）。不过在实际中，删除的旋转频率远低于插入。</p>
+
+<hr />
+
+<h2 id="7-avl-与-splaytreap-的对比">7. AVL 与 Splay、Treap 的对比</h2>
+
+<p>By DS</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">维度</th>
+      <th style="text-align: left">AVL 树</th>
+      <th style="text-align: left">Splay 树</th>
+      <th style="text-align: left">Treap (旋转/无旋)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>平衡保证</strong></td>
+      <td style="text-align: left">严格最坏 $O(\log n)$</td>
+      <td style="text-align: left">均摊 $O(\log n)$，单次最坏 $O(n)$</td>
+      <td style="text-align: left">期望 $O(\log n)$，最坏 $O(n)$（概率极低）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>单次查找最坏</strong></td>
+      <td style="text-align: left">$O(\log n)$</td>
+      <td style="text-align: left">$O(n)$（但均摊好）</td>
+      <td style="text-align: left">$O(n)$（概率忽略）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>插入/删除最坏</strong></td>
+      <td style="text-align: left">$O(\log n)$</td>
+      <td style="text-align: left">均摊 $O(\log n)$</td>
+      <td style="text-align: left">期望 $O(\log n)$</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>是否依赖随机数</strong></td>
+      <td style="text-align: left">否</td>
+      <td style="text-align: left">否</td>
+      <td style="text-align: left">是（无旋/旋转均需随机优先级）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>实现复杂度</strong></td>
+      <td style="text-align: left">中等偏高（平衡因子维护与四种旋转）</td>
+      <td style="text-align: left">简单（但需透彻理解伸展）</td>
+      <td style="text-align: left">极简（旋转版）；简洁（无旋版）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>空间开销</strong></td>
+      <td style="text-align: left">需平衡因子（通常 1 字节）</td>
+      <td style="text-align: left">需父指针（与 AVL 类似）</td>
+      <td style="text-align: left">需优先级（4~8 字节）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>局部性/缓存友好</strong></td>
+      <td style="text-align: left">一般</td>
+      <td style="text-align: left">优秀（最近访问节点在根）</td>
+      <td style="text-align: left">一般</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>区间操作支持</strong></td>
+      <td style="text-align: left">困难（需额外懒惰标记，代码复杂）</td>
+      <td style="text-align: left">中等（可通过伸展实现）</td>
+      <td style="text-align: left">无旋版天生支持</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>可持久化</strong></td>
+      <td style="text-align: left">较难（旋转需拷贝路径）</td>
+      <td style="text-align: left">较难（但存在可持久化 Splay）</td>
+      <td style="text-align: left">无旋版极易</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="8-代码实现要点">8. 代码实现要点</h2>
+
+<p>AVL 的实现需注意平衡因子的维护和旋转判定。以下给出简化的核心框架。</p>
+
+<pre><code class="language-pseudocode">
+\begin{algorithmic}
+\Comment{每个节点包含：值 val，高度 height，左孩子 left，右孩子 right}
+
+\Function{getHeight}{$p$}
+    \If{$p = \text{null}$}
+        \State \Return $0$
+    \Else
+        \State \Return $p.height$
+    \EndIf
+\EndFunction
+
+\Procedure{updateHeight}{$p$}
+    \State $p.height \gets 1 + \max($ getHeight($p.left$), getHeight($p.right$) $)$
+\EndProcedure
+
+\Function{getBalance}{$p$}
+    \State \Return getHeight($p.left$) $-$ getHeight($p.right$)
+\EndFunction
+
+\Comment{右旋（LL 型）}
+\Function{rotateRight}{$x$}
+    \State $y \gets x.left$
+    \State $B \gets y.right$
+    \State $y.right \gets x$
+    \State $x.left \gets B$
+    \State updateHeight($x$)
+    \State updateHeight($y$)
+    \State \Return $y$   \Comment{新根}
+\EndFunction
+
+\Comment{左旋（RR 型）}
+\Function{rotateLeft}{$x$}
+    \State $y \gets x.right$
+    \State $B \gets y.left$
+    \State $y.left \gets x$
+    \State $x.right \gets B$
+    \State updateHeight($x$)
+    \State updateHeight($y$)
+    \State \Return $y$
+\EndFunction
+
+\Function{insert}{$p$, $val$}
+    \If{$p = \text{null}$}
+        \State \Return 新节点（$val$，初始高度 1，左右孩子为空）
+    \EndIf
+    \If{$val &lt; p.val$}
+        \State $p.left \gets$ insert($p.left$, $val$)
+    \ElsIf{$val &gt; p.val$}
+        \State $p.right \gets$ insert($p.right$, $val$)
+    \Else
+        \State \Return $p$   \Comment{不允许重复}
+    \EndIf
+    \State updateHeight($p$)
+    \State $balance \gets$ getBalance($p$)
+    \Comment{LL 型}
+    \If{$balance &gt; 1$ \AND $val &lt; p.left.val$}
+        \State \Return rotateRight($p$)
+    \EndIf
+    \Comment{RR 型}
+    \If{$balance &lt; -1$ \AND $val &gt; p.right.val$}
+        \State \Return rotateLeft($p$)
+    \EndIf
+    \Comment{LR 型}
+    \If{$balance &gt; 1$ \AND $val &gt; p.left.val$}
+        \State $p.left \gets$ rotateLeft($p.left$)
+        \State \Return rotateRight($p$)
+    \EndIf
+    \Comment{RL 型}
+    \If{$balance &lt; -1$ \AND $val &lt; p.right.val$}
+        \State $p.right \gets$ rotateRight($p.right$)
+        \State \Return rotateLeft($p$)
+    \EndIf
+    \State \Return $p$
+\EndFunction
+
+\Function{deleteNode}{$p$, $val$}
+    \If{$p = \text{null}$}
+        \State \Return $\text{null}$
+    \EndIf
+    \If{$val &lt; p.val$}
+        \State $p.left \gets$ deleteNode($p.left$, $val$)
+    \ElsIf{$val &gt; p.val$}
+        \State $p.right \gets$ deleteNode($p.right$, $val$)
+    \Else
+        \Comment{找到要删除的节点}
+        \If{$p.left = \text{null}$ \OR $p.right = \text{null}$}
+            \State $tmp \gets p.left$ 或 $p.right$（非空的那个）
+            \State 删除 $p$
+            \State \Return $tmp$
+        \Else
+            \Comment{用右子树的最小节点（后继）替换}
+            \State $succ \gets p.right$
+            \While{$succ.left \neq \text{null}$}
+                \State $succ \gets succ.left$
+            \EndWhile
+            \State $p.val \gets succ.val$
+            \State $p.right \gets$ deleteNode($p.right$, $succ.val$)
+        \EndIf
+    \EndIf
+    \If{$p = \text{null}$}
+        \State \Return $\text{null}$
+    \EndIf
+    \State updateHeight($p$)
+    \State $balance \gets$ getBalance($p$)
+    \Comment{此处为简化，实际需根据左右孩子的平衡因子完整判定四种旋转}
+    \Comment{建议编写一个平衡修复函数来处理所有情形}
+    \State \Return $p$
+\EndFunction
+\end{algorithmic}
+</code></pre>
+
+<p><strong>注意</strong>：删除的旋转判定必须同时参考左右孩子的平衡因子，而不是仅靠插入时的 <code class="language-plaintext highlighter-rouge">val</code> 比较。一个通用的平衡修复函数 <code class="language-plaintext highlighter-rouge">balanceNode(p)</code> 可以根据 <code class="language-plaintext highlighter-rouge">getBalance(p)</code> 和左右孩子的 <code class="language-plaintext highlighter-rouge">getBalance</code> 来分别处理 LL、RR、LR、RL，这样插入和删除均可调用。</p>
+
+
+    </div>
+    <aside class="toc-sidebar" id="toc-sidebar">
+      <nav class="toc-nav">
+        <h4>目录</h4>
+        <ul id="toc-list"></ul>
+      </nav>
+    </aside>
+  </div><a class="u-url" href="/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E7%A8%8B/%E7%90%86%E8%AE%BA/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2026/07/10/pinghengshu.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">agppd团队 的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">agppd团队 的博客</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/agppd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">agppd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>个人运营的团队技术博客</p>
+      </div>
+    </div>
+
+  </div>
+</footer></body>
+
+</html>
