@@ -6,7 +6,7 @@ categories: [数据结构,工程]
 author: agppd
 ---
 
-<h4><center><font color="red"> 实际开发的可以跳过本文章，如果你执意要读，请想看文末 </font></center></h4>
+<h4><center><font color="red"> 实际开发的可以跳过本文章，如果你执意要读，请看文末 </font></center></h4>
 
 ## 写在前面
 
@@ -20,14 +20,12 @@ author: agppd
 
 > 声明数组 $T[1..2N-1]$。树根为 $T[1]$，节点 $i$ 的左儿子为 $2i$，右儿子为 $2i+1$。叶子节点位于 $T[N .. N+n-1]$，多余叶子 $T[N+n .. 2N-1]$ 填充为 $I$。
 
-
 ## 二、建树
 
 ### 递归版本
 递归采用**分治**：先处理左右子树，再将结果合并（后序遍历）。
 
-\begin{algorithm}[H]
-\caption{递归建树 \textsc{Build}(p, l, r)}
+<pre><code class="language-pseudocode">
 \begin{algorithmic}[1]
 \Require $A[0..n-1]$，当前节点编号 $p$，区间 $[l, r]$
 \Ensure 填充 $T[p]$ 的值
@@ -40,15 +38,12 @@ author: agppd
 \State \textsc{Build}$(2p+1, mid+1, r)$
 \State $T[p] \gets T[2p] \oplus T[2p+1]$ \Comment{合并左右子树}
 \end{algorithmic}
-\end{algorithm}
-
+</code></pre>
 
 ### 非递归版本
 递归的回溯顺序是“先叶子，后根”。非递归把叶子先铺好，直接从最后一个内部节点（$N-1$）倒序遍历到 $1$，**恰好模拟了递归栈的回溯过程**。
 
-
-\begin{algorithm}[H]
-\caption{非递归建树 \textsc{BuildNonRec}}
+<pre><code class="language-pseudocode">
 \begin{algorithmic}[1]
 \Require $A[0..n-1]$，运算 $\oplus$，单位元 $I$
 \Ensure 数组 $T$ 与补全大小 $N$
@@ -68,19 +63,16 @@ author: agppd
 \EndFor
 \State \Return $(T, N)$
 \end{algorithmic}
-\end{algorithm}
-
+</code></pre>
 
 > 递归中最后执行合并的是编号最大的内部节点（靠近叶子），非递归正好从 $N-1$ 开始倒序，保证任意节点 $i$ 的儿子 $2i, 2i+1$ 都大于 $i$，因此在访问 $i$ 时，儿子们已经更新完毕。
-
 
 ## 三、单点更新（Point Update）：从寻路到爬升
 
 ### 递归版本
 递归找到叶子，修改后沿原路返回并合并。
 
-\begin{algorithm}[H]
-\caption{递归更新 \textsc{Update}(p, l, r, pos, val)}
+<pre><code class="language-pseudocode">
 \begin{algorithmic}[1]
 \Require 当前节点区间 $[l, r]$，目标位置 $pos$，新值 $val$
 \If{$l = r$}
@@ -95,14 +87,12 @@ author: agppd
 \EndIf
 \State $T[p] \gets T[2p] \oplus T[2p+1]$ \Comment{回溯合并}
 \end{algorithmic}
-\end{algorithm}
-
+</code></pre>
 
 ### 非递归版本
 非递归不再递归下探，而是**直接跳转到叶子**（下标 $N+pos$），然后一路除以 $2$ 向上爬升，循环体内执行合并。
 
-\begin{algorithm}[H]
-\caption{非递归更新 \textsc{UpdateNonRec}}
+<pre><code class="language-pseudocode">
 \begin{algorithmic}[1]
 \Require $T, N$，目标位置 $pos$（$0$-based），新值 $val$
 \Ensure 更新后的 $T$
@@ -114,20 +104,16 @@ author: agppd
     \State $i \gets \lfloor i / 2 \rfloor$ \Comment{继续向上}
 \EndWhile
 \end{algorithmic}
-\end{algorithm}
-
+</code></pre>
 
 > 递归调用栈隐式保存了从根到叶的路径，非递归直接用 $i = \lfloor i/2 \rfloor$ 显式地“原路返回”。
-
-
 
 ## 四、区间查询
 
 ### 递归版本
 递归判断当前节点区间是否被查询区间 $[L, R]$ 完全覆盖。
 
-\begin{algorithm}[H]
-\caption{递归查询 \textsc{Query}(p, l, r, L, R)}
+<pre><code class="language-pseudocode">
 \begin{algorithmic}[1]
 \Require 当前区间 $[l, r]$，目标区间 $[L, R]$
 \Ensure 区间合并结果 $res$
@@ -144,7 +130,7 @@ author: agppd
 \EndIf
 \State \Return $res$
 \end{algorithmic}
-\end{algorithm}
+</code></pre>
 
 ### 非递归版本
 将查询闭区间 $[L, R]$ 映射为叶子下标 $l = L+N$，$r = R+N$。我们不再关心节点代表的区间范围，而是利用**下标奇偶性**判断边界节点是左儿子还是右儿子：
@@ -152,8 +138,7 @@ author: agppd
 - 若 $l$ 是右儿子（即 $l \bmod 2 = 1$），则其父节点区间会向左超出查询范围，不能取父节点，只能单独取 $T[l]$，并将 $l$ 右移一位。
 - 若 $r$ 是左儿子（即 $r \bmod 2 = 0$），则其父节点区间会向右超出，单独取 $T[r]$，并将 $r$ 左移一位。
 
-\begin{algorithm}[H]
-\caption{非递归查询 \textsc{QueryNonRec}}
+<pre><code class="language-pseudocode">
 \begin{algorithmic}[1]
 \Require $T, N$，查询区间 $[L, R]$（$0$-based，闭区间）
 \Ensure 区间合并结果 $res$
@@ -174,11 +159,10 @@ author: agppd
 \EndWhile
 \State \Return $res$
 \end{algorithmic}
-\end{algorithm}
+</code></pre>
 
 > - 递归中 $\text{Query}$ 命中“完全包含”时直接返回，非递归中当 $l$ 是右儿子（或 $r$ 是左儿子）时，**这两个节点恰好就是一个完全在目标区间内的“整块子树”**，其效果完全等价于递归中返回的那个 $T[p]$。
 > - 递归通过函数参数 $[l, r]$ 隐式爬升，非递归通过 $l \gets \lfloor l/2 \rfloor, r \gets \lfloor r/2 \rfloor$ 显式爬升。
-
 
 ## 五、关于区间修改
 
@@ -192,4 +176,3 @@ author: agppd
 3. 再进行自底向上的修改和 **PushUp**。
 
 这会导致代码复杂度大幅增加，违背了非递归简洁的初衷。因此，若涉及区间修改与查询，选择递归版本；若仅为单点修改与区间查询，选择非递归版本。
-
