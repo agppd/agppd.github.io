@@ -41,9 +41,11 @@ permalink: /about/
 
 主题基于 `minima` 修改，感谢 Jekyll 和 GitHub Pages 提供的便捷平台。
 
-**感谢 Jekyll、GitHub Pages 及所有开源项目的贡献者，让这个博客得以诞生。**
+**感谢 Jekyll、GitHub Pages、Netlify 及所有开源项目的贡献者，让这个博客得以诞生。**
 
 **感谢 网络上无私开发教程与学习内容的人，让这个博客有了丰富的前端。**
+
+**感谢 Katex 与 Pseudocode，使得网站有了数学公式的支持与伪代码的支持**
 
 ## About the issue of multiple languages
 
