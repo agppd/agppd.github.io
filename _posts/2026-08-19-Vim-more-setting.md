@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Vim使用教程"
+title: Vim配置工作区
 date: 2026-08-19
 categories: 杂谈
 author: agppd
@@ -10,7 +10,7 @@ author: agppd
 
 <h2><center> 请确保你已经安装了vim-plug并且vim的版本在8.1以上</center></h2>
 
-你也可以[点击这里直接查看文件，便于下载](/assert/file/vim-setting.txt)
+你也可以[点击这里直接查看文件，便于下载](/assets/file/vim-setting.txt)
 
 ```plaintext
 " ================== 基本设置 ==================
