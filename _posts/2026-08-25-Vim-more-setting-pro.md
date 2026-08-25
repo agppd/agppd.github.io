@@ -1,34 +1,41 @@
 ---
 layout: post
-title: Vim配置工作区
-date: 2026-08-19
+title: Vim配置工作区Pro
+date: 2026-08-25
 categories: 杂谈
 author: agppd
 ---
 
+本文完全包含[Vim配置工作区](https://agppd.netlify.app/%E6%9D%82%E8%B0%88/2026/08/19/vim-more-setting)的全部内容，可以直接使用此文章。
+
+此文章比[Vim配置工作区](https://agppd.netlify.app/%E6%9D%82%E8%B0%88/2026/08/19/vim-more-setting)多了`Markdown`与`Latex`的支持。
+
 相信各位一样，都不喜欢一个一个照着教程设置，这里给出作者现在使用的配置（由：DS给出）。
 
-<h2><center> 请确保你已经安装了vim-plug并且vim的版本在8.1以上</center></h2>
+<h2><center> 请确保你已经安装了vim-plug并且vim的版本在9.2以上</center></h2>
 
-你也可以[点击这里直接查看文件，便于下载](/assets/file/vim-setting.txt)
+<center>这意味着你几乎必须使用从源代码构建vim以支持vimtex</center>
+
+你也可以[点击这里直接查看文件，便于下载](/assets/file/vim-setting-pro.txt)
 
 ```plaintext
 " ================== 基本设置 ==================
-set nocompatible              " 关闭兼容模式
-filetype plugin indent on     " 启用文件类型检测
-syntax on                     " 语法高亮
-set number                    " 显示行号
-set relativenumber            " 相对行号（便于跳转）
+set nocompatible
+filetype plugin indent on
+syntax on
+set number
+set relativenumber
 set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
-set expandtab                 " 空格代替 Tab
-set cursorline                " 高亮当前行
-set showcmd                   " 显示输入命令
-set wildmenu                  " 命令行补全增强
+set expandtab
+set cursorline
+set showcmd
+set wildmenu
 set encoding=utf-8
-set clipboard=unnamedplus     " 使用系统剪贴板
+set clipboard=unnamedplus
+" set termguicolors   " 若支持真彩色可开启
 
 " 搜索设置
 set hlsearch
@@ -46,7 +53,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ---- 文件浏览 ----
 Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin' " NERDTree 显示 git 状态
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " ---- 图形化 ----
 Plug 'skywind3000/vim-quickui'
@@ -54,9 +61,9 @@ Plug 'puremourning/vimspector'
 
 " ---- 符号大纲 ----
 Plug 'preservim/tagbar'
-Plug 'ludovicchabant/vim-gutentags'    " 自动管理 tags 文件
+Plug 'ludovicchabant/vim-gutentags'
 
-" ---- 语法检查（异步） ----
+" ---- 语法检查 ----
 Plug 'dense-analysis/ale'
 
 " ---- 代码格式化 ----
@@ -69,21 +76,27 @@ Plug 'vim-airline/vim-airline-themes'
 " ---- Git 集成 ----
 Plug 'tpope/vim-fugitive'
 
-" ---- 配色主题（推荐一个现代主题） ----
-Plug 'morhetz/gruvbox'
+" ========== 新增：Markdown 和 LaTeX 支持 ==========
+" LaTeX 全能插件
+Plug 'lervag/vimtex'
+" Markdown 实时预览（依赖 Node.js）
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
-" ---- 增强语法高亮 ----
+" ---- 增强语法高亮 (已包含 Markdown 和 LaTeX 基础高亮) ----
 Plug 'sheerun/vim-polyglot'
-
-" ---- 可选：调试支持 (图形化调试) ----
-" Plug 'puremourning/vimspector'
 
 call plug#end()
 
+" ================== 配色：终端原生 ==================
+" 不加载任何 colorscheme，仅修复补全菜单背景
+highlight Pmenu        guifg=NONE    guibg=#1e222a ctermfg=NONE ctermbg=235
+highlight PmenuSel     guifg=#ffffff guibg=#528bff ctermfg=231  ctermbg=27  gui=bold
+highlight PmenuThumb   guibg=#4a5170 ctermbg=241
+highlight PmenuSbar    guibg=#2c313a ctermbg=236
+
 " ================== 插件配置 ==================
 
-" 1. coc.nvim 设置
-" 使用 <Tab> 进行补全选择
+" 1. coc.nvim (保持不变)
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
@@ -95,11 +108,9 @@ function! CheckBackspace() abort
   return !col || getline('.')[col-1]  =~# '\s'
 endfunction
 
-" 回车选中补全项
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" 常用快捷键
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -107,7 +118,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>a  <Plug>(coc-codeaction)
-" 诊断跳转
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -118,72 +128,88 @@ let NERDTreeShowHidden=1
 " 3. Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-" 4. ALE (异步检查)
+" 4. ALE (C/C++ 配置，保持不变)
 let g:ale_linters = {'c': ['clangd'], 'cpp': ['clangd']}
 let g:ale_fixers = {'c': ['clang-format'], 'cpp': ['clang-format']}
 let g:ale_fix_on_save = 1
-" 快捷键：跳转到上一个/下一个错误
 nmap <silent> <leader>e <Plug>(ale_previous_wrap)
 nmap <silent> <leader>E <Plug>(ale_next_wrap)
 
-" 5. clang-format 快捷键
+" 5. clang-format
 map <C-K> :ClangFormat<CR>
 imap <C-K> <ESC>:ClangFormat<CR>i
 
-" 6. 主题
-" colorscheme gruvbox
-" set background=dark
+" ========== 新增：vimtex 配置 ==========
+" vimtex 基本设置
+" vimtex 基本设置
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'zathura'
 
-" 7. 编译运行 (使用 quickfix)
+" 核心修正：通过专用配置项指定引擎
+let g:vimtex_compiler_latexmk_engines = {
+    \ '_' : '-xelatex',
+    \}
+
+" 其他 latexmk 选项（如 -verbose, -synctex=1 等）可以保留在这里
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'hooks' : [],
+    \ 'options' : [
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+
+" 快捷键（直接映射到命令）
+nmap <leader>ll :VimtexCompile<CR>
+nmap <leader>lv :VimtexView<CR>
+nmap <leader>lc :VimtexClean<CR>
+
+" ========== 新增：Markdown 预览配置 ==========
+" 快捷键：Ctrl+M 打开预览（也可用 :MarkdownPreview）
+nmap <C-m> <Plug>MarkdownPreviewToggle
+" 或使用 <leader>mp 等，此处使用 Ctrl+M
+
+" ========== 原有编译运行（C++）==========
 set makeprg=g++\ -o\ %<\ %\ -std=c++17\ -O0\ -g\ -lm\ -fsanitize=address\ -fsanitize=undefined\ -fsanitize=leak
 map <F7> :make<CR><CR><CR> :copen<CR>
 map <F6> :cclose<CR>
 
-" 8. 快速保存和退出
-map <F2> :w<CR>                 " 保存当前文件
-nnoremap <C-F2> :q<CR>          " 关闭当前窗口（文件）
-nnoremap <A-F2> :qa<CR>         " 退出所有文件（关闭 Vim）
-nnoremap <S-F2> :wa<CR>         " 保存所有文件（若需 Super 请改用 <D-F2>，但仅限 gVim）
+" 快速保存退出
+map <F2> :w<CR>
+nnoremap <C-F2> :q<CR>
+nnoremap <A-F2> :qa<CR>
+nnoremap <S-F2> :wa<CR>
 
-" Ctrl + F7：编译当前 C++ 文件并运行（支持 stdin/stdout）
+" Ctrl+F7 编译并运行 C++
 function! CompileAndRun()
     let l:src = expand('%')
     let l:exe = expand('%:r')
     let l:ext = expand('%:e')
-
-    " 仅对 C++ 源文件生效
     if l:ext !~? '^\(cpp\|cxx\|cc\|c++\)$'
         echo "当前文件不是 C++ 源文件"
         return
     endif
-
-    " 构建编译命令（使用 shellescape 防特殊字符）
     let l:cmd = 'g++ -o ' . shellescape(l:exe) . ' ' . shellescape(l:src) .
                 \ ' -std=c++17 -O0 -g -lm -fsanitize=address -fsanitize=undefined -fsanitize=leak'
-
-    " 显示编译命令（方便调试）
     echo "编译命令: " . l:cmd
-
-    " 执行编译
     execute '!' . l:cmd
-
-    " 检查编译是否成功（v:shell_error 为 0 表示成功）
     if v:shell_error == 0
-        " 编译成功，在终端中运行程序
         execute 'terminal ./' . l:exe
     else
         echo "编译失败，请检查代码错误"
     endif
 endfunction
-
-" 映射 Ctrl + F7 为编译并运行
 nnoremap <C-F7> :call CompileAndRun()<CR>
 
-" ---------- vim-quickui 菜单配置 ----------
-" 清空所有菜单（如需重置，取消注释）
-" call quickui#menu#reset()
+" ---------- vim-quickui 菜单（新增 LaTeX 和 Markdown 条目）----------
+" 原有菜单保持不变，添加新菜单项
 
-" 安装 文件 菜单
 call quickui#menu#install('文件(&F)', [
     \ [ "新建标签页\tCtrl+n", 'tabnew' ],
     \ [ "新建文件", 'enew' ],
@@ -197,25 +223,30 @@ call quickui#menu#install('文件(&F)', [
     \ [ "退出\tAlt+F2", 'qa' ],
     \ ])
 
-" 安装 构建 菜单
+" 构建菜单中增加 LaTeX 编译选项
 call quickui#menu#install('构建(&B)', [
-    \ [ "编译 (F7)", 'make' ],
+    \ [ "编译 C/C++ (F7)", 'make' ],
     \ [ "调试编译 (O0 -g)", 'set makeprg=g++\ -o\ %<\ %\ -std=c++17\ -O0\ -g\ -lm\ -fsanitize=address\ -fsanitize=undefined\ -fsanitize=leak\|make\|copen' ],
     \ [ "--", '' ],
-    \ [ "编译并运行 (Ctrl+F7)", 'call CompileAndRun()' ],
-    \ [ "仅运行", 'terminal ./%:r' ],
+    \ [ "编译并运行 C++ (Ctrl+F7)", 'call CompileAndRun()' ],
+    \ [ "仅运行 C++", 'terminal ./%:r' ],
+    \ [ "--", '' ],
+    \ [ "LaTeX 编译 (\ll)", 'VimtexCompile' ],
+    \ [ "LaTeX 预览 (\lv)", 'VimtexView' ],
+    \ [ "LaTeX 清空缓存 (\lc)", 'VimtexClean' ],
     \ [ "--", '' ],
     \ [ "打开 Quickfix", 'copen' ],
     \ [ "关闭 Quickfix", 'cclose' ],
     \ ])
 
-" 安装 工具 菜单
 call quickui#menu#install('工具(&T)', [
     \ [ "NERDTree", 'NERDTreeToggle' ],
     \ [ "Tagbar", 'TagbarToggle' ],
     \ [ "--", '' ],
     \ [ "终端", 'split term://bash' ],
     \ [ "Git 状态", 'Git status' ],
+    \ [ "--", '' ],
+    \ [ "Markdown 预览 (Ctrl+M)", 'MarkdownPreviewToggle' ],
     \ [ "--", '' ],
     \ [ "切换行号", 'set number!' ],
     \ [ "切换相对行号", 'set relativenumber!' ],
@@ -224,7 +255,7 @@ call quickui#menu#install('工具(&T)', [
     \ [ "格式化代码 (Ctrl+K)", 'ClangFormat' ],
     \ ])
 
-" 安装 视图 菜单（保留显示相关设置）
+" 其他菜单（视图、窗口、调试、帮助）保持不变，可省略，但为完整起见保留
 call quickui#menu#install('视图(&V)', [
     \ [ "切换自动换行", 'set wrap!' ],
     \ [ "切换拼写检查", 'set spell!' ],
@@ -232,7 +263,6 @@ call quickui#menu#install('视图(&V)', [
     \ [ "显示 80 列标尺", 'set colorcolumn=80' ],
     \ ])
 
-" 安装 窗口 菜单（含方向切换）
 call quickui#menu#install('窗口(&W)', [
     \ [ "水平分割", 'split' ],
     \ [ "垂直分割", 'vsplit' ],
@@ -250,7 +280,6 @@ call quickui#menu#install('窗口(&W)', [
     \ [ "平均分配窗口", 'wincmd =' ],
     \ ])
 
-" 安装 调试 菜单（需要 vimspector 插件）
 call quickui#menu#install('调试(&D)', [
     \ [ "启动 / 继续 (F5)", 'call vimspector#Launch()' ],
     \ [ "单步跳过 (F10)", 'call vimspector#StepOver()' ],
@@ -261,7 +290,6 @@ call quickui#menu#install('调试(&D)', [
     \ [ "重置 (Ctrl+F5)", 'call vimspector#Reset()' ],
     \ ])
 
-" 安装 帮助 菜单
 call quickui#menu#install('帮助(&H)', [
     \ [ "快捷键汇总", 'echo "F2:保存 F3:关闭 F6:关闭Quickfix F7:编译 F8:Tagbar Ctrl+F7:编译运行 Ctrl+F2:退出所有 F1:帮助"' ],
     \ [ "Vim 版本", 'version' ],
@@ -269,31 +297,36 @@ call quickui#menu#install('帮助(&H)', [
     \ [ "Vimspector 文档", 'help vimspector' ],
     \ ])
 
-" 按两次空格键打开菜单
 noremap <silent> <space><space> :call quickui#menu#open()<cr>
 
-
-" ---------- vimspector 调试器配置 ----------
-" 启用 HUMAN 模式快捷键（更符合 Vim 习惯）
+" ---------- vimspector ----------
 let g:vimspector_enable_mappings = 'HUMAN'
 
-" --------- 修正Col 显示 -------------
+" ---------- 状态栏 ----------
 let g:airline_symbols_ascii = 1
 
+" 修正：latex缺失
+
+augroup vimtex_cmds
+    autocmd!
+    autocmd FileType tex command! -nargs=? VimtexCompile :call vimtex#compiler#compile(<f-args>)
+    autocmd FileType tex command! VimtexView :call vimtex#view#view()
+    autocmd FileType tex command! VimtexClean :call vimtex#compiler#clean()
+augroup END
 ```
 
 如下，是DS给出的汇总：
 
-##  Vim 快捷键完整汇总
+## Vim 快捷键完整汇总
 
 > **说明**：  
-> - `<leader>` 默认为 `\`（反斜杠），您可以通过 `let mapleader = " "` 改为空格（未配置）。  
-> - 所有快捷键均在 **普通模式（Normal）** 下使用，除非特别说明（如插入模式）。  
-> - `Ctrl`、`Alt`、`Shift` 组合键均按常见终端兼容性编写，部分 `Alt` 组合可能需要终端设置。
+> - `<leader>` 默认为 `\`（反斜杠），所有以 `\` 开头的快捷键（如 `\ll`）需先按反斜杠。  
+> - 所有快捷键均在 **普通模式（Normal）** 下使用，除非特别说明。  
+> - `Ctrl`、`Alt`、`Shift` 组合键需终端兼容性支持（如 `Alt` 组合可能需要终端设置）。
 
 ---
 
-###  文件操作
+### 文件操作
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
@@ -301,100 +334,116 @@ let g:airline_symbols_ascii = 1
 | `Ctrl+F2` | **关闭当前窗口（文件）** | `:q` |
 | `Alt+F2` | **退出所有文件（关闭 Vim）** | `:qa` |
 | `Shift+F2` | **保存所有文件** | `:wa` |
-| `Ctrl+s` | 保存（菜单提示，对应 `:write`） | `:write` |
-| `:w`、`:q`、`:wq`、`:q!` | 标准 Vim 命令（不变） | 内置 |
+| `Ctrl+s` | 保存（菜单提示） | `:write` |
+| `:w`、`:q`、`:wq`、`:q!` | 标准 Vim 命令 | 内置 |
 
 ---
 
-###  窗口管理
+### 窗口管理
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
 | `Ctrl+w w` | 循环切换到下一个窗口 | `:wincmd w` |
-| `Ctrl+w h` | 切换到左窗口 | `:wincmd h` |
-| `Ctrl+w j` | 切换到下窗口 | `:wincmd j` |
-| `Ctrl+w k` | 切换到上窗口 | `:wincmd k` |
-| `Ctrl+w l` | 切换到右窗口 | `:wincmd l` |
+| `Ctrl+w h` / `j` / `k` / `l` | 切换到左/下/上/右窗口 | `:wincmd h/j/k/l` |
 | `Ctrl+w =` | 平均分配窗口大小 | `:wincmd =` |
-| `Ctrl+w _` 或 `\|` | 最大化当前窗口（菜单组合） | `:wincmd _ \| :wincmd \|` |
+| `Ctrl+w _` 或 `\|` | 最大化当前窗口 | 菜单组合 |
 | `:split` / `:vsplit` | 水平/垂直分割窗口 | 内置 |
-| `:close` | 关闭当前窗口 | 内置 |
-| `:only` | 关闭其他窗口（保留当前） | 内置 |
+| `:close` / `:only` | 关闭当前窗口 / 仅保留当前 | 内置 |
 
 ---
 
-###  文件浏览与符号大纲
+### 文件浏览与符号大纲
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
 | `Ctrl+n` | 打开/关闭 **NERDTree** 侧边栏 | `:NERDTreeToggle` |
 | `F8` | 打开/关闭 **Tagbar**（符号大纲） | `:TagbarToggle` |
-| 在 NERDTree 中：`?``m``o``v``s``R``P``p` | 文件树操作（详见 NERDTree 帮助） | 插件内置 |
 
 ---
 
-###  智能补全与代码导航（coc.nvim）
+### 代码导航与补全（coc.nvim）
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
-| `gd` | 跳转到定义 | `:call coc#definition()` |
-| `gy` | 跳转到类型定义 | `:call coc#typeDefinition()` |
-| `gi` | 跳转到实现 | `:call coc#implementation()` |
-| `gr` | 查找引用 | `:call coc#references()` |
-| `<leader>rn` | 重命名符号 | `:call coc#rename()` |
-| `<leader>f` | 格式化选中区域 | `:call coc#formatSelected()` |
-| `<leader>a` | 执行代码操作（修复错误等） | `:call coc#codeAction()` |
-| `[g` | 跳转到上一个诊断错误/警告 | `:call coc#diagnosticPrev()` |
-| `]g` | 跳转到下一个诊断错误/警告 | `:call coc#diagnosticNext()` |
-| `<Tab>`（插入模式） | 选择下一个补全项 | coc 内置 |
-| `Shift+Tab`（插入模式） | 选择上一个补全项 | coc 内置 |
-| `<CR>`（插入模式） | 确认选中的补全项 | coc 内置 |
-| `:CocList`、`:CocCommand` | 打开 coc 列表 / 执行命令 | 插件内置 |
+| `gd` | 跳转到定义 | `<Plug>(coc-definition)` |
+| `gy` | 跳转到类型定义 | `<Plug>(coc-type-definition)` |
+| `gi` | 跳转到实现 | `<Plug>(coc-implementation)` |
+| `gr` | 查找引用 | `<Plug>(coc-references)` |
+| `<leader>rn` | 重命名符号 | `<Plug>(coc-rename)` |
+| `<leader>f` | 格式化选中区域 | `<Plug>(coc-format-selected)` |
+| `<leader>a` | 代码操作（修复等） | `<Plug>(coc-codeaction)` |
+| `[g` / `]g` | 上一个/下一个诊断错误 | `<Plug>(coc-diagnostic-prev/next)` |
+| `<Tab>` / `<S-Tab>`（插入模式） | 下一个/上一个补全项 | coc 内置 |
+| `<CR>`（插入模式） | 确认补全项 | coc 内置 |
 
 ---
 
-###  语法检查（ALE）
+### 语法检查（ALE）
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
-| `<leader>e` | 跳转到上一个错误/警告 | `:call ale#PreviousWrap()` |
-| `<leader>E` | 跳转到下一个错误/警告 | `:call ale#NextWrap()` |
+| `<leader>e` | 跳转到上一个错误/警告 | `<Plug>(ale_previous_wrap)` |
+| `<leader>E` | 跳转到下一个错误/警告 | `<Plug>(ale_next_wrap)` |
 | `:ALEDetail` | 查看当前错误详情 | 插件内置 |
 | `:ALEFix` | 手动修复当前文件 | 插件内置 |
 
-> 注：`g:ale_fix_on_save = 1` 使保存时自动格式化。
-
 ---
 
-###  代码格式化
+### 代码格式化（clang-format）
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
-| `Ctrl+K`（普通模式） | 格式化整个当前文件 | `:ClangFormat` |
-| `Ctrl+K`（插入模式） | 退出插入模式并格式化 | `:ClangFormat` |
-| 选中区域后 `Ctrl+K`（可视模式） | 格式化选中区域 | `:ClangFormat` |
+| `Ctrl+K`（普通模式） | 格式化整个文件 | `:ClangFormat` |
+| `Ctrl+K`（插入模式） | 退出并格式化 | `:ClangFormat` |
+| 选中后 `Ctrl+K`（可视模式） | 格式化选中区域 | `:ClangFormat` |
 
 ---
 
-###  编译与运行
+### 编译与运行（C++）
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
-| `F7` | **仅编译**（使用 `makeprg`） | `:make` → `:copen` |
-| `Ctrl+F7` | **编译并运行**（C++ 源文件） | 调用 `CompileAndRun()` 函数 |
-| `F6` | 关闭 quickfix 窗口（编译错误列表） | `:cclose` |
-| `:copen` / `:cclose` | 手动打开/关闭 quickfix | 内置 |
-| `:cnext` / `:cprev` | 跳转到下一个/上一个错误 | 内置 |
-| `:cfirst` / `:clast` | 跳转到第一个/最后一个错误 | 内置 |
+| `F7` | **编译 C++**（显示错误列表） | `:make` → `:copen` |
+| `Ctrl+F7` | **编译并运行**（仅 C++ 源文件） | 调用 `CompileAndRun()` 函数 |
+| `F6` | 关闭 quickfix 错误窗口 | `:cclose` |
+| `:copen` / `:cclose` | 手动打开/关闭错误列表 | 内置 |
+| `:cnext` / `:cprev` | 下一个/上一个错误 | 内置 |
 
-**编译命令详情**（`makeprg` 和 `CompileAndRun` 函数）：
-```
-g++ -o <文件名（无扩展名）> <当前源文件> -std=c++17 -O0 -g -lm -fsanitize=address -fsanitize=undefined -fsanitize=leak
+**编译命令**（`makeprg` 和 `CompileAndRun`）：
+```bash
+g++ -o <输出> <源文件> -std=c++17 -O0 -g -lm -fsanitize=address -fsanitize=undefined -fsanitize=leak
 ```
 
 ---
 
-###  调试（vimspector）
+### LaTeX 编辑（vimtex）
+
+> **配置**：编译器为 `latexmk -xelatex`，PDF 预览器为 **zathura**。
+
+| 快捷键 | 功能 | 命令 |
+|--------|------|------|
+| `\ll` | **编译当前 LaTeX 文档**（自动用 xelatex） | `:VimtexCompile` |
+| `\lv` | **打开 PDF 预览**（zathura） | `:VimtexView` |
+| `\lc` | **清理编译缓存**（删 aux、log 等） | `:VimtexClean` |
+
+> **提示**：编译成功后 zathura 会自动弹出；若需要反向搜索（从 PDF 跳回 Vim），可在 zathura 中按 `Ctrl+左键点击`。
+
+---
+
+### Markdown 预览
+
+> **插件**：`markdown-preview.nvim`（需自行构建依赖）
+
+| 快捷键 | 功能 | 命令 |
+|--------|------|------|
+| `Ctrl+m` | **打开/关闭 Markdown 预览**（浏览器） | `:MarkdownPreviewToggle` |
+
+> **注意**：若预览未生效，请手动在插件目录执行 `yarn install` 完成构建。  
+> 备选：可通过 `:CocInstall coc-markdown-preview` 使用 coc 版本（需额外配置）。
+
+---
+
+### 调试（vimspector）
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
@@ -408,65 +457,66 @@ g++ -o <文件名（无扩展名）> <当前源文件> -std=c++17 -O0 -g -lm -fs
 
 ---
 
-###  图形化菜单（vim-quickui）
+### 图形化菜单（vim-quickui）
 
 | 快捷键 | 功能 |
 |--------|------|
 | `空格 空格` | 打开顶部菜单栏（文件、构建、工具、视图、窗口、调试、帮助） |
-| 菜单内：方向键选择，回车执行，`Esc` 关闭 | 菜单导航 |
+| 菜单内导航 | 方向键选择，回车执行，`Esc` 关闭 |
+
+> **菜单亮点**：  
+> - **构建**菜单包含 LaTeX 编译、预览、清理项。  
+> - **工具**菜单包含 NERDTree、Tagbar、终端、Markdown 预览等。
 
 ---
 
-###  通用搜索与编辑
+### 通用搜索与编辑
 
 | 快捷键 | 功能 | 命令 |
 |--------|------|------|
-| `/pattern` | 向下搜索 | 内置 |
-| `?pattern` | 向上搜索 | 内置 |
+| `/pattern` / `?pattern` | 向下/向上搜索 | 内置 |
 | `n` / `N` | 下一个/上一个匹配 | 内置 |
 | `*` / `#` | 搜索当前单词（向前/向后） | 内置 |
 | `:noh` | 取消高亮 | 内置 |
-| `u` | 撤销 | 内置 |
-| `Ctrl+r` | 重做 | 内置 |
+| `u` / `Ctrl+r` | 撤销 / 重做 | 内置 |
 | `p` / `P` | 粘贴（后/前） | 内置 |
 | `yy` / `dd` | 复制/剪切当前行 | 内置 |
 | `v` + 移动 + `y`/`d` | 复制/剪切选中文本 | 内置 |
 | `gg` / `G` | 跳转到文件首/末行 | 内置 |
-| `:set number!`、`:set relativenumber!`、`:set wrap!` 等 | 通过菜单切换显示选项 | 内置 |
 
 ---
 
-###  内置终端（:term）
+### 内置终端（:term）
 
 | 快捷键 / 命令 | 功能 |
 |---------------|------|
 | `:term` | 在当前窗口打开交互式终端 |
-| `:split term://bash` | 水平分割并打开终端（菜单中也有） |
-| `:vsplit term://bash` | 垂直分割并打开终端（可手动输入） |
+| `:split term://bash` | 水平分割并打开终端 |
+| `:vsplit term://bash` | 垂直分割并打开终端 |
 | `Ctrl + \` 后按 `Ctrl + n` | 终端模式 → 普通模式 |
 | `i`（在终端窗口中） | 普通模式 → 终端模式 |
 | `exit`（终端内） | 退出终端进程 |
 
 ---
 
-###  其他辅助
+### 其他辅助
 
-- **帮助菜单**：`两次空格` → 帮助 → “快捷键汇总” 会回显常用按键提示。
+- **帮助菜单**：`空格空格` → 帮助 → “快捷键汇总” 会回显常用按键提示。
 - **Vim 版本信息**：菜单中可查看。
 - **Git 状态**：菜单中 `Git status` 调用 `:Git status`（fugitive 插件）。
 
 ---
 
-###  注意事项
+### 注意事项
 
-1. **键冲突**：
-   - `F9` 被 vimspector 占用（切换断点），您已使用 `Ctrl+F7` 作为编译并运行，无影响。
-   - `F5`、`F10`、`F11`、`F12` 被 vimspector 占用，若您不调试，可忽略。
-   - `F4` 也被占用（运行到光标处）。
+1. **键冲突**：  
+   - `F9` 被 vimspector 占用（切换断点），与 C++ 编译无关。  
+   - `F5`、`F10`、`F11`、`F12` 专用于调试。
 
-2. **终端兼容性**：
-   - `Alt+F2` 需要在终端设置中启用“将 Alt 作为 Meta 键”。
-   - `Shift+F2` 通常可用。
-   - `Ctrl+F2` 在大多数终端中可用。
+2. **终端兼容性**：  
+   - `Alt+F2` 需终端将 Alt 作为 Meta 键。  
+   - `Ctrl+F2` 在大多数终端可用。
 
-1. **`<leader>` 键**：默认为 `\`，所有 `\` 开头的快捷键（如 `\rn`）需要先按反斜杠。
+3. **`<leader>` 键**：默认为 `\`，所有 `\` 开头的快捷键（如 `\ll`）需先按反斜杠。
+
+4. **Markdown 预览**：若使用 `markdown-preview.nvim`，请确保 Node.js 和 yarn 已安装并完成构建。
